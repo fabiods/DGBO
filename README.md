@@ -14,7 +14,7 @@ The program must be in the ~/DGBO directory
 To install the program:
 
      cd DGBO
-     ./install
+     sh ./install
 -------------------------------------------------------
 EXAMPLE: lithium bulk, optimizing three P-shells:
 In this example there are two local minima
