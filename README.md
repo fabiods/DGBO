@@ -43,7 +43,7 @@ an algortitm which depends on the starting point itself.
 Despite the program try to enlarge the bounds if the final solution is at the bounds, 
 it can happen that different starting point gives different global minimum
 because the bounds are different.
-To use an external bound file, create the bounds_ext.dat file
+To use an external bound file, create the 'bounds_ext.dat' file
 
 
 
