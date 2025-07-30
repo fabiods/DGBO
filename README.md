@@ -40,8 +40,9 @@ It is a stardard crystal file, with * where exponent have to be optimized
 This file is used for the starting point
 
 to consider a second ( a third)  starting point use
-      inputhf.d12.orig2
-      (input.d12.orig3)
+
+       inputhf.d12.orig2
+       (input.d12.orig3)
 
 and dgbo will run from all these starting point.
 
@@ -60,20 +61,26 @@ GMF is a REQUIRED (!!!) enviroment variable
 1-digit accuracy is for a first guess of exponent
 
 for 2-digits accuracy
+
        export GMF="%3.1E"
+
 this gives accurate exponents
 
 for 3-digits accuracy
+
       export GMF="%4.2E"
+
 this is usually not required as the energy changes will be usually close to TOLDEE
 
 for 4-digits accuracy
+
  export GMF="%5.3E"
+
 this is for reference
 
 ----------------------------------------------------
- cd Li3
- export GMF="%2.0E"
+      cd Li3
+      export GMF="%2.0E"
 
 
 ---------------------------------------------------------
