@@ -11,24 +11,22 @@ The dgbo program will optimize the crystal basis-set, searching for a global min
 The program must be in the ~/DGBO directory
 
 ------------------------------------------------------
+To install the program:
+
      cd DGBO
      ./install
-
-to install the program
-
 -------------------------------------------------------
 EXAMPLE: lithium bulk, optimizing three P-shells:
 In this example there are two local minima
 
      -7.4558253192  res:  3.0   0.4  0.1 
      -7.4579874517  res:  6.0   0.8  0.08
-The second is the global one
+The second is the global one.
+To run the DGBO program with 1 digit accuracy:
 
      cd Li3
      export GMF="%2.0E"
      ~/DGBO/dgbo
-
-to run the DGBO program with 1 digit accuracy
 
 The input file in the directory is only
 
