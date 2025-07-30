@@ -48,6 +48,7 @@ In the Li3 example three different starting points are used:
          3.31 0.5488 0.106 
          3 0.4 0.1
 and dgbo always go to the global minimum:
+
           grep res: dgbo.out | grep ffun
           ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [2.  1.  0.2]           gamma: 0 cnt: 1215 min: 3 3 conv: 0 boundok: True
           ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [3.31   0.5488 0.106 ]  gamma: 0 cnt: 1725 min: 3 3 conv: 0 boundok: True
