@@ -12,6 +12,7 @@ the program must be in the ~/DGBO directory
 
 ------------------------------------------------------
 cd DGBO
+
 ./install
 
 to install the program
