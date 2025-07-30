@@ -26,7 +26,7 @@ To run the DGBO program with 1 digit accuracy:
 
      cd Li3
      export GMF="%2.0E"
-     ~/DGBO/dgbo
+     ~/DGBO/dgbo | tee dgbo.out
 
 The input file in the directory is only
 
@@ -45,9 +45,14 @@ and dgbo will run from all these starting point.
 In the Li3 example three different starting points are used:
 
          2 1 0.2
-         4 0.5 0.1 
+         3.31 0.5488 0.106 
          3 0.4 0.1
-and dgbo always go to the global minimum.
+and dgbo always go to the global minimum:
+          grep res: dgbo.out | grep ffun
+          ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [2.  1.  0.2]           gamma: 0 cnt: 1215 min: 3 3 conv: 0 boundok: True
+          ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [3.31   0.5488 0.106 ]  gamma: 0 cnt: 1725 min: 3 3 conv: 0 boundok: True
+          ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [3.  0.4 0.1]           gamma: 0 cnt: 1759 min: 3 3 conv: 0 boundok: True
+
 
 Together with a starting point, dgbo also define the bound interval for the exponents, with
 an algortitm which depends on the starting point itself.
