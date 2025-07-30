@@ -8,7 +8,7 @@ The dgbo program will optimize the crystal basis-set, searching for a global min
 (only optimization of exponents of uncontracted shell is currently supported)
 
 
-the program must be in the ~/DGBO directory
+The program must be in the ~/DGBO directory
 
 ------------------------------------------------------
      cd DGBO
@@ -17,12 +17,11 @@ the program must be in the ~/DGBO directory
 to install the program
 
 -------------------------------------------------------
-EXAMPLE: lithium bulk, optimizing three P-shells
+EXAMPLE: lithium bulk, optimizing three P-shells:
 In this example there are two local minima
 
      -7.4558253192  res:  3.0   0.4  0.1 
      -7.4579874517  res:  6.0   0.8  0.08
-
 The second is the global one
 
      cd Li3
