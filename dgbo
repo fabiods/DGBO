@@ -1,0 +1,132 @@
+#!/bin/bash
+
+if [ -z $GMF ]; then
+    echo GMF not defined
+    exit
+fi
+
+pwd
+rm basrun.log
+rm basrun.allene.dat
+rm notconv.dat
+# in basdergmf
+rm allene.dat
+rm ENEREFZERO.dat
+LOGFILE="dgbo.log"
+
+if [ ! -e inputhf.d12.orig ]; then
+   echo "inputhf.d12.orig missed"
+   exit
+fi
+count=0
+for start in inputhf.d12.orig inputhf.d12.orig? ; do
+  if [[ "$start" != *~ ]] && [[ -e "$start" ]] ; then
+    echo 	
+    echo "STARTFILE" $start
+    echo 
+    count=$((count+1))
+
+    ~/DGBO/cry2basrun.sh $start >> $LOGFILE
+    if [ -e "bounds_ext.dat" ]; then
+	echo "using external bounds file "
+	cp bounds_ext.dat bounds.dat
+    fi	
+    echo "bounds.dat:"
+    cat bounds.dat 
+    cp bounds.dat bounds0.dat
+
+cp $start".par" inputhf.d12.par
+
+# do only for the first orig file
+if [ ! -e ENEREFZERO.dat ]; then
+    echo "creating ENEREFZERO.dat"  
+    cp sedfile.dat basrunsed.dat
+    saveGMF=$GMF
+    export GMF="%5.3E"
+    enerefzero=`~/DGBO/basrun.sh | awk '{print $1}'`
+    grep runcrycond basrun.log
+    export GMF=$saveGMF
+    echo $enerefzero > ENEREFZERO.dat
+    echo "enerefzero" $enerefzero
+    rm basrun.log
+    rm basrun.allene.dat
+    rm notconv.dat
+else
+    echo  "ENEREFZERO.dat present"
+fi
+
+
+echo $GMF
+cp sedfile.dat basrunsed.dat
+~/DGBO/basrun.sh
+cp basrunsed.dat basrunsed.orig$count
+
+#exit
+if [ "1" == "0" ]; then 
+pwd
+python -u ~/opt3.py nd
+wc basrun.allene.dat
+wc notconv.dat
+
+pwd
+python -u ~/opt3.py pow
+wc basrun.allene.dat
+wc notconv.dat
+#python ~/opt3.py direct
+#wc basrun.allene.dat
+#wc notconv.dat
+
+pwd
+python -u ~/opt3.py boby
+wc basrun.allene.dat
+wc notconv.dat
+
+fi
+
+
+pwd
+python -u ~/DGBO/opt3zoo.py
+wc basrun.allene.dat
+wc notconv.dat 
+#python ../../opt3.py bfgs
+#python ../../opt3.py direct
+#exit
+#echo "nd.out"
+#tail -n 10 nd.out
+#echo "pow.out"
+#tail -n 10 pow.out
+echo "min gamma:"
+sort -k 1 -g -r basrun.allene.dat | uniq | tail -n 5
+echo "min total:"
+sort -k 2 -g -r basrun.allene.dat | uniq | tail -n 5
+
+#sort -k 4 -g -r /homex/atom/li_basopt/LioptX/1545/rest/rest3/res4/res5/pscan/file.dat | tail -n 10
+    fi
+    echo "--- final basis set---"
+    echo "from:"
+    cat basrunsed.orig$count
+    echo "to:"
+    cat basrunsed.dat
+    ~/DGBO/basrun.sh
+done
+
+awk '{print $3,$5}' notconv.dat | sort -k 1 -g | grep -v NA > rmax0_enec.dat
+awk '{print $3,$6}' notconv.dat | sort -k 1 -g | grep -v NA > rmax0_enef.dat
+
+
+sort -k 2 -r -g  basrun.allene.dat  | uniq > basrun.allene.dat.uniq
+awk '{print NF-3}' basrun.allene.dat.uniq | head -n 1 > nc.dat
+~/DGBO/xdiff.x < basrun.allene.dat.uniq
+
+grep "" *.ene | sort -k 2 -r -g | grep -v NA | tail -n 10
+#grep "SCF ENDED - CONVERGENCE ON ENERGY" out* | sort -k 10 -g -r | tail -n 10
+echo "check sizes"
+echo "allene.dat:"
+cat basrun.allene.dat allene.dat  | sort -k 2 -g -r | uniq | wc
+echo "notconv.dat"
+sort -k 5 -g -r notconv.dat   | grep -v NA | uniq | wc
+echo "*.ene"
+ls -alrt *.ene | wc
+echo " ---over all final basis set---"
+tail -n 1 basrun.allene.dat.uniq     
+exit

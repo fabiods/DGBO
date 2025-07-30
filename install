@@ -1,0 +1,6 @@
+ifort readlc.f -o readlc.x
+ifort checkbr.f -o checkbr.x
+ifort xdiff.f -o xdiff.x
+pip install basis_set_exchange
+pip install zoopt
+pip install --upgrade numpy==1.26.4
