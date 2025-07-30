@@ -42,6 +42,12 @@ To consider a second ( a third, ... )  starting point use
        (input.d12.orig3)
 
 and dgbo will run from all these starting point.
+In the Li3 example three different starting points are used:
+
+         2 1 0.2
+         4 0.5 0.1 
+         3 0.4 0.1
+and dgbo always go to the global minimum.
 
 Together with a starting point, dgbo also define the bound interval for the exponents, with
 an algortitm which depends on the starting point itself.
@@ -49,7 +55,6 @@ Even if the program try to enlarge the bounds if the final solution is at the bo
 it can happen that different starting point gives different global minimum
 because the bounds are different.
 To use an external bound file, create the 'bounds_ext.dat' file
-
 
 
 ---------------------------------------------------
