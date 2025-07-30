@@ -87,8 +87,32 @@ for 4-digits accuracy
 this is for reference
 
 ----------------------------------------------------
+DISCRETE DESCENT ALGORTIM
+You can also do a discrete descent run using
       cd Li3
-      export GMF="%2.0E"
+       export GMF="%2.0E"
+       ~/DGBO/basderfol.sh 
+the starting point is specified in the file basrunsed.dat
+Using the first starting point ,i.e.
+        PAR1P 2.000000
+        PAR2P 1.000000
+        PAR3P 0.200000
+we obtain another local minima
+       cycle=  0 energy=  -7.44947518180000000000
+       2 1E-01 -0.0013940100
+       cycle=  1 energy=  -7.45086919260000000000
+       1 9E-01 -0.0001524480
+       cycle=  2 energy=  -7.45102164020000000000
+       1 8E-01 -0.0001666230
+       cycle=  3 energy=  -7.45118826360000000000
+       0 3E+00 -0.0000620233 
+       cycle=  4 energy=  -7.45125028690000000000
+       1 7E-01 -0.0001745050
+       cycle=  5 energy=  -7.45142479210000000000
+       0 4E+00 -0.0000455558
+      energy: -7.45142479210000000000 dstr: [4E+00 7E-01 1E-01 ]
+
+
 
 
 ---------------------------------------------------------
