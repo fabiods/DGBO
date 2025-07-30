@@ -62,7 +62,7 @@ while read -r line; do
     eedt=`echo $line | awk '{print $2/4}'`
     eedtc=`echo "$eedt < 0.06" | bc -l`
     if [ "$eddtc" == "1" ]; then
-	eedt=0.06
+	eedt=0.06 
     fi
     
     myexp[$index]=$ee
