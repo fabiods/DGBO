@@ -19,8 +19,10 @@ to install the program
 -------------------------------------------------------
 EXAMPLE: lithium bulk, optimizing three P-shells
 In this example there are two local minima
+
      -7.4558253192  res:  3.0   0.4  0.1 
      -7.4579874517  res:  6.0   0.8  0.08
+
 The second is the global one
 
      cd Li3
@@ -31,15 +33,15 @@ to run the DGBO program with 1 digit accuracy
 
 The input file in the directory is only
 
- inputhf.d12.orig
+      inputhf.d12.orig
 
 It is a stardard crystal file, with * where exponent have to be optimized
 (only exponents of uncontracted shell are supported)
 This file is used for the starting point
 
 to consider a second ( a third)  starting point use
- inputhf.d12.orig2
- (input.d12.orig3)
+      inputhf.d12.orig2
+      (input.d12.orig3)
 
 and dgbo will run from all these starting point.
 
@@ -58,11 +60,11 @@ GMF is a REQUIRED (!!!) enviroment variable
 1-digit accuracy is for a first guess of exponent
 
 for 2-digits accuracy
- export GMF="%3.1E"
+       export GMF="%3.1E"
 this gives accurate exponents
 
 for 3-digits accuracy
- export GMF="%4.2E"
+      export GMF="%4.2E"
 this is usually not required as the energy changes will be usually close to TOLDEE
 
 for 4-digits accuracy
