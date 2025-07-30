@@ -1,5 +1,5 @@
 # DGBO
-DGBO
+
 DGBO: Discrete Global Basis-set optimization
 by Fabio Della Sala, Summer 2025, PRIN AC^3
 
@@ -37,7 +37,10 @@ inputhf.d12.orig2
 (input.d12.orig3)
 
 and dgbo will run from all these starting point
-
+Together with a starting point, dgbo also define the bound limit for the exponents, with
+an algortitm which depends on the starting point itself.
+Thus it can happen that different starting point gives different global minimum
+because the bounds are different.
 
 
 ---------------------------------------------------
