@@ -34,9 +34,9 @@ The input file in the directory is only
 
 It is a stardard crystal file, with * where exponent have to be optimized
 (only exponents of uncontracted shell are supported)
-This file is used for the starting point
+This file is also used for the starting point.
 
-to consider a second ( a third)  starting point use
+To consider a second ( a third, ... )  starting point use
 
        inputhf.d12.orig2
        (input.d12.orig3)
@@ -45,7 +45,7 @@ and dgbo will run from all these starting point.
 
 Together with a starting point, dgbo also define the bound interval for the exponents, with
 an algortitm which depends on the starting point itself.
-Despite the program try to enlarge the bounds if the final solution is at the bounds, 
+Even if the program try to enlarge the bounds if the final solution is at the bounds, 
 it can happen that different starting point gives different global minimum
 because the bounds are different.
 To use an external bound file, create the 'bounds_ext.dat' file
