@@ -22,22 +22,37 @@ def ackley(solution):
     cnt=cnt+1
     nn=len(x)
     if nn==2:
-        res=subprocess.run( "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) , shell=True, capture_output=True)
+        res=subprocess.run( "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) , shell=
+True, capture_output=True)
     if nn==3:
 #         print(x,scal)
 #         quit()
-         res=subprocess.run( "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2]) , shell=True, capture_output=True)
+         res=subprocess.run( "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " +
+ str(x[2]*scal[2]) , shell=True, capture_output=True)
     if nn==5:
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4])  , shell=True, capture_output=True)  
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " +
+ str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4])  , shell=True, capture_output=Tr
+ue)  
     if nn==6:
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5]) , shell=True, capture_output=True)
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " +
+ str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5]) , shel
+l=True, capture_output=True)
     if nn==7:
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " + str(x[6]*scal[6]) , shell=True, capture_output=True)
-    if nn==8:                                                                                                                                                                                                 
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " + str(x[6]*scal[
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " +
+ str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " +
+ str(x[6]*scal[6]) , shell=True, capture_output=True)
+    if nn==8:                                                                                         
+                                                                                                      
+  
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " +
+ str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " +
+ str(x[6]*scal[
 6]) + " " + str(x[7]*scal[7]) , shell=True, capture_output=True) 
     if nn==9:
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " + str(x[6]*scal[6]) + " " + str(x[7]*scal[7])  + " " + str(x[8]*scal[8]) , shell=True, capture_output=True)
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " +
+ str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " +
+ str(x[6]*scal[6]) + " " + str(x[7]*scal[7])  + " " + str(x[8]*scal[8]) , shell=True, capture_output=T
+rue)
 #      print(res.stdout)
 #    if res.stdout == b"NA\n" :
 #            quit()
@@ -63,11 +78,12 @@ class StoppingCriterion:
         self.__best_result = 0
         self.__count = 0
         self.__total_count = 0
-        self.__count_limit = 1000
+        self.__count_limit = 300*(dim_size+1)
 
     def check(self, optcontent):
         """
-        :param optcontent: an instance of the class RacosCommon. Several functions can be invoked to get the contexts of the optimization, which are listed as follows,
+        :param optcontent: an instance of the class RacosCommon. Several functions can be invoked to g
+et the contexts of the optimization, which are listed as follows,
         optcontent.get_best_solution(): get the current optimal solution
         optcontent.get_data(): get all the solutions contained in the current solution pool
         optcontent.get_positive_data(): get positive solutions contained in the current solution pool
@@ -149,7 +165,8 @@ while bondsok == False or fbondsok == False:
   myfmin=1e9
   lob =  np.loadtxt('bounds.dat', dtype='float', usecols=(0))
   upb =  np.loadtxt('bounds.dat', dtype='float', usecols=(1))
-  ggg=subprocess.run("~/DGBO/boundsinc.sh bounds.dat > boundsX.dat", shell=True, capture_output=False) 
+  ggg=subprocess.run("~/DGBO/boundsinc.sh bounds.dat > boundsX.dat", shell=True, capture_output=False)
+ 
   lobX =  np.loadtxt('boundsX.dat', dtype='float', usecols=(0))
   upbX =  np.loadtxt('boundsX.dat', dtype='float', usecols=(1)) 
 
@@ -160,11 +177,29 @@ while bondsok == False or fbondsok == False:
   scal=ordg
   lobi =  np.loadtxt('boundsint.dat', dtype='int', usecols=(0))
   upbi =  np.loadtxt('boundsint.dat', dtype='int', usecols=(1))
+
+#  bndsi = []
+#  for i, _ in enumerate(data):
+#    bndsi.append( [lobi[i] , upbi[i] ])    
+#  print("bounds int",bndsi)
+
+
+  x0i=[]
+  for i, _ in enumerate(data):
+    ttt=int(round(x0[i]/scal[i]))
+    if ttt < lobi[i]:
+        lob[i]=ttt
+    if ttt > upbi[i]:
+        upbi[i]=ttt
+    x0i.append(ttt)
+  print("x0int",x0i)  
+  gx0 = Solution(x=x0i)
+
   bndsi = []
   for i, _ in enumerate(data):
-    bndsi.append( [lobi[i] , upbi[i] ])    
+       bndsi.append( [lobi[i] , upbi[i] ])
   print("bounds int",bndsi)
-
+  
   dim_size = nn  # dimensions
 #dim_regs = [[1, 6], [ 2,10] , [6,10]]   # dimension range
   dim_regs = bndsi #<======================= bounds !!!
@@ -175,20 +210,18 @@ while bondsok == False or fbondsok == False:
 #quit()
   dim = Dimension(dim_size, dim_regs, dim_tys, dim_ord)  # form up the dimension object
   print(dim.limited_space())
-    # dim = Dimension2([(ValueType.CONTINUOUS, [-1, 1], 1e-6)]*dim_size)  # another way to form up the dimension object
+    # dim = Dimension2([(ValueType.CONTINUOUS, [-1, 1], 1e-6)]*dim_size)  # another way to form up the
+ dimension object
   objective = Objective(ackley, dim)  # form up the objective function
-
-  x0i=[]
-  for i, _ in enumerate(data):
-    x0i.append(int(round(x0[i]/scal[i])))
-  print("x0int",x0i)  
-  gx0 = Solution(x=x0i)
-
+  
+  
 #x1 = Solution(x=[ 2 ,4 ,10],value=-7.45832442090000000000 ) 
 #print(x0.get_x())
   budget = 1000 * dim_size  # number of calls to the objective function
-#    parameter = Parameter(budget=budget,init_samples=[x1],seed=10,intermediate_result=True,intermediate_freq=1)
-  parameter =      Parameter(budget=budget,init_samples=[gx0],exploration_rate = 0.5,seed=10,stopping_criterion=StoppingCriterion(),intermediate_result=False,intermediate_freq=100)
+#    parameter = Parameter(budget=budget,init_samples=[x1],seed=10,intermediate_result=True,intermedia
+te_freq=1)
+  parameter =      Parameter(budget=budget,init_samples=[gx0],exploration_rate = 0.5,seed=10,stopping_
+criterion=StoppingCriterion(),intermediate_result=False,intermediate_freq=100)
   parameter.set_train_size(20)
   parameter.set_positive_size(2)
   res=ackley(gx0)
@@ -206,7 +239,8 @@ while bondsok == False or fbondsok == False:
     with open('bounds.dat','w') as ft:
         for j in range(len(lob)):
               print(lob[j],upb[j],file=ft)
-    ggg=subprocess.run("~/DGBO/boundsinc.sh bounds.dat > boundsX.dat", shell=True, capture_output=False)   
+    ggg=subprocess.run("~/DGBO/boundsinc.sh bounds.dat > boundsX.dat", shell=True, capture_output=Fals
+e)   
     lobX =  np.loadtxt('boundsX.dat', dtype='float', usecols=(0))
     upbX =  np.loadtxt('boundsX.dat', dtype='float', usecols=(1))
               
@@ -238,7 +272,8 @@ while bondsok == False or fbondsok == False:
     minggt=ggsgl[-1]
     minggx=ggsgl[-2]
     minncx=ggsgl[-5]
-    print(" fun", solution.get_value(), " res: ",xarr," opt: zoo , x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",minggx,minggt,"conv:",minncx,"boundok:",bondsok)
+    print(" fun", solution.get_value(), " res: ",xarr," opt: zoo , x0:",x0," gamma:",gamma,"cnt:",cnt,
+"min:",minggx,minggt,"conv:",minncx,"boundok:",bondsok)
 #  compute follow  
     print(ackley(solution))   
     ggg=subprocess.run("cat basrunsed.dat", shell=True, capture_output=True)
@@ -272,11 +307,16 @@ while bondsok == False or fbondsok == False:
           upb[i]=upbX[i]
           fbondsok=False
           
-    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
+    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fm
+inggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
 
 #    update bounds     
-    with open('bounds.dat','w') as ft:                                                                                                                                                                                 
-     for j in range(len(lob)):                                                                                                                                                                                          
+    with open('bounds.dat','w') as ft:                                                                
+                                                                                                      
+           
+     for j in range(len(lob)):                                                                        
+                                                                                                      
+            
         print(lob[j],upb[j],file=ft)
         
 #    print(ggg.stdout.decode('UTF-8'))
@@ -298,10 +338,10 @@ while bondsok == False or fbondsok == False:
 #          bondsok=False
 
           #
-#    print(" fun", solution.get_value(), " res: ",xarr," opt: zoo , x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",ggsglx,ggsglt,"bounds:",bondsok)      
+#    print(" fun", solution.get_value(), " res: ",xarr," opt: zoo , x0:",x0," gamma:",gamma,"cnt:",cnt
+,"min:",ggsglx,ggsglt,"bounds:",bondsok)      
     #    print(len(solution_list))
 
 #if __name__ == '__main__':
 #    minimize_ackley_continuous()
 
-    
