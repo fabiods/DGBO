@@ -37,15 +37,15 @@ def ackley(solution):
 #         quit()
          res=subprocess.run( "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2]) , shell=True,stdout=subprocess.PIPE)
     if nn==5:
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4])  , shell=True, capture_output=True)  
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4])  , shell=True, stdout=subprocess.PIPE)  
     if nn==6:
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5]) , shell=True, capture_output=True)
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5]) , shell=True, stdout=subprocess.PIPE)
     if nn==7:
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) , shell=True, capture_output=True)
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) , shell=True, stdout=subprocess.PIPE)
     if nn==8:                                                                                                                                                                               
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) + " " + str(yy[7]) , shell=True, capture_output=True) 
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) + " " + str(yy[7]) , shell=True, stdout=subprocess.PIPE) 
     if nn==9:
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) + " " + str(yy[7])  + " " + str(yy[8]) , shell=True, capture_output=True)
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) + " " + str(yy[7])  + " " + str(yy[8]) , shell=True, stdout=subprocess.PIPE
 #      print(res.stdout)
 #    if res.stdout == b"NA\n" :
 #            quit()
@@ -166,7 +166,7 @@ while bondsok == False or fbondsok == False:
   # bounds to boundsint.dat
 
 # this is now useless: only for ordg
-  subprocess.run( "~/DGBO/boun2gmf.sh > boundsint.dat" , shell=True, capture_output=True)
+  subprocess.run( "~/DGBO/boun2gmf.sh > boundsint.dat" , shell=True )
   ordg =  np.loadtxt('ordgdec', dtype='float', usecols=(0))
   print("ordg",ordg)
   scal=ordg
