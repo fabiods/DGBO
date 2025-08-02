@@ -85,7 +85,7 @@ fi
 
 
 pwd
-python -u ~/DGBO/opt3zoo.py
+python -u ~/DGBO/opt4zoo.py
 wc basrun.allene.dat
 wc notconv.dat 
 #python ../../opt3.py bfgs
