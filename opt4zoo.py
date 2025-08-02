@@ -31,7 +31,7 @@ def ackley(solution):
        yy[inn]=i2v(x[inn],scal[inn],dig)
        
     if nn==2:
-        res=subprocess.run( "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) , shell=True, capture_output=True)
+        res=subprocess.run( "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) , shell=True, stdout=subprocess.PIPE)
     if nn==3:
 #         print(x,scal)
 #         quit()
