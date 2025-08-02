@@ -62,7 +62,7 @@ fi
 #python -u ~/opt3.py boby
 
 pwd
-python -u ~/opt4zoo.py
+python -u ~/DGBO/opt4zoo.py
 
 cd ..
 
