@@ -237,7 +237,7 @@ while bondsok == False or fbondsok == False:
 #    lobX =  np.loadtxt('boundsX.dat', dtype='float', usecols=(0))
 #    upbX =  np.loadtxt('boundsX.dat', dtype='float', usecols=(1))
               
-    ggg=subprocess.run("grep dstr br.out", shell=True, capture_output=True)
+    ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
     ggsg=ggg.stdout.decode('UTF-8').split()
     ggsx=ggsg[1:]
     xarr = np.array(ggsx, dtype='float')
@@ -259,7 +259,7 @@ while bondsok == False or fbondsok == False:
           
     
     print(" call derviatives:")
-    ggg=subprocess.run("~/DGBO/basdergmf.sh", shell=True, capture_output=True)
+    ggg=subprocess.run("~/DGBO/basdergmf.sh", shell=True,stdout=subprocess.PIPE )
 #  ggg=subprocess.run("~/basdergmf.sh", shell=True, capture_output=False)  
     ggsg=ggg.stdout.decode('UTF-8')
     print(ggsg)
@@ -270,7 +270,7 @@ while bondsok == False or fbondsok == False:
     print(" fun", solution.get_value(), " res: ",xarr," opt: zoo , x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",minggx,minggt,"conv:",minncx,"boundok:",bondsok)
 #  compute follow  
     print(ackley(solution))   
-    ggg=subprocess.run("cat basrunsed.dat", shell=True, capture_output=True)
+    ggg=subprocess.run("cat basrunsed.dat", shell=True, stdout=subprocess.PIPE)
     print(ggg.stdout.decode('UTF-8'))
     ggg=subprocess.run("~/DGBO/basderfol.sh", shell=True, capture_output=False)
     menergylast=np.loadtxt('basderfol.energy', dtype='float', usecols=(1))
@@ -278,9 +278,9 @@ while bondsok == False or fbondsok == False:
     mxarr=np.loadtxt('basrunsed.dat', dtype='float', usecols=(1))
     print("mxarr",mxarr)
     
-#    ggg=subprocess.run("cat basrunsed.dat", shell=True, capture_output=True)
+#    ggg=subprocess.run("cat basrunsed.dat", shell=True, stdout=subprocess.PIPE)
     print(" call derviatives fol:")
-    ggg=subprocess.run("~/DGBO/basdergmf.sh", shell=True, capture_output=True)
+    ggg=subprocess.run("~/DGBO/basdergmf.sh", shell=True, stdout=subprocess.PIPE)
     ggsg=ggg.stdout.decode('UTF-8')
     print(ggsg)
     ggsgl=ggsg.split()
