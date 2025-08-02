@@ -30,17 +30,13 @@ def ackley(solution):
     if nn==5:
         res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4])  , shell=True, capture_output=True)  
     if nn==6:
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5]) , shell=True, capture_outpu
-t=True)
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5]) , shell=True, capture_output=True)
     if nn==7:
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " + str(x[6]*scal[6]) , 
-shell=True, capture_output=True)
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " + str(x[6]*scal[6]) , shell=True, capture_output=True)
     if nn==8:                                                                                                                                                                                                 
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " + str(x[6]*scal[
-6]) + " " + str(x[7]*scal[7]) , shell=True, capture_output=True) 
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " + str(x[6]*scal[6]) + " " + str(x[7]*scal[7]) , shell=True, capture_output=True) 
     if nn==9:
-        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " + str(x[6]*scal[6]) + 
-" " + str(x[7]*scal[7])  + " " + str(x[8]*scal[8]) , shell=True, capture_output=True)
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(x[0]*scal[0]) + " " + str(x[1]*scal[1]) + " " + str(x[2]*scal[2])+ " " + str(x[3]*scal[3]) + " " + str(x[4]*scal[4]) + " " + str(x[5]*scal[5])+ " " + str(x[6]*scal[6]) + " " + str(x[7]*scal[7])  + " " + str(x[8]*scal[8]) , shell=True, capture_output=True)
 #      print(res.stdout)
 #    if res.stdout == b"NA\n" :
 #            quit()
