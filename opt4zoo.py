@@ -167,7 +167,7 @@ while bondsok == False or fbondsok == False:
 
 # this is now useless: only for ordg
   subprocess.run( "~/DGBO/boun2gmf.sh > boundsint.dat" , shell=True )
-  ordg =  np.loadtxt('ordgdec', dtype='float', usecols=(0))
+  ordg =  np.loadtxt('ordgdec0', dtype='float', usecols=(0))
   print("ordg",ordg)
   scal=ordg
 
