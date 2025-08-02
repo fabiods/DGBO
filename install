@@ -1,7 +1,7 @@
 chmod +x *.sh dgbo
-ifort readlc2.f -o readlc2.x
-ifort checkbr.f -o checkbr.x
-ifort xdiff.f -o xdiff.x
+ifx readlc2.f -o readlc2.x
+ifx checkbr.f -o checkbr.x
+ifx xdiff.f -o xdiff.x
 #pip install basis_set_exchange
 pip install zoopt
 pip install --upgrade numpy==1.26.4
