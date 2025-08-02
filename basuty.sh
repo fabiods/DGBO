@@ -42,7 +42,9 @@ function eigratio() {
     echo "eigratio{",$1 >> $LOGFILE
     input=$1
     if [ ! -e $input.eigs.rmax ]; then 
-	/home/atom/ATOMSOFT/CRYSTAL/NEWOMP2/bin/Linux-ifort_i64_omp/dev/crystalOMP < inputhfeigs.d12 > $input.eigs
+        runcry23OMP 4 inputhfeigs &>> $LOGFILE
+	cp inputhfeigs.out $input.eigs
+#	/home/atom/ATOMSOFT/CRYSTAL/NEWOMP2/bin/Linux-ifort_i64_omp/dev/crystalOMP < inputhfeigs.d12 > $input.eigs
 	ball=`grep "ALL G-VECTORS USED" $input.eigs | wc -l`
 	if [ "$ball" -ne "1" ]; then 
     nk=`grep "NUMBER OF K POINTS IN THE IBZ" $input.eigs | awk '{print $13}'`
