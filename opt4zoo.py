@@ -272,7 +272,7 @@ while bondsok == False or fbondsok == False:
     print(ackley(solution))   
     ggg=subprocess.run("cat basrunsed.dat", shell=True, stdout=subprocess.PIPE)
     print(ggg.stdout.decode('UTF-8'))
-    ggg=subprocess.run("~/DGBO/basderfol.sh", shell=True, capture_output=False)
+    ggg=subprocess.run("~/DGBO/basderfol.sh", shell=True)
     menergylast=np.loadtxt('basderfol.energy', dtype='float', usecols=(1))
     print("energylast",menergylast)
     mxarr=np.loadtxt('basrunsed.dat', dtype='float', usecols=(1))
