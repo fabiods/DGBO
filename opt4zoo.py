@@ -2,7 +2,7 @@ import sys
 import numpy as np
 import os
 import subprocess
-from scipy.optimize import minimize,direct,fmin_l_bfgs_b
+#from scipy.optimize import minimize,direct,fmin_l_bfgs_b
 #import pybobyqa
 from zoopt import Dimension, ValueType, Dimension2, Objective, Parameter, ExpOpt, Solution
 from ivvi import i2v,v2i
