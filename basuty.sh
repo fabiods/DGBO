@@ -55,8 +55,8 @@ function eigratio() {
     do
      sr=`echo $k | awk  '{printf "%d(",$1+1}'`
 #    echo $sr >> $LOGFILE
-     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 | awk '{print $1,"\n",$NF}'    > tmp
-     awk '{ for (i=1;i<=NF; i++) printf("%s\n",$i); }' tmp | sort -g  > tmpb
+     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 | awk '{print $1,"\n",$NF}'    > tmpee
+     awk '{ for (i=1;i<=NF; i++) printf("%s\n",$i); }' tmpee | sort -g  > tmpb
      amin=`head -n 1 tmpb | awk '{printf "%30.20f", $1}'`
      amax=`tail -n 1 tmpb`      	
 #    grep -A 10 "S(K) EIGENV - K =   1( 0 0 0)" $input.eigs |  awk -v RS= 'NR==1' | tail -n +2 | awk '{print $1,"\n",$NF}'    > tmp
