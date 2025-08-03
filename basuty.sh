@@ -55,7 +55,8 @@ function eigratio() {
     do
      sr=`echo $k | awk  '{printf "%d(",$1+1}'`
 #    echo $sr >> $LOGFILE
-     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 | awk '{print $1,"\n",$NF}'    > tmpee
+#     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 | awk '{print $1,"\n",$NF}'    > tmpee
+     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 > tmpee
      awk '{ for (i=1;i<=NF; i++) printf("%s\n",$i); }' tmpee | sort -g  > tmpb
      amin=`head -n 1 tmpb | awk '{printf "%30.20f", $1}'`
      amax=`tail -n 1 tmpb`      	
