@@ -39,61 +39,63 @@ fi
 
 
 function eigratio() {
-    echo "eigratio{",$1 >> $LOGFILE
-    input=$1
-    if [ ! -e $input.eigs.rmax ]; then 
-        runcry23OMP 4 inputhfeigs &>> $LOGFILE
-	cp inputhfeigs.out $input.eigs
+  echo "eigratio{",$1 >> $LOGFILE
+  input=$1
+  if [ ! -e $input.eigs.rmax ]; then 
+   runcry23OMP 4 inputhfeigs &>> $LOGFILE
+   cp inputhfeigs.out $input.eigs
 #	/home/atom/ATOMSOFT/CRYSTAL/NEWOMP2/bin/Linux-ifort_i64_omp/dev/crystalOMP < inputhfeigs.d12 > $input.eigs
-	ball=`grep "ALL G-VECTORS USED" $input.eigs | wc -l`
-	if [ "$ball" -ne "1" ]; then 
+   ball=`grep "ALL G-VECTORS USED" $input.eigs | wc -l`
+   if [ "$ball" -ne "1" ]; then 
     nk=`grep "NUMBER OF K POINTS IN THE IBZ" $input.eigs | awk '{print $13}'`
     echo 'nk' $nk >> $LOGFILE
     rmax=0.0
     nk=1
     for ((k = 0 ; k < $nk ; k++ ))
-	do
-	sr=`echo $k | awk  '{printf "%d(",$1+1}'`
-#	echo $sr >> $LOGFILE
-	grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 | awk '{print $1,"\n",$NF}'    > tmp
-#    done	
+    do
+     sr=`echo $k | awk  '{printf "%d(",$1+1}'`
+#    echo $sr >> $LOGFILE
+     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 | awk '{print $1,"\n",$NF}'    > tmp
+     awk '{ for (i=1;i<=NF; i++) printf("%s\n",$i); }' tmp | sort -g  > tmpb
+     amin=`head -n 1 tmpb | awk '{printf "%30.20f", $1}'`
+     amax=`tail -n 1 tmpb`      	
 #    grep -A 10 "S(K) EIGENV - K =   1( 0 0 0)" $input.eigs |  awk -v RS= 'NR==1' | tail -n +2 | awk '{print $1,"\n",$NF}'    > tmp
-    amin=`head -n 1 tmp | awk '{printf "%30.20f", $1}'`
-    amax=`tail -n 1 tmp `
-    echo "$sr amin amax" $amin $amax  >> $LOGFILE
-    xmin=`echo "$amin < 0" | bc -l`
-    echo "xmin" $xmin >> $LOGFILE 
-    if [ "$xmin" == "1" ]; then
+#    amin=`head -n 1 tmp | awk '{printf "%30.20f", $1}'`
+#    amax=`tail -n 1 tmp `
+     echo "$sr amin amax" $amin $amax  >> $LOGFILE
+     xmin=`echo "$amin < 0" | bc -l`
+     echo "xmin" $xmin >> $LOGFILE 
+     if [ "$xmin" == "1" ]; then
        amin=`echo $amin | awk '{printf "%30.20f", -$1}'`
-    fi
+     fi
 #    echo "amin" $amin >> $LOGFILE
-    ratio=`echo $amin $amax | awk '{printf "%40.10f",$2/$1}'`
-    echo "amin ratio rmax " $amin $ratio $rmax  >> $LOGFILE
-    rmaxis=`echo "$ratio > $rmax" | bc -l`
-    echo "rmaxis" $rmaxis >> $LOGFILE
-    if [ "$k" == "0" ]; then
+     ratio=`echo $amin $amax | awk '{printf "%40.10f",$2/$1}'`
+     echo "amin ratio rmax " $amin $ratio $rmax  >> $LOGFILE
+     rmaxis=`echo "$ratio > $rmax" | bc -l`
+     echo "rmaxis" $rmaxis >> $LOGFILE
+     if [ "$k" == "0" ]; then
 	rmax0=$ratio
-    fi	
-    if [ "$rmaxis" == "1" ]; then
+     fi	
+     if [ "$rmaxis" == "1" ]; then
 	rmax=$ratio
 	echo $k $rmax >> $input.eigs.rmax
 	echo $k $rmax >> $LOGFILE
-    fi	
+     fi	
     done
-	else
-	    echo "ALLG is eigs" >> $LOGFILE
-    fi
-    else
-     rmax0=`head -n 1 $input.eigs.rmax | awk '{print $2}'`
-     rmax=`tail -n 1 $input.eigs.rmax | awk '{print $2}'`
-     rmax=$rmax0
-     ratio=$rmax
-     echo "rmax found: rmax0 rmax" $rmax0 $rmax >> $LOGFILE
-    fi
-    if [ "$silent" == "no" ]; then
+   else
+    echo "ALLG in eigs" >> $LOGFILE
+   fi
+  else
+   rmax0=`head -n 1 $input.eigs.rmax | awk '{print $2}'`
+   rmax=`tail -n 1 $input.eigs.rmax | awk '{print $2}'`
+   rmax=$rmax0
+   ratio=$rmax
+   echo "rmax found: rmax0 rmax" $rmax0 $rmax >> $LOGFILE
+  fi
+  if [ "$silent" == "no" ]; then
 	echo "RMAX RMAX0" $rmax $rmax0 | tee -a $LOGFILE
-    fi	
-    echo "}eigratio" >> $LOGFILE 
+  fi	
+  echo "}eigratio" >> $LOGFILE 
 }
 
 function getenefromout {
