@@ -11,6 +11,9 @@ elif [ "$GMF" == "%4.2E" ]; then
     dec=0.01
 elif [ "$GMF" == "%5.3E" ]; then
     dec=0.001
+else
+    echo "GMF not defined"
+    exit
 fi
 
 sss=$GMF" "$GMF"\n"
