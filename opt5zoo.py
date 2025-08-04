@@ -358,8 +358,9 @@ while bondsok == False or fbondsok == False:
       ggsx=ggsg[1:]
       xarr = np.array(ggsx, dtype='float')
       print("x gmf",xarr)
-
-      bondsok=checkbound(True,xarr,lob,lobi,upb,upbi,scal)
+         
+      gscal=scal
+      bondsok=checkbound(True,xarr,lob,lobi,upb,upbi,gscal)
       print("new lob:",lob)
       print("new upb:",upb)
       print("new lobi:",lobi) 
