@@ -79,7 +79,7 @@ def ackley(solution):
     return a
 
 
-def checkbound(checkandupdate,xarr,lob,lobi,upb,upbi):
+def checkbound(checkandupdate,xarr,lob,lobi,upb,upbi,scal):
      global dig
      print("CHECK BOUNDS:")
      bok=True
@@ -254,7 +254,7 @@ while bondsok == False or fbondsok == False:
   print("dig:",dig)
   
   if counti == 0: 
-     binitial=checkbound(False,x0,lob,lobi,upb,upbi)
+     binitial=checkbound(False,x0,lob,lobi,upb,upbi,scal)
      if binitial == False:
          print("Error: sedfile.dat is NOT within bounds")
          print("maybe rerun cry2basrun")
@@ -414,7 +414,7 @@ while bondsok == False or fbondsok == False:
    print("lob:",lob,"upb:",upb)
    print("lobi:",lobi,"upbi:",upbi)
    print("scal:",scal)
-   fbondsok=checkbound(True,mxarr,lob,lobi,upb,upbi)
+   fbondsok=checkbound(True,mxarr,lob,lobi,upb,upbi,scal)
    print("lob:",lob,"upb:",upb)
    print("lobi:",lobi,"upbi:",upbi)
    print("scal",scal)
@@ -425,14 +425,14 @@ while bondsok == False or fbondsok == False:
    print("lob:",lob,"upb:",upb)
    print("lobi:",lobi,"upbi:",upbi)
    print("scal:",scal)
-   fbondsok=checkbound(True,mxarr,lob,lobi,upb,upbi)
+   fbondsok=checkbound(True,mxarr,lob,lobi,upb,upbi,scal)
    print("lob:",lob,"upb:",upb)
    print("lobi:",lobi,"upbi:",upbi)
    print("scal",scal)
    print(fbondsok)  
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
   else:
-   fbondsok=checkbound(True,mxarr,lob,lobi,upb,upbi)
+   fbondsok=checkbound(True,mxarr,lob,lobi,upb,upbi,scal)
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
   
 #  quit()
