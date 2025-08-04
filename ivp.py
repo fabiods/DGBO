@@ -9,7 +9,13 @@ dig=int(sys.argv[3])
 
 #print(a,scal,dig)
 ia=v2i(a,scal,dig)
-ia=ia-1
+
+if ia > 1:
+  ia=ia-1
+else:
+  scal=scal/10
+  ia=9
+
 an=i2v(ia,scal,dig)
 if dig==1:
     print("%2.0E" %(an))
