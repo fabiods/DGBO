@@ -11,6 +11,9 @@ scal = [ 1 ,1 ,1]
 cnt=0
 myfmin=1e9
 
+def my_sign(x):
+     return int(x > 0) - int(x < 0)
+
 
 def ackleydd(solution):
    global myfmin
@@ -282,8 +285,9 @@ while bondsok == False or fbondsok == False:
   lobre=[0]*nn
   upbre=[0]*nn
   for inn in range(nn):
-      lobre[inn]=i2v(lobi[inn],scal[inn],dig)
-      upbre[inn]=i2v(upbi[inn],scal[inn],dig)
+     lobre[inn]= my_sign(lobi[inn]) * i2v(abs(lobi)[inn],scal[inn],dig)
+     upbre[inn]= my_sign(upbi[inn]) * i2v(abs(upbi)[inn],scal[inn],dig)
+
   for inn in range(nn):
       if abs(lob[inn]-lobre[inn]) > 1.E-8:
          print(lob[inn],lobre[inn])
