@@ -171,7 +171,7 @@ x0 = []
 debug = True
 debug = False
 # Open the file in read mode
-print(" ===== opt4zoo.py=========")
+print(" ===== opt5zoo.py=========")
 print("  require sedfile.dat , bounds.dat ,  input.d12.par ")
 np.set_printoptions(linewidth=130)
 datax0 = np.loadtxt('sedfile.dat', dtype='float', usecols=(1))
