@@ -86,6 +86,7 @@ def checkbound(checkandupdate,xarr,lob,lobi,upb,upbi,scal):
      shift=10**(dig-1)
      for i in range(len(xarr)):
        print(" ",lob[i],"<",xarr[i],"<",upb[i])  
+       print(" ",lobi[i],"<","<",upbi[i])  
        if xarr[i] <= abs(lob[i]):
            print(" bound low violted",i)
            if lob[i] <0 :
@@ -355,9 +356,12 @@ while bondsok == False or fbondsok == False:
       print("x gmf",xarr)
 
       bondsok=checkbound(True,xarr,lob,lobi,upb,upbi)
-#      print("new lob:",lob)
-#      print("new upb:",upb)
-      
+      print("new lob:",lob)
+      print("new upb:",upb)
+      print("new lobi:",lobi) 
+      print("new upbi:",upbi)
+      print("new scal:",scal)
+       
       if debug == False:    
         print(" call derviatives:")
         ggg=subprocess.run("~/DGBO/basdergmf.sh", shell=True,stdout=subprocess.PIPE )
