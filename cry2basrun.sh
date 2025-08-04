@@ -133,8 +133,7 @@ for ((k = 1 ; k <= $num ; k++ )); do
 	echo $k,":",${myexpa[k]},"<",${myexp[k]},"<",${myexppt[k]}
 	echo "${myexpa[k]} < ${myexp[k]}" | bc -l
 	echo "${myexp[k]} < ${myexppt[k]}" | bc -l               
-	echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$2}' >> bounds.dat
-        vv=${myexpdef[k]}
+	vv=${myexpdef[k]}
 	if [ "$vv" == "1" ]; then 
           echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,-$2}' >> bounds.dat
         else
