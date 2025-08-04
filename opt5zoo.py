@@ -342,15 +342,16 @@ while bondsok == False or fbondsok == False:
 #    lobX =  np.loadtxt('boundsX.dat', dtype='float', usecols=(0))
 #    upbX =  np.loadtxt('boundsX.dat', dtype='float', usecols=(1))
 
-      xarr=[0]*nn
-      for inn in range(nn):
-         xarr[inn]=i2v(solution.get_x()[inn],scal[inn],dig)
+#          this is ok but there are numeric noise error
+#      xarr=[0]*nn
+#      for inn in range(nn):
+#         xarr[inn]=i2v(solution.get_x()[inn],scal[inn],dig)
          
       
-#      ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
-#      ggsg=ggg.stdout.decode('UTF-8').split()
-#      ggsx=ggsg[1:]
-#      xarr = np.array(ggsx, dtype='float')
+      ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
+      ggsg=ggg.stdout.decode('UTF-8').split()
+      ggsx=ggsg[1:]
+      xarr = np.array(ggsx, dtype='float')
       print("x gmf",xarr)
 
       bondsok=checkbound(True,xarr,lob,lobi,upb,upbi)
