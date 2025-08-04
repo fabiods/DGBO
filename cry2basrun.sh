@@ -23,6 +23,8 @@ grep -A 1 "*" $name |   grep -v "\-\-" | grep -v "*" | awk '{printf "%s%1d%s %f\
 paste type.dat sedfile.dat.tmp | awk '{printf "%s%s %f\n",$2,$1,$4}' > sedfile.dat
 # -------------bounds-------------------------
 ~/DGBO/crylc.sh $name > crylc.out
+#cat crylc.out
+
 maxxs=`grep " S " crylc.out | awk '{print $2/1.5}'`
 maxxp=`grep " P " crylc.out | awk '{print $2/1.5}'`
 maxxd=`grep " D " crylc.out | awk '{print $2/1.5}'` 
@@ -36,6 +38,7 @@ declare -a myexppt
 declare -a myexpdt
 declare -a myexpa
 declare -a mytyp
+declare -a myexpdef
 
 # tmp2 is : S	    expnenete   1.00000000000E+00
 paste type.dat tmp > tmp2
@@ -49,20 +52,24 @@ while read -r line; do
     ee=`echo $line | awk '{printf "%f",$2}'`             
     if [ "$tt" == "S" ] && [ ! -z "$maxxs" ]; then
 	eept=$maxxs
+        myexpdef[$index]=1
     elif [ "$tt" == "P" ] && [ ! -z "$maxxp" ]; then
 	eept=$maxxp
+        myexpdef[$index]=1
     elif [ "$tt" == "D" ] && [ ! -z "$maxxd" ]; then
 	eept=$maxxd
+        myexpdef[$index]=1
     else	
+        myexpdef[$index]=0 
 #	eept=`echo $line | awk '{printf "%5.3E",$2*3}'`
 	eept=`echo $line | awk '{print $2*4}'`         
     fi	
     #    eedt=`echo $line | awk '{printf "%5.3E",$2/2}'`
     # most diffuse exponents 
-    eedt=`echo $line | awk '{print $2/4}'`
-    eedtc=`echo "$eedt < 0.06" | bc -l`
+    eedt=`echo $line | awk '{printf "%20.10f",$2/4}'`
+    eedtc=`echo "$eedt < 0.04" | bc -l`
     if [ "$eedtc" == "1" ]; then
-	eedt=0.06 
+	eedt=0.04 
     fi
     
     myexp[$index]=$ee
@@ -75,14 +82,24 @@ done < tmp2
 
 echo "myexp:"
 echo ${myexp[@]}
+
+echo "myexp prima (defined only for first/last):"
 echo ${myexppt[@]}
+
+echo "myexp dopo (defined only for dirst/last):"
 echo ${myexpdt[@]}
+
+echo "myexp defined"
+echo ${myexpdef[@]}
 
 echo "mytyp:"
 echo ${mytyp[@]}
 echo "mytyp full:"
 myexp[0]=100000
 myexp[$numl]=0.0
+mytyp[0]=""
+mytyp[$numl]=""
+
 echo ${myexp[@]}
 echo "average:"
 for ((k = 0 ; k <= $num ; k++ )); do
@@ -117,6 +134,12 @@ for ((k = 1 ; k <= $num ; k++ )); do
 	echo "${myexpa[k]} < ${myexp[k]}" | bc -l
 	echo "${myexp[k]} < ${myexppt[k]}" | bc -l               
 	echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$2}' >> bounds.dat
+        vv=${myexpdef[k]}
+	if [ "$vv" == "1" ]; then 
+          echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,-$2}' >> bounds.dat
+        else
+          echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$2}' >> bounds.dat
+        fi
     else
 	if [ "$last" == "yes" ]; then
             echo $k,":",${myexpdt[k]},"<",${myexp[k]},"<",${myexpa[k-1]}
