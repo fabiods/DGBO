@@ -153,13 +153,15 @@ basrun.log: a log file with all details
 
 for EACH simulations:
 
-----------------------
-VERSION:
- opt3zoo.py : original
- opt4zoo.py : 
- opt5zoo.py : supports negative(i.e. fixed) bounds
 
 out.*          : crystal output file
 out.*.eig      : crystal output file for the EIG RUN
 out.*.ene      : energy
 out.*.eig.rmax : rmax value
+
+----------------------
+VERSION:
+ opt3zoo.py : original
+ opt4zoo.py : supports downto python3.5 and ivvi.py 
+ opt5zoo.py : supports negative(i.e. fixed) bounds
+ 
