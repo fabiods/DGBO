@@ -25,13 +25,13 @@ def v2i(val,scal,d):
        tens=10*shift     # 10 100 1000
        scals=scal/shift  # E-3 E-4 E-5 
        vs=round(val/(scals))
-#       print("v2i.vs",vs)
-#    if digits == 1:
+#      print("v2i.vs",vs)
        if vs <=tens:
             return vs
-#        elif vs>=95:
-#            print("ERROR v2i",val,scal,digits,vs)
-#            quit()
+       elif vs>=95:
+            print("ERROR in v2i()",val,scal,d,":",vs,"Cannot be coded")
+            print(val," is outside the margins",i2v(1,scal,d),",",i2v(19*shift-1,scal,d))
+            quit()
        else:
 # val=1.1E-2 , scal E-3
 # scals=E-4
