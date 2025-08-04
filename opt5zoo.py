@@ -258,7 +258,7 @@ while bondsok == False or fbondsok == False:
      if binitial == False:
          print("Error: sedfile.dat is NOT within bounds")
          print("maybe rerun cry2basrun")
-         quit()
+#         quit()
       # bounds.dat need to be saved                                                                              
      with open('bounds0.dat','w') as ft:       
           for j in range(len(lob)):
