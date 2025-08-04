@@ -67,9 +67,9 @@ while read -r line; do
     #    eedt=`echo $line | awk '{printf "%5.3E",$2/2}'`
     # most diffuse exponents 
     eedt=`echo $line | awk '{printf "%20.10f",$2/4}'`
-    eedtc=`echo "$eedt < 0.04" | bc -l`
+    eedtc=`echo "$eedt < 0.06" | bc -l`
     if [ "$eedtc" == "1" ]; then
-	eedt=0.04 
+	eedt=0.06 
     fi
     
     myexp[$index]=$ee
