@@ -7,7 +7,6 @@ import subprocess
 from zoopt import Dimension, ValueType, Dimension2, Objective, Parameter, ExpOpt, Solution
 from ivvi import i2v,v2i
 
-scal = [ 1 ,1 ,1]
 cnt=0
 myfmin=1e9
 
@@ -544,7 +543,7 @@ while bondsok == False or fbondsok == False:
    print(fbondsok)  
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
   else:
-   fbondsok=checkbound(True,mxarr,False)
+   fbondsok=gscal.checkbound(True,mxarr,False)
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
   
 #  quit()
