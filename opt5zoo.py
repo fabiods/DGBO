@@ -468,7 +468,6 @@ while bondsok == False or fbondsok == False:
       print("new upb:",upb)
       print("new lobi:",lobi) 
       print("new upbi:",upbi)
-      print("new scal:",scal)
       scal.print("scal")
       gscal.print("gscal")
   
