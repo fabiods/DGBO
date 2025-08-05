@@ -458,8 +458,8 @@ while bondsok == False or fbondsok == False:
 #      gscal=scal
 
       gscal.aset(scal.aget())
-
-      bondsok=checkbound(True,xarr,True)
+#     scal must be the older one, because you will call basder
+      bondsok=gscal.checkbound(True,xarr,True)
       print("new lob:",lob)
       print("new upb:",upb)
       print("new lobi:",lobi) 
