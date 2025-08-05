@@ -27,9 +27,9 @@ def v2i(val,scal,d):
        vs=round(val/(scals))
        ivsmax=19*shift-1  
 #      print("v2i.vs",vs)
-       if vs <=tens:
+       if vs <=tens:    # 1..10  1..100 1..1000
             return vs
-       elif vs>=tens*10:
+       elif vs>=tens*10-5: # >=100 
             print("ERROR in v2i()",val,scal,d,":",vs,"Cannot be coded")
             print(val," is outside the margins",i2v(1,scal,d),",",i2v(ivsmax,scal,d))
             quit()
