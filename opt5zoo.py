@@ -463,7 +463,7 @@ while bondsok == False or fbondsok == False:
 
       gscal.aset(scal.aget())
 #     scal must be the older one, because you will call basder
-      bondsok=gscal.checkbound(True,xarr,True)
+      bondsok=gscal.checkbound(True,xarr,False)
       print("new lob:",lob)
       print("new upb:",upb)
       print("new lobi:",lobi) 
@@ -550,7 +550,6 @@ while bondsok == False or fbondsok == False:
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
   
 #  quit()
-#    update bounds     
   with open('bounds.dat','w') as ft:                                       
    for j in range(len(lob)):                                       
      print(lob[j],upb[j],file=ft)
