@@ -25,7 +25,7 @@ def v2i(val,scal,d):
        tens=10*shift     # 10 100 1000
        scals=scal/shift  # E-3 E-4 E-5 
        vs=round(val/(scals))
-       imaxvs=19*shift-1  
+       ivsmax=19*shift-1  
 #      print("v2i.vs",vs)
        if vs <=tens:
             return vs
