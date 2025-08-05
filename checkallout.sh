@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -e
 set -u
-source ~/basuty.sh
+source ~/DGBO/basuty.sh
 if [ $# -ge 1 ]; then
     move=$1
 else
