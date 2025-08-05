@@ -105,12 +105,13 @@ class Scaling:
 def ackleydd(solution):
    global myfmin
    global cnt
+   global scal  
    x = solution.get_x()
    nn=len(x)
    cnt=cnt+1
    yy=[0]*nn
    for inn in range(nn):
-       yy[inn]=i2v(x[inn],scal[inn],dig)
+       yy[inn]=i2v(x[inn],scal.get(inn),dig)
    val=(yy[0]-50.00)**2+(yy[1]-10.000)**2+(yy[2]-0.030)**2
    if (val < myfmin):
       myfmin=val
@@ -131,7 +132,7 @@ def ackley(solution):
     nn=len(x)
     yy=[0]*nn
     for inn in range(nn):
-       yy[inn]=i2v(x[inn],scal[inn],dig)
+       yy[inn]=i2v(x[inn],scal.get(inn),dig)
        
     if nn==2:
         res=subprocess.run( "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) , shell=True, stdout=subprocess.PIPE)
@@ -169,7 +170,7 @@ def ackley(solution):
     return a
 
 
-def checkbound(checkandupdate,xarr,lob,lobi,upb,upbi,scal):
+def checkboundold(checkandupdate,xarr,lob,lobi,upb,upbi,scal):
      global dig
      print("CHECK BOUNDS:")
      bok=True
@@ -276,6 +277,9 @@ print("gamma",gamma)
 
 
 nn=len(datax0)
+x0=[0]*nn
+scal=Scaling(nn)
+gscal=Scaling(nn)
 print( " nn:",nn)
 
 #lob =  np.loadtxt('bounds.dat', dtype='float', usecols=(0))
@@ -316,6 +320,9 @@ fbondsok=False
 counti=0
 
 while bondsok == False or fbondsok == False:
+# nothing is in memory: 
+# from bounds.dat -> lob,upb,orgd,dig,lobi,upbi
+# x0 is always from datax0 (float)
   print("-----bounds iter---",counti) 
   myfmin=1e9
   lob =  np.loadtxt('bounds.dat', dtype='float', usecols=(0))
@@ -333,7 +340,8 @@ while bondsok == False or fbondsok == False:
   subprocess.run( "~/DGBO/boun2gmf.sh > boundsint.dat" , shell=True )
   ordg =  np.loadtxt('ordgdec0', dtype='float', usecols=(0))
   print(counti,"ordg:",ordg)
-  scal=ordg
+  scal.aset(ordg)
+  scal.print("scal")   
   lobi =  np.loadtxt('boundsint.dat', dtype='int', usecols=(0))
   upbi =  np.loadtxt('boundsint.dat', dtype='int', usecols=(1))
   if lobi[0] <= 9:
@@ -345,7 +353,7 @@ while bondsok == False or fbondsok == False:
   print("dig:",dig)
   
   if counti == 0: 
-     binitial=checkbound(False,x0,lob,lobi,upb,upbi,scal)
+     binitial=scal.checkbound(False,x0,True)
      if binitial == False:
          print("Error: sedfile.dat is NOT within bounds")
          print("maybe rerun cry2basrun")
@@ -356,10 +364,10 @@ while bondsok == False or fbondsok == False:
                 print(lob[j],upb[j],file=ft)
                 
   for inn in range(nn):
-      lobi[inn]=v2i(abs(lob[inn]),scal[inn],dig)
+      lobi[inn]=v2i(abs(lob[inn]),scal.get(inn),dig)
       if lob[inn] < 0:
            lobi[inn]= - lobi[inn]
-      upbi[inn]=v2i(abs(upb[inn]),scal[inn],dig)
+      upbi[inn]=v2i(abs(upb[inn]),scal.get(inn),dig)
       if upb[inn] < 0:
           upbi[inn] = -upbi[inn]
       
@@ -372,8 +380,9 @@ while bondsok == False or fbondsok == False:
   lobre=[0]*nn
   upbre=[0]*nn
   for inn in range(nn):
-     lobre[inn]= my_sign(lobi[inn]) * i2v(abs(lobi)[inn],scal[inn],dig)
-     upbre[inn]= my_sign(upbi[inn]) * i2v(abs(upbi)[inn],scal[inn],dig)
+     lobre[inn]= my_sign(lobi[inn]) * i2v(abs(lobi)[inn],scal.get(inn),dig)
+     upbre[inn]= my_sign(upbi[inn]) * i2v(abs(upbi)[inn],scal.get(inn),dig)
+
 
   for inn in range(nn):
       if abs(lob[inn]-lobre[inn]) > 1.E-8:
@@ -401,7 +410,7 @@ while bondsok == False or fbondsok == False:
 
     x0i=[]
     for i, _ in enumerate(datax0):
-      iia=v2i(x0[i],scal[i],dig)  
+      iia=v2i(x0[i],scal.get(i),dig)  
       x0i.append(iia)
     print("x0int",x0i)  
     gx0 = Solution(x=x0i)
@@ -445,15 +454,21 @@ while bondsok == False or fbondsok == False:
       ggsx=ggsg[1:]
       xarr = np.array(ggsx, dtype='float')
       print("x gmf",xarr)
-         
-      gscal=scal
-      bondsok=checkbound(True,xarr,lob,lobi,upb,upbi,gscal)
+
+# WRONG in python: this copy as pointer !! 
+#      gscal=scal
+
+      gscal.aset(scal.aget())
+
+      bondsok=checkbound(True,xarr,True)
       print("new lob:",lob)
       print("new upb:",upb)
       print("new lobi:",lobi) 
       print("new upbi:",upbi)
       print("new scal:",scal)
-       
+      scal.print("scal")
+      gscal.print("gscal")
+  
       if debug == False:    
         print(" call derviatives:")
         ggg=subprocess.run("~/DGBO/basdergmf.sh", shell=True,stdout=subprocess.PIPE )
@@ -510,26 +525,26 @@ while bondsok == False or fbondsok == False:
    mxarr=x0*2
    print("lob:",lob,"upb:",upb)
    print("lobi:",lobi,"upbi:",upbi)
-   print("scal:",scal)
-   fbondsok=checkbound(True,mxarr,lob,lobi,upb,upbi,scal)
+   scal.print("scal")
+   fbondsok=scal.checkbound(True,mxarr,True)
    print("lob:",lob,"upb:",upb)
    print("lobi:",lobi,"upbi:",upbi)
-   print("scal",scal)
+   scal.print("scal")
    print(fbondsok)  
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
    print("check lower----")
    mxarr=x0/2
    print("lob:",lob,"upb:",upb)
    print("lobi:",lobi,"upbi:",upbi)
-   print("scal:",scal)
-   fbondsok=checkbound(True,mxarr,lob,lobi,upb,upbi,scal)
+   scal.print("scal")
+   fbondsok=scal.checkbound(True,mxarr,True)
    print("lob:",lob,"upb:",upb)
    print("lobi:",lobi,"upbi:",upbi)
-   print("scal",scal)
+   scal.print("scal")
    print(fbondsok)  
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
   else:
-   fbondsok=checkbound(True,mxarr,lob,lobi,upb,upbi,scal)
+   fbondsok=checkbound(True,mxarr,False)
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
   
 #  quit()
