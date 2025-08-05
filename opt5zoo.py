@@ -14,6 +14,93 @@ myfmin=1e9
 def my_sign(x):
      return int(x > 0) - int(x < 0)
 
+class Scaling:
+    def __init__(self, nn):
+      self.data = [1]*nn
+      
+    def set(self,n,val):
+      self.data[n] = val
+
+    def aset(self,data):
+      for i in range(len(self.data)): 
+        self.data[i]=data[i]
+      
+    def get(self,n):
+      return self.data[n]
+
+    def aget(self):
+       return self.data
+
+    def mul(self,n):
+      self.data[n]=10*self.data[n]
+
+    def div(self,n):
+      self.data[n]=self.data[n]/10
+
+    def print(self,name):
+      print(name,self.data)
+
+    def checkbound(self,checkandupdate,xarr,fixedcheck):
+      global dig
+      global upb,lob,upbi,lobi
+      print("CHECK BOUNDS:")
+      bok=True
+      shift=10**(dig-1)
+      for i in range(len(xarr)):
+       print(" ",lob[i],"<",xarr[i],"<",upb[i])  
+       print(" ",lobi[i],"<","<",upbi[i])  
+       if xarr[i] <= abs(lob[i]):
+           print(" bound low violted",i)
+           if lob[i] <0 :
+               print(" bound low fixed",i)
+               if fixedcheck == True :
+                 bok=False
+           else:
+               bok=False
+               if checkandupdate == True :
+                 if lobi[i] >1:
+                    lobi[i]=lobi[i]-1
+                 else :
+                    print(" scal /10 ",i)
+                    # minimum values is 9 ,99 ,999 
+                    lobi[i]=9*shift
+                    self.div(i)
+                    # if scale change, then upb change to the maximum
+                    print(" min: ", self.get(i)*10.0*(10.0-1.0/shift))  
+                    upbi[i]=v2i( self.get(i)*10.0*(10.0-1.0/shift) ,self.get(i) ,dig)
+                    print(" upbi",upbi[i])                      
+                    upb[i]=i2v(upbi[i], self.get(i) ,dig)
+                    print(" upb",upb[i])
+                 # recompute lob   
+                 lob[i]=i2v(lobi[i], self.get(i) ,dig)          
+       if xarr[i] >= abs(upb[i]):
+           print(" bound up violated",i)
+           if upb[i] <0 :
+               print(" bound up fixed",i)
+               if fixedcheck == True :
+                  bok=False
+           else :
+              bok=False    
+              if checkandupdate == True :
+                if upbi[i] < 19*shift-1 :
+                    # just increase of 1, even if the real bounds can be larger
+                    upbi[i]=upbi[i]+1
+                else :
+                    print(" scal *10 ",i)
+                    self.mul(i)
+                    # maxmimum values is 10 (d=1), 100 (d=2) ,1000(d=3)
+                    upbi[i]=shift*10 
+                    # if scale change lob change to the minimun
+#                    print(" min: ", scal[i]/shift)
+                    lobi[i]=v2i( self.get(i)/shift ,self.get(i) ,dig)
+#                    print("lobi",lobi[i])
+                    lob[i]=i2v(lobi[i],self.get(i) ,dig)
+#                    print("lob",lob[i])
+                # recompute upb    
+                upb[i]=i2v(upbi[i], self.get(i)  ,dig)
+#                print("upbi",upbi[i],"upb",upb[
+           
+      return bok
 
 def ackleydd(solution):
    global myfmin
