@@ -120,6 +120,7 @@ def ackley(solution):
     Ackley function for continuous optimization
     """
     global cnt
+    global cntp
     global scal
     global dig
     global myfmin
