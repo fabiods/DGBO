@@ -461,7 +461,7 @@ while bondsok == False or fbondsok == False:
       xarrnew=[0]*nn
       for inn in range(nn):
          xarrnew[inn]=i2v(solution.get_x()[inn],scal.get(inn),dig)
-      x0=xarrnew   
+# update x0 at the end           
       
       ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
       ggsg=ggg.stdout.decode('UTF-8').split()
@@ -564,7 +564,8 @@ while bondsok == False or fbondsok == False:
   with open('bounds.dat','w') as ft:                                       
    for j in range(len(lob)):                                       
      print(lob[j],upb[j],file=ft)
-     
+        
+  x0=x0arrnew    
   counti=counti+1
 print("END LOPP BONDS")        
 #    print(ggg.stdout.decode('UTF-8'))
