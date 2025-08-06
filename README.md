@@ -161,7 +161,32 @@ out.*.eig.rmax : rmax value
 
 ----------------------
 VERSION:
-       opt3zoo.py : original
-       opt4zoo.py : supports downto python3.5 and ivvi.py 
+
+       opt3zoo.py : original    
+       opt4zoo.py : supports downto python3.5 and ivvi.py
        opt5zoo.py : supports negative(i.e. fixed) bounds
  
+-----------integer coding-------------
+the exponent, floating numbers, are coded into integer in a logarithm fashion:
+
+1-digit, scal=1E-3
+
+     1 => 1E-3
+     2 => 2E-3     
+     ..
+     9 => 9E-3
+     10 => 1E-2
+     11 => 2E-2
+     ..
+     18 => 9E-2
+
+2-digit2, scal=1E-3
+     10 => 1.0E-3
+     11 => 1.1E-3
+     ...
+     99 => 9.9E-3
+     100 => 1.0E-2
+     101 => 1.1E-2
+     ..
+     189 => 9.9E-2
+     
