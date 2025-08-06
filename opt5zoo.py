@@ -418,9 +418,9 @@ while bondsok == False or fbondsok == False:
     print("x0int",x0i)  
     gx0 = Solution(x=x0i)
        
- for inn in range(nn):
+    for inn in range(nn):
      x0re[inn]= i2v(x0i[inn],scal.get(inn),dig)
- print("x0real",x0re)
+    print("x0real",x0re)
 
 #x1 = Solution(x=[ 2 ,4 ,10],value=-7.45832442090000000000 ) 
 #print(x0.get_x())
