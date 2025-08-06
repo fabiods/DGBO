@@ -72,6 +72,10 @@ function eigratio() {
 #    echo "amin" $amin >> $LOGFILE
      ratio=`echo $amin $amax | awk '{printf "%40.10f",$2/$1}'`
      echo "amin ratio rmax " $amin $ratio $rmax  >> $LOGFILE
+     if [ "$rmax" == "0.0" ]; then
+        echo "$rmax is 0"
+        exit -1
+     fi   
      rmaxis=`echo "$ratio > $rmax" | bc -l`
      echo "rmaxis" $rmaxis >> $LOGFILE
      if [ "$k" == "0" ]; then
