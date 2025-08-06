@@ -412,7 +412,9 @@ while bondsok == False or fbondsok == False:
 
     x0i=[]
     for i, _ in enumerate(datax0):
-      iia=v2i(x0[i],scal.get(i),dig)  
+# for large job, we have to update x0         
+      iia=v2i(xarrnew[i],scal.get(i),dig
+#     iia=v2i(x0[i],scal.get(i),dig)  
       x0i.append(iia)
     print("x0int",x0i)  
     gx0 = Solution(x=x0i)
@@ -447,9 +449,9 @@ while bondsok == False or fbondsok == False:
 #    upbX =  np.loadtxt('boundsX.dat', dtype='float', usecols=(1))
 
 #          this is ok but there are numeric noise error
-#      xarr=[0]*nn
-#      for inn in range(nn):
-#         xarr[inn]=i2v(solution.get_x()[inn],scal[inn],dig)
+      xarrnew=[0]*nn
+      for inn in range(nn):
+         xarrnew[inn]=i2v(solution.get_x()[inn],scal[inn],dig)
          
       
       ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
