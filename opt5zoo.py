@@ -414,6 +414,10 @@ while bondsok == False or fbondsok == False:
     dim = Dimension(dim_size, dim_regs, dim_tys, dim_ord)  # form up the dimension object
     allsize=dim.limited_space()[1]
     print("allsize",allsize)
+    if allsize < 0:
+         print("HARD ERROR: negative allsize")
+         print("check the bounds")
+         quit()
     # dim = Dimension2([(ValueType.CONTINUOUS, [-1, 1], 1e-6)]*dim_size)  # another way to form up the dimension object
     objective = Objective(ackley, dim)  # form up the objective function
 
