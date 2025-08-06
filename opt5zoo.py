@@ -281,6 +281,7 @@ print("gamma",gamma)
 
 nn=len(datax0)
 x0=[0]*nn
+x0re=[0.0]*nn
 scal=Scaling(nn)
 gscal=Scaling(nn)
 print( " nn:",nn)
