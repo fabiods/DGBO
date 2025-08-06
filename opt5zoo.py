@@ -412,10 +412,9 @@ while bondsok == False or fbondsok == False:
 
     x0i=[]
     for i, _ in enumerate(datax0):
-# for large job, we have to update x0         
-      iia=v2i(xarrnew[i],scal.get(i),dig)
-#     iia=v2i(x0[i],scal.get(i),dig)  
-      x0i.append(iia)
+# for large job, we have to update x0        
+     iia=v2i(x0[i],scal.get(i),dig)  
+     x0i.append(iia)
     print("x0int",x0i)  
     gx0 = Solution(x=x0i)
 
@@ -452,7 +451,7 @@ while bondsok == False or fbondsok == False:
       xarrnew=[0]*nn
       for inn in range(nn):
          xarrnew[inn]=i2v(solution.get_x()[inn],scal[inn],dig)
-         
+      x0=xarrnew   
       
       ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
       ggsg=ggg.stdout.decode('UTF-8').split()
