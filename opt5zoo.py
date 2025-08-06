@@ -425,7 +425,7 @@ while bondsok == False or fbondsok == False:
 #    parameter = Parameter(budget=budget,init_samples=[x1],seed=10,intermediate_result=True,intermediate_freq=1)
     parameter =      Parameter(budget=budget,init_samples=[gx0],exploration_rate = 0.5,seed=10,precision=1.0E-7,stopping_criterion=StoppingCriterion(),intermediate_result=False,intermediate_freq=100)
     print("trainsize",parameter.get_train_size())
-    if nn<=8:
+    if nn<=7:
        parameter.set_train_size(20)
        parameter.set_positive_size(2)
        print("trainsize",parameter.get_train_size())
