@@ -439,10 +439,10 @@ while bondsok == False or fbondsok == False:
     
     pkl=parameter.get_train_size()
     print("trainsize",pkl)
-    if nn<=7 and pkl>20:
-       parameter.set_train_size(20)
-       parameter.set_positive_size(2)
-       print("trainsize",parameter.get_train_size())
+#    if nn<=7 and pkl>20:
+#       parameter.set_train_size(20)
+#       parameter.set_positive_size(2)
+#       print("trainsize",parameter.get_train_size())
     res=ackley(gx0)
     print(res)
     solution_list = ExpOpt.min(objective, parameter, repeat=1, plot=False, plot_file='pippo.jpg')
