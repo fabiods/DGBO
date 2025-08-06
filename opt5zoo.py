@@ -7,8 +7,6 @@ import subprocess
 from zoopt import Dimension, ValueType, Dimension2, Objective, Parameter, ExpOpt, Solution
 from ivvi import i2v,v2i
 
-cnt=0
-myfmin=1e9
 
 def my_sign(x):
      return int(x > 0) - int(x < 0)
@@ -128,6 +126,7 @@ def ackley(solution):
     yy=[]
     x = solution.get_x()
     cnt=cnt+1
+    cntp=cntp+1
     nn=len(x)
     yy=[0]*nn
     for inn in range(nn):
@@ -163,6 +162,8 @@ def ackley(solution):
          if (a < myfmin):     
             myfmin=a
             print(cnt,"NEW MIN ",x,myfmin)
+            if (cntp == 1) :
+                 print ("fun ",myfmin," res: ",x)
          else:
             if (cnt % 100==1):
                print(cnt,"LOG ",x,a,myfmin)
@@ -265,6 +266,7 @@ x0 = []
 x0re =[]
 debug = True
 debug = False
+cnt = 0
 # Open the file in read mode
 print(" ===== opt5zoo.py=========")
 print("  require sedfile.dat , bounds.dat ,  input.d12.par ")
@@ -329,6 +331,7 @@ while bondsok == False or fbondsok == False:
 # x0 is always from datax0 (float)
   print("-----bounds iter---",counti) 
   myfmin=1e9
+  cntp=0
   lob =  np.loadtxt('bounds.dat', dtype='float', usecols=(0))
   upb =  np.loadtxt('bounds.dat', dtype='float', usecols=(1))
   print(counti,"lob:",lob)
