@@ -47,7 +47,7 @@ if [ ! -e ENEREFZERO.dat ]; then
     grep runcrycond basrun.log
     export GMF=$saveGMF
     echo $enerefzero > ENEREFZERO.dat
-    echo "enerefzero res:" $enerefzero
+    echo "enerefzero " $enerefzero  "res:"
     rm basrun.log
     rm basrun.allene.dat
     rm notconv.dat
