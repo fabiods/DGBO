@@ -47,12 +47,22 @@ In the Li3 example three different starting points are used:
          2 1 0.2
          3.31 0.5488 0.106 
          3 0.4 0.1
-and dgbo always go to the global minimum:
+and dgbo always go to the global minimum.
 
-          grep res: dgbo.out | grep ffun
-          ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [2.  1.  0.2]           gamma: 0 cnt: 1215 min: 3 3 conv: 0 boundok: True
-          ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [3.31   0.5488 0.106 ]  gamma: 0 cnt: 1725 min: 3 3 conv: 0 boundok: True
-          ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [3.  0.4 0.1]           gamma: 0 cnt: 1759 min: 3 3 conv: 0 boundok: True
+The main results for the optimization can be easi visualized as:
+
+     grep res: dgbo.out
+     fun  -7.4494751818  res:  [2, 10, 11]
+      fun -7.4579874517  res:  [6.   0.8  0.08]  opt: zoo , x0: [2.  1.  0.2]  gamma: 0 cnt: 450 min: 3 3 conv: 0 boundok: True
+      ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [2.  1.  0.2]  gamma: 0 cnt: 451 min: 3 3 conv: 0 boundok: True
+     fun  -7.4484632856  res:  [3, 5, 10]
+      fun -7.4579874517  res:  [6.   0.8  0.08]  opt: zoo , x0: [3.31   0.5488 0.106 ]  gamma: 0 cnt: 542 min: 3 3 conv: 0 boundok: True
+      ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [3.31   0.5488 0.106 ]  gamma: 0 cnt: 543 min: 3 3 conv: 0 boundok: True
+     fun  -7.4558253192  res:  [3, 4, 10]
+      fun -7.4579874517  res:  [6.   0.8  0.08]  opt: zoo , x0: [3.  0.4 0.1]  gamma: 0 cnt: 542 min: 3 3 conv: 0 boundok: True
+      ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [3.  0.4 0.1]  gamma: 0 cnt: 543 min: 3 3 conv: 0 boundok: True
+
+
 
 
 Together with a starting point, dgbo also define the bound interval for the exponents, with
