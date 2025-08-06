@@ -74,6 +74,14 @@ the third ffun is an additional check to verify that it is a local miminum
    conv: 0 indicates that it is converged solution (i.e. closest point are also SCF converged)
 enerefzero at the beginning is the energy of the first orig file, without discrete-integer approximation (i.e. with exponent with all digits)
 
+cnt is the number of times crystal calculations have been called
+However, DGBO, saves on disk all the crystal calculations, thus the real number of cystal calculation can be obtained from:
+
+        sort -k 1 -g -r basrun.allene.dat  | uniq | wc
+to be compared with the full dimensional space
+
+        grep allsize dgbo.out | tail -n 1
+   
 Together with a starting point, dgbo also define the bound interval for the exponents, with
 an algortitm which depends on the starting point itself.
 Even if the program try to enlarge the bounds if the final solution is at the bounds, 
