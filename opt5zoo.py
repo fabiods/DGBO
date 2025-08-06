@@ -565,7 +565,7 @@ while bondsok == False or fbondsok == False:
    for j in range(len(lob)):                                       
      print(lob[j],upb[j],file=ft)
         
-  x0=x0arrnew    
+  x0=xarrnew    
   counti=counti+1
 print("END LOPP BONDS")        
 #    print(ggg.stdout.decode('UTF-8'))
