@@ -262,6 +262,7 @@ class StoppingCriterion:
 
 
 x0 = []
+x0re =[]
 debug = True
 debug = False
 # Open the file in read mode
