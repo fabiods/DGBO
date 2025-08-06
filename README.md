@@ -137,6 +137,12 @@ we obtain another local minima
 
 
 
+---------------------------------------------------------
+to increase the accuracy you can run
+
+       ~/DGBO/increaseacc.sh  "%3.1E" | tee INC/dgbo.out 
+in the directory where the "%2.0E" results are done
+In this way in the INC subdirectory you will start from the previous solution and increase the accuracy
 
 ---------------------------------------------------------
 OPTIONS:
