@@ -413,7 +413,7 @@ while bondsok == False or fbondsok == False:
     x0i=[]
     for i, _ in enumerate(datax0):
 # for large job, we have to update x0         
-      iia=v2i(xarrnew[i],scal.get(i),dig
+      iia=v2i(xarrnew[i],scal.get(i),dig)
 #     iia=v2i(x0[i],scal.get(i),dig)  
       x0i.append(iia)
     print("x0int",x0i)  
