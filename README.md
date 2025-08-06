@@ -155,6 +155,14 @@ to increase the accuracy you can run
 in the directory where the "%2.0E" results are done
 In this way in the INC subdirectory you will start from the previous solution and increase the accuracy
 
+or you can also do
+
+     export GMF="%3.1E"
+     mkdir basfol
+     cp inputhf.d12.par basfol
+     cp sedfile.dat     basfol/basrunsed.dat
+     cd basfol
+     ~/DGBO/basderfol.sh
 ---------------------------------------------------------
 OPTIONS:
 
