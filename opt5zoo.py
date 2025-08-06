@@ -451,7 +451,7 @@ while bondsok == False or fbondsok == False:
 #          this is ok but there are numeric noise error
       xarrnew=[0]*nn
       for inn in range(nn):
-         xarrnew[inn]=i2v(solution.get_x()[inn],scal[inn],dig)
+         xarrnew[inn]=i2v(solution.get_x()[inn],scal.get(inn),dig)
       x0=xarrnew   
       
       ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
