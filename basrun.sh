@@ -124,6 +124,10 @@ else
     echo " ~/DGBO/checkbr.x $dstr > br.out" >>$LOGFILE
     ~/DGBO/checkbr.x $dstr > br.out
     nxtot=`grep ierr br.out | awk '{print $2}'`
+    if [ "$nxtot" == "" ]; then
+       echo "nxtot undefined"
+       exit -1
+    fi 
     echo "nxtot" $nxtot >> $LOGFILE
 fi
 
