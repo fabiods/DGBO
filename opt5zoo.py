@@ -420,7 +420,8 @@ while bondsok == False or fbondsok == False:
     gx0 = Solution(x=x0i)
        
     for inn in range(nn):
-     x0re[inn]= i2v(x0i[inn],scal.get(inn),dig)
+     iia=v2i(x0[i],scal.get(i),dig) 
+     x0re[inn]= i2v(iia,scal.get(inn),dig)
     print("x0real",x0re)
 
 #x1 = Solution(x=[ 2 ,4 ,10],value=-7.45832442090000000000 ) 
