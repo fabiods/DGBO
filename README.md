@@ -49,9 +49,13 @@ In the Li3 example three different starting points are used:
          3 0.4 0.1
 and dgbo always go to the global minimum.
 
-The main results for the optimization can be easi visualized using:
+The main results for the optimization can be easi visualized using the command:
 
      grep res: dgbo.out
+
+with results:
+
+     enerefzero  -7.44947518180000000000 res:
      fun  -7.4494751818  res:  [2, 10, 11]
       fun -7.4579874517  res:  [6.   0.8  0.08]  opt: zoo , x0: [2.  1.  0.2]  gamma: 0 cnt: 450 min: 3 3 conv: 0 boundok: True
       ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [2.  1.  0.2]  gamma: 0 cnt: 451 min: 3 3 conv: 0 boundok: True
@@ -68,8 +72,7 @@ the second fun is the optimzed solution
 the third ffun is an additional check to verify that it is a local miminum
    min: 3 3 indicates that is it the minimum for 3 direction over 3
    conv: 0 indicates that it is converged solution (i.e. closest point are also SCF converged)
-   
-
+enerefzero at the beginning is the energy of the first orig file, without discrete-integer approximation (i.e. with exponent with all digits)
 
 Together with a starting point, dgbo also define the bound interval for the exponents, with
 an algortitm which depends on the starting point itself.
