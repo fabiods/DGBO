@@ -40,6 +40,7 @@ waserrc=0
 while read -r line; do
 #    echo $line
     isopenerr=0    
+    enemay=0
     err=`grep INPBAS $line | wc -l | awk '{print $1}'`
     ett=`grep INPUTT $line | wc -l | awk '{print $1}'`
     ela=`grep "INCREASE ILASIZE" $line | wc -l | awk '{print $1}'`  
@@ -89,6 +90,7 @@ while read -r line; do
 	    elif  [ "$tma" == "1" ] && [ "$chdetotf" == "1" ]; then
 		echo $line , $waserr , $tma , $chdetot , $chdetotv, $chktst , $chklla , $chkdiis, $ene | tee -a $LOGFILE   
 		grep DETOT $line | tail -n 5
+                enemay=`grep DETOT $line | tail -n 1  | awk '{print $4}'`
                 incc=$((incc+1))
 		echo " ----- MAYBE INCREAS MAXCYCLE----" $incc | tee -a $LOGFILE   
 		if [ "$move" == "MOVEINCCYC" ] || [ "$move" == "MOVE" ]; then
@@ -143,7 +145,7 @@ while read -r line; do
     
     fi
     #    exit
-     echo $line $detota $llaa $tst $diis "|" $waserr  $tma  $chdetot $chdetotv,  $chktst  $chklla  $chkdiis $ene $str  >> td.dat 
+     echo $line $detota $llaa $tst $diis $enemay "|" $waserr  $tma  $chdetot $chdetotv,  $chktst  $chklla  $chkdiis $ene $str  >> td.dat 
 done <listout
 wc -l listout
 echo "tuttok" $tuttok | tee -a $LOGFILE   
