@@ -161,7 +161,7 @@ out.*.eig.rmax : rmax value
 
 ----------------------
 VERSION:
- opt3zoo.py : original
- opt4zoo.py : supports downto python3.5 and ivvi.py 
- opt5zoo.py : supports negative(i.e. fixed) bounds
+       opt3zoo.py : original
+       opt4zoo.py : supports downto python3.5 and ivvi.py 
+       opt5zoo.py : supports negative(i.e. fixed) bounds
  
