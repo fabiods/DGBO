@@ -156,7 +156,7 @@ def ackley(solution):
 #            return 0.0
     if res.returncode != 0 :
          print("basrun failed")
-         print(x,y)
+         print(x,yy)
          quit()
     strx=res.stdout.decode().split()     
     a=float(strx[0])
