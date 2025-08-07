@@ -114,7 +114,9 @@ function gradient() {
 	posup=`echo "$ene>$enezero+$tolb" | bc -l`
 	ncup=0
 	if [[ $enevera == NA* ]]; then
-	    ncup=1
+                if [ "$enevera" != "NAPROG" ]; then  
+	         ncup=1
+                fi
 	fi    
 #	ncup=`echo "$ene> 0" | bc -l`
     else
@@ -129,7 +131,9 @@ function gradient() {
 	 denleft=`echo $val  $xvaln   | awk '{printf "%4.3e",$1-$2}'`
 	 ncdn=0
 	 if [[ $enevera == NA* ]]; then
-	     ncdn=1
+               if [ "$enevera" != "NAPROG" ]; then  
+	       ncdn=1
+               fi
          fi	     
 #	 ncdn=`echo "$ene> 0" | bc -l` 
 	 echo "xx" $xvaln $val >> $LOGFILE
