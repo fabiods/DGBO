@@ -237,7 +237,7 @@ class StoppingCriterion:
         self.__best_result = 0
         self.__count = 0
         self.__total_count = 0
-        self.__count_limit = 300*(dim_size+1)
+        self.__count_limit = 200*(dim_size+1)
 
     def check(self, optcontent):
         """
