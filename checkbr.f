@@ -1,7 +1,7 @@
       program checkbr 
       implicit none
       character(len=30)       :: arg,str,ss(20)
-      integer                 :: i, x,j,c(3),numpar,ierr
+      integer                 :: i, x,j,c(3),numpar,ierr,numj,k
       double precision        :: vv(20),vvk(20,3),par(20),ratio,geop
       character(len=2)            ::type(3)
       type(1)='S'
