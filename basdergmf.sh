@@ -254,7 +254,7 @@ cp inputhf.d12.par inputhf.d12
 sedinputx basrunsed.dat -1 -1
 
 echo " ~/DGBO/checkbr.x $dstr > br.out" >>$LOGFILE   
-~/DGBO/checkbr.x $dstr > br.out
+~/DGBO/checkbr.x 1.5 $dstr > br.out
 #cat br.out >>$LOGFILE
 nxtot=`grep ierr br.out | awk '{print $2}'`
 echo "nxtot" $nxtot >>$LOGFILE
