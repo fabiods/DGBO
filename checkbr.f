@@ -7,8 +7,8 @@
       type(1)='S'
       type(2)='P'
       type(3)='D'
-      # input:
-      # maxratio par1 par2 ....parN
+! input:
+! checkbr.x maxratio par1 par2 ....parN
       numpar=command_argument_count()-1
       write(*,*) 'numpar',numpar
 
