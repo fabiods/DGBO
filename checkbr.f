@@ -1,5 +1,5 @@
       program checkbr 
- 
+      implicit none
       character(len=30)       :: arg,str,ss(20)
       integer                 :: i, x,j,c(3),numpar,ierr
       double precision        :: vv(20),vvk(20,3),par(20),ratio,geop
@@ -14,7 +14,7 @@
 
       call GET_COMMAND_ARGUMENT(1, arg)
       read(arg,*) geop
-      write(*,*) 'geo prog',grop
+      write(*,*) 'geo prog',geop
       
       do i = 1, numpar
       call GET_COMMAND_ARGUMENT(i+1, arg)
