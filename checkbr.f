@@ -2,21 +2,28 @@
  
       character(len=30)       :: arg,str,ss(20)
       integer                 :: i, x,j,c(3),numpar,ierr
-      double precision        :: vv(20),vvk(20,3),par(20),ratio
+      double precision        :: vv(20),vvk(20,3),par(20),ratio,geop
       character(len=2)            ::type(3)
       type(1)='S'
       type(2)='P'
       type(3)='D'
-      numpar=command_argument_count()
+      # input:
+      # maxratio par1 par2 ....parN
+      numpar=command_argument_count()-1
       write(*,*) 'numpar',numpar
+
+      call GET_COMMAND_ARGUMENT(1, arg)
+      read(arg,*) geop
+      write(*,*) 'geo prog',grop
+      
       do i = 1, numpar
-      call GET_COMMAND_ARGUMENT(i, arg)
+      call GET_COMMAND_ARGUMENT(i+1, arg)
 !      write(*,*) arg
       read(arg,*) par(i)
 !      write(*,') par(i)
       enddo
       write(*,'("dstr",20E10.3)') par(1:numpar)
-      write(*,*) 'readinf basrunsed.dat'
+      write(*,*) 'reading basrunsed.dat'
       open(UNIT=44,FILE='basrunsed.dat',STATUS='OLD')
       j=0
  39   j=j+1
@@ -50,7 +57,7 @@
             do i=2,c(k)
                ratio=vvk(i-1,k)/vvk(i,k)
                write(*,*) ratio
-               if (ratio.lt.1.618d0) then
+               if (ratio.lt.geop) then
                   ierr=ierr+1
                endif   
             enddo    
