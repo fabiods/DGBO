@@ -122,7 +122,7 @@ if [ "1" -eq "0" ]; then
  echo "nxtot" $nxtot >> $LOGFILE
 else
     echo " ~/DGBO/checkbr.x $dstr > br.out" >>$LOGFILE
-    ~/DGBO/checkbr.x $dstr > br.out
+    ~/DGBO/checkbr.x 1.618 $dstr > br.out
     nxtot=`grep ierr br.out | awk '{print $2}'`
     if [ "$nxtot" == "" ]; then
        echo "nxtot undefined"
