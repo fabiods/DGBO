@@ -93,7 +93,7 @@ function gradient() {
     echo " ~/DGBO/checkbr.x $dstr > br.out" >>$LOGFILE
     
     ~/DGBO/checkbr.x $dstr > br.out
-    
+    cat br.out >> $LOGFILE
     nxtot=`grep ierr br.out | awk '{print $2}'`
 #    echo " " $str
 #    runcry  out.$pnname.$xname
