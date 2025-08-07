@@ -100,8 +100,9 @@ function gradient() {
     
     runcrycond  out.$str $nxtot
 
-#   echo " " $ene
-    echo $ene $enezero $i $xvaln | awk '{print " ENEDIFF",$1-$2,$3,$4}' | tee -a $LOGFILE 
+#   MAIN OUT ENEDIFF
+    echo $ene $enezero $i $xvaln $enevera | awk '{print " ENEDIFF",$1-$2,$3,$4,$5}' | tee -a $LOGFILE 
+    
     if [ "$pn" == "1" ]; then
 	# positive
         der=$ene
