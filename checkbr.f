@@ -56,7 +56,7 @@
          if (c(k).ge.2) then
             do i=2,c(k)
                ratio=vvk(i-1,k)/vvk(i,k)
-               write(*,*) ratio
+               write(*,*) "PROG ",ratio
                if (ratio.lt.geop) then
                   ierr=ierr+1
                endif   
