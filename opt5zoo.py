@@ -103,6 +103,8 @@ def ackleydd(solution):
    global myfmin
    global cnt
    global scal  
+   global debug
+   debug = True
    x = solution.get_x()
    nn=len(x)
    cnt=cnt+1
@@ -468,15 +470,17 @@ while bondsok == False or fbondsok == False:
 
 #          this is ok but there are numeric noise error
       xarrnew=[0]*nn
+      xarr=[0]*nn
       for inn in range(nn):
          xarrnew[inn]=i2v(solution.get_x()[inn],scal.get(inn),dig)
+         xarr[inn]=xarrnew[inn] 
 # update x0 at the end           
-      
-      ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
-      ggsg=ggg.stdout.decode('UTF-8').split()
-      ggsx=ggsg[1:]
-      xarr = np.array(ggsx, dtype='float')
-      print("x gmf",xarr)
+      if debug == False: 
+       ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
+       ggsg=ggg.stdout.decode('UTF-8').split()
+       ggsx=ggsg[1:]
+       xarr = np.array(ggsx, dtype='float')
+       print("x gmf",xarr)
 
 # WRONG in python: this copy as pointer !! 
 #      gscal=scal
