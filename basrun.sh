@@ -121,7 +121,7 @@ if [ "1" -eq "0" ]; then
  nxtot=`echo $nxs $nxp $nxd | awk '{print $1+$2+$3}' `
  echo "nxtot" $nxtot >> $LOGFILE
 else
-    echo " ~/DGBO/checkbr.x $dstr > br.out" >>$LOGFILE
+    echo " ~/DGBO/checkbr.x 1.618 $dstr > br.out" >>$LOGFILE
     ~/DGBO/checkbr.x 1.618 $dstr > br.out
     nxtot=`grep ierr br.out | awk '{print $2}'`
     if [ "$nxtot" == "" ]; then
