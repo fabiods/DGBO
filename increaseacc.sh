@@ -33,6 +33,13 @@ cat  INC/sedfile.dat.tmp.$kk
 paste sedfile.dat INC/sedfile.dat.tmp.$kk | awk '{print $1,$3}' > INC/sedfile.dat
 
 export GMF=$newfmt 
+#---run bas der flow----#
+cd INC
+cp sedfile.dat basrunsed.dat
+~/DGBO/basderfol.sh 
+cd ..
+
+
 paste INC/sedfile.dat.tmp.$kk | awk '{print $1,$1}' > bounds_inc.dat
 
 ~/DGBO/boundsinc.sh bounds_inc.dat   > bounds_inc1.dat
