@@ -74,3 +74,4 @@ python -u ~/DGBO/opt5zoo.py
 cd ..
 
 done
+echo "end loop over minima"
