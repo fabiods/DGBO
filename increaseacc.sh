@@ -33,6 +33,9 @@ cat  INC/sedfile.dat.tmp.$kk
 paste sedfile.dat INC/sedfile.dat.tmp.$kk | awk '{print $1,$3}' > INC/sedfile.dat
 
 export GMF=$newfmt 
+
+cp inputhf.d12.par INC
+
 #---run bas der flow----#
 cd INC
 cp sedfile.dat basrunsed.dat
@@ -49,8 +52,6 @@ paste INC/sedfile.dat.tmp.$kk | awk '{print $1,$1}' > bounds_inc.dat
 ~/DGBO/boundsinc.sh bounds_inc4.dat  > INC/bounds.dat  
 
 #paste INC/sedfile.dat.tmp.$kk ox.listg | awk '{print $1-$2/2,$1+$2/2}' >INC/bounds.dat
-#
-cp inputhf.d12.par INC
 #exit
 cd INC
 if [ "$kk" == "1" ]; then
