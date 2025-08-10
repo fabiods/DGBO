@@ -86,7 +86,7 @@ fi
     echo "lastdiff" $newdif
 	
     str=`awk 'BEGIN {printf "["}  { printf "%s ",$2} END {printf "]\n"} ' basrunsed.dat `
-	nc=`grep notconv basderfol.log  | tail -n 1| awk '{print $3}'`
-    nm=`grep minimum basderfol.log  | tail -n 1| awk '{print $3}'`
+	nc=`grep notconv basderfol.log  | tail -n 1| awk '{print $2}'`
+    nm=`grep minimum basderfol.log  | tail -n 1| awk '{print $2}'`
 
     echo " res: energy:" $rrr "dstr:" $str  "min:" $nm "conv:" $nc
