@@ -89,4 +89,4 @@ fi
 	nc=`grep notconv basderfol.log  | tail -n 1| awk '{print $3}'`
     nm=`grep minimum basderfol.log  | tail -n 1| awk '{print $3}'`
 
-    echo " res: energy:" $rrr "dstr:" $str  "min:" $min "conv:" $nc
+    echo " res: energy:" $rrr "dstr:" $str  "min:" $nm "conv:" $nc
