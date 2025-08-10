@@ -63,6 +63,7 @@ fi
 #                1     2   3        
 #               ene   pos diff    
 #     ENEDIFF 16.9502 3 1E+00
+    grep minimum yyy.$cnt
     vv=`grep ENEDIFF yyy.$cnt | awk '{ if ( $2 < 0.0) {print $2,$3,$4}}' | sort -k 1 -g | head -n 1`
     cnt=$((cnt+1)) 
 #    echo $vv
@@ -83,7 +84,7 @@ fi
 	fi    
     fi 	
   done
-    echo "lastdiff" $newdif
+#    echo "lastdiff" $newdif
 	
     str=`awk 'BEGIN {printf "["}  { printf "%s ",$2} END {printf "]\n"} ' basrunsed.dat `
 	nc=`grep notconv basderfol.log  | tail -n 1| awk '{print $2}'`
