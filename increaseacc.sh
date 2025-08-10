@@ -41,7 +41,7 @@ cd INC
 cp sedfile.dat basrunsed.dat
 ~/DGBO/basderfol.sh | tee basderfol.out
 xxx=`tail -n 1 basderfol.out`
-echo "res" $xxx
+echo "res:" $xxx
 cd ..
 
 
