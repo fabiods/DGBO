@@ -39,7 +39,9 @@ cp inputhf.d12.par INC
 #---run bas der flow----#
 cd INC
 cp sedfile.dat basrunsed.dat
-~/DGBO/basderfol.sh 
+~/DGBO/basderfol.sh | tee basderfol.out
+xxx=`tail -n 1 basderfol.out`
+echo "res" $xxx
 cd ..
 
 
