@@ -84,4 +84,4 @@ fi
     fi 	
   done
     str=`awk 'BEGIN {printf "["}  { printf "%s ",$2} END {printf "]\n"} ' basrunsed.dat `
-    echo " energy:" $rrr "dstr:" $str
+    echo " res: energy:" $rrr "dstr:" $str
