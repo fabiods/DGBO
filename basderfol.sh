@@ -84,4 +84,7 @@ fi
     fi 	
   done
     str=`awk 'BEGIN {printf "["}  { printf "%s ",$2} END {printf "]\n"} ' basrunsed.dat `
-    echo " res: energy:" $rrr "dstr:" $str
+	nc=`grep notconv basderfol.log  | tail -n 1| awk '{print $3}'
+    nm=`grep minimum basderfol.log  | tail -n 1|awk '{print $3}'
+
+    echo " res: energy:" $rrr "dstr:" $str  "min:" $min "conv:" $nc
