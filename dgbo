@@ -41,7 +41,7 @@ cp $start".par" inputhf.d12.par
 if [ ! -e ENEREFZERO.dat ]; then
     echo "creating ENEREFZERO.dat"  
 else
-- echo  "ENEREFZERO.dat present"
+  echo  "ENEREFZERO.dat present"
 fi
     cp sedfile.dat basrunsed.dat
     saveGMF=$GMF
