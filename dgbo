@@ -37,23 +37,28 @@ for start in inputhf.d12.orig inputhf.d12.orig? ; do
 
 cp $start".par" inputhf.d12.par
 
-# do only for the first orig file
+# do always but sotre only for the first orig file
 if [ ! -e ENEREFZERO.dat ]; then
     echo "creating ENEREFZERO.dat"  
+else
+- echo  "ENEREFZERO.dat present"
+fi
     cp sedfile.dat basrunsed.dat
     saveGMF=$GMF
     export GMF="%5.3E"
     enerefzero=`~/DGBO/basrun.sh | awk '{print $1}'`
     grep runcrycond basrun.log
     export GMF=$saveGMF
+if [ ! -e ENEREFZERO.dat ]; then
     echo $enerefzero > ENEREFZERO.dat
     echo "enerefzero " $enerefzero  "res:"
+else
+  echo "origene " $enerefzero  "res:"
+fi
     rm basrun.log
     rm basrun.allene.dat
     rm notconv.dat
-else
-    echo  "ENEREFZERO.dat present"
-fi
+
 
 
 echo $GMF
