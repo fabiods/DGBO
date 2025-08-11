@@ -168,7 +168,7 @@ def ackley(solution):
             print(cnt,"NEW MIN ",x,myfmin)
             if (cntp == 1) :
                  print ("fun ",myfmin," res: ",x)
-     else:
+    else:
             if (cnt % 100==1):
                print(cnt,"LOG ",x,a,myfmin)
 #    else:
