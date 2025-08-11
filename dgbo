@@ -47,7 +47,7 @@ fi
     saveGMF=$GMF
     export GMF="%5.3E"
     enerefzero=`~/DGBO/basrun.sh | awk '{print $1}'`
-    grep runcrycond basrun.log
+#    grep runcrycond basrun.log
     export GMF=$saveGMF
 if [ ! -e ENEREFZERO.dat ]; then
     echo $enerefzero > ENEREFZERO.dat
