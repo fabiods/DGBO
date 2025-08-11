@@ -162,18 +162,18 @@ def ackley(solution):
          quit()
     strx=res.stdout.decode().split()     
     a=float(strx[0])
-    if (a < 0 ):
-         if (a < myfmin):     
+#    if (a < 0 ):
+    if (a < myfmin):     
             myfmin=a
             print(cnt,"NEW MIN ",x,myfmin)
             if (cntp == 1) :
                  print ("fun ",myfmin," res: ",x)
-         else:
+     else:
             if (cnt % 100==1):
                print(cnt,"LOG ",x,a,myfmin)
-    else:
-         if (cnt % 100==1):
-            print(cnt,"LOG ",x,a,myfmin) 
+#    else:
+#         if (cnt % 100==1):
+#            print(cnt,"LOG ",x,a,myfmin) 
     return a
 
 
