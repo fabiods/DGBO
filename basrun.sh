@@ -92,7 +92,7 @@ fi
 if [ -e "maxrmax.info" ]; then
    maxrmax=`cat maxrmax.info`
    else
-   maxrmax=0    
+   maxrmax=10000    
 fi
    echo "maxrmax" $maxrmax >> $LOGFILE
    
