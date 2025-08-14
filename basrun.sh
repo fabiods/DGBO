@@ -80,6 +80,8 @@ told=`grep -A 1 "TOLDEE" inputhf.d12.par | tail -n 1 `
 tol=`echo $told | awk '{print 10**(-$1)}'`
 tolb=`echo $tol | awk '{printf "%30.10f",$1}'`
 echo "tol" $told $tol $tolb >> $LOGFILE
+
+
 if [ -e "gamma.info" ]; then
    gamma=`cat gamma.info`
    else
@@ -87,6 +89,13 @@ if [ -e "gamma.info" ]; then
 fi
    echo "gamma" $gamma >> $LOGFILE
 
+if [ -e "maxrmax.info" ]; then
+   maxrmax=`cat maxrmax.info`
+   else
+   maxrmax=0    
+fi
+   echo "maxrmax" $maxrmax >> $LOGFILE
+   
 sedinput basrunsed.dat -1 -1
 
 #----------check------------range---------
