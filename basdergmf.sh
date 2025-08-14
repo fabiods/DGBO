@@ -241,7 +241,22 @@ cat basrunsed.dat | tee -a $LOGFILE
 #---------------required global------------------
 LISTENE='allene.dat'
 #rm $LISTENE
-gamma=0
+
+if [ -e "gamma.info" ]; then
+   gamma=`cat gamma.info`
+   else
+   gamma=0    
+fi
+   echo "gamma" $gamma >> $LOGFILE
+
+if [ -e "maxrmax.info" ]; then
+   maxrmax=`cat maxrmax.info`
+   else
+   maxrmax=10000    
+fi
+   echo "maxrmax" $maxrmax >> $LOGFILE
+
+
 silent="yes"
 told=`grep -A 1 "TOLDEE" inputhf.d12.par | tail -n 1 `
 tol=`echo $told | awk '{print 10**(-$1)}'`
