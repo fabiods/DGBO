@@ -55,6 +55,9 @@ if [ ! -e ENEREFZERO.dat ]; then
 else
   echo "origene " $enerefzero  "res:"
 fi
+grep gamma basrun.log
+grep maxrmax basrun.log
+
     rm basrun.log
     rm basrun.allene.dat
     rm notconv.dat
