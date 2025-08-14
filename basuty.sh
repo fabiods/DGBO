@@ -306,7 +306,7 @@ function runcrycond(){
           sed -i '/GUESSP/d'  inputhfeigs.d12
       fi
       eigratio $input
-      toom=`echo "$rmax > 10000" | bc -l`
+      toom=`echo "$rmax > $maxrmax" | bc -l`
       if [ "$toom" == 1 ]; then
 	ene="NARMAX"
       else	
