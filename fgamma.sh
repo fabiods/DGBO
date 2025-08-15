@@ -20,15 +20,17 @@ echo $rmaxatmine $mine
 
 # the final cond minimu is the one at min rmax if rmaxatmin > maxrmax/2
 #                       otherwise is the other
-xg=`echo "$rmaxatmine > $maxrmax/2" | bc -l`
+rmaxthre=`echo $minr $maxrmax | awk '{print sqrt($1*$2)}'`
+echo "RMAX THRE" $rmaxthre
+xg=`echo "$rmaxatmine > $rmaxthre" | bc -l`
 echo "too much" $xg
 #if [ "$xg" == "1" ]; then
-    rrr=`echo $maxrmax | awk '{print $1/2}'`
+#    rrr=`echo $maxrmax | awk '{print $1/2}'`
 #else
 #    rrr=$rmaxatmine 
 #fi
-echo $rrr
-
+#echo $rrr
+rrr=$rmaxthre
 
 ediff=`echo $mine $eneatminr | awk '{print (-$1+$2)}'`
 echo "enediff:" $ediff
