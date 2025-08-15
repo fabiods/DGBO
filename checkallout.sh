@@ -37,6 +37,7 @@ diisfail=0
 okbuttst=0
 bohc=0
 waserrc=0
+rm notconvall.dat
 while read -r line; do
 #    echo $line
     isopenerr=0    
@@ -146,6 +147,8 @@ while read -r line; do
     fi
     #    exit
      echo $line $detota $llaa $tst $diis $enemay "|" $waserr  $tma  $chdetot $chdetotv,  $chktst  $chklla  $chkdiis $ene $str  >> td.dat 
+	 rmax=`cat $line.eigs.rmax'
+     echo $rmax $ene >> notconvall.dat
 done <listout
 wc -l listout
 echo "tuttok" $tuttok | tee -a $LOGFILE   
