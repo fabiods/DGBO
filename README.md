@@ -227,6 +227,7 @@ the exponent, floating numbers, are coded into integer in a logarithm fashion:
      18 => 9E-2
 
 2-digit2, scal=1E-3
+
      10 => 1.0E-3
      11 => 1.1E-3
      ...
