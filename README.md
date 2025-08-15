@@ -168,9 +168,14 @@ OPTIONS:
 
 gamma.info : this file contain the gamma parameter
              If not preset is zero
+             the value of gamma can be obtained with the script
 
-rmax.info  : this file contains the maximum rmax values (eigmax/eigmin)
-             if not present is 10000
+             fgamma.sh
+
+             to be lauched after a run without gamma
+             
+maxrmax.info  : this file contains the maximum rmax values (eigmax/eigmin)
+               if not present is 10000
 
 
 change the function runcry in basuty.sh to change how crystal is lauched
