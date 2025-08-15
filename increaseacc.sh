@@ -29,7 +29,11 @@ awk -v gg=$gran '{print $1*gg}' ox.list > ox.listg
 for kk in {1..2}; do
     
 tail -n $kk basrun.allene.dat.uniq | head -n 1  | awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
+echo
+echo
 echo 'selected minima : ' $kk
+echo
+echo
 cat  INC/sedfile.dat.tmp.$kk
 
 paste sedfile.dat INC/sedfile.dat.tmp.$kk | awk '{print $1,$3}' > INC/sedfile.dat
