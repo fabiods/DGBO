@@ -247,14 +247,14 @@ if [ -e "gamma.info" ]; then
    else
    gamma=0    
 fi
-   echo "gamma" $gamma >> $LOGFILE
+   echo "gamma" $gamma | tee -a $LOGFILE
 
 if [ -e "maxrmax.info" ]; then
    maxrmax=`cat maxrmax.info`
    else
    maxrmax=10000    
 fi
-   echo "maxrmax" $maxrmax >> $LOGFILE
+   echo "maxrmax" $maxrmax | tee -a  $LOGFILE
 
 
 silent="yes"
