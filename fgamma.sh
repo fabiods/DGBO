@@ -6,12 +6,18 @@ if [ -e "maxrmax.info" ]; then
 fi
 echo "maxrmax" $maxrmax
 
-minr=`sort -k 3 -g -r notconv.dat  | grep -v NA | tail -n 1 | awk '{print $3}'`
-eneatminr=`sort -k 3 -g -r notconv.dat  | grep -v NA | tail -n 1 | awk '{print $6}'` 
+for xfile in notconv.dat notconvall.dat; 
+do
+echo $xfile
+sort -k 3 -g -r $xfile | grep -v NA | uniq > tmpx
+wc tmpx
+
+minr=` tail -n 1 tmpx | awk '{print $3}'`
+eneatminr=`tail -n 1 tmpx | awk '{print $6}'` 
 echo $minr $eneatminr
 
-mine=`sort -k 6 -g -r notconv.dat  | grep -v NA | tail -n 1 | awk '{print $6}'`  
-rmaxatmine=`sort -k 6 -g -r notconv.dat  | grep -v NA | tail -n 1 | awk '{print $3}'`
+mine=`sort -k 6 -g -r tmpx  | tail -n 1 | awk '{print $6}'`  
+rmaxatmine=`sort -k 6 -g -r tmpx | tail -n 1 | awk '{print $3}'`
 echo $rmaxatmine $mine
 
 # debug
@@ -45,3 +51,5 @@ gammaof=`echo $gammao | awk '{printf "%2.0E\n",$1}' | awk '{printf "%8.5f",$1}'`
 echo "GAMMA FINAL" $gammaof
 echo "$eneatminr+$gammaof*l($minr)"   | bc -l
 echo "$mine     +$gammaof*l($rmaxatmine)"  | bc -l 
+done
+
