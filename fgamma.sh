@@ -13,12 +13,12 @@ echo $xfile
 sort -k 3 -g -r $xfile | grep -v NA | uniq > tmpx
 wc tmpx
 
-minr=` tail -n 1 tmpx | awk '{print $3}'`
-eneatminr=`tail -n 1 tmpx | awk '{print $6}'` 
+minr=` tail -n 1 tmpx | awk '{printf $3}'`
+eneatminr=`tail -n 1 tmpx | awk '{printf "%15.9f",$6}'` 
 echo $minr $eneatminr
 
 mine=`sort -k 6 -g -r tmpx  | tail -n 1 | awk '{print $6}'`  
-rmaxatmine=`sort -k 6 -g -r tmpx | tail -n 1 | awk '{print $3}'`
+rmaxatmine=`sort -k 6 -g -r tmpx | tail -n 1 | awk '{printf "%15.9f",$3}'`
 echo $rmaxatmine $mine
 
 # debug
