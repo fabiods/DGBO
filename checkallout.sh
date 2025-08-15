@@ -27,6 +27,7 @@ mkdir removed >& /dev/null
 mkdir notconv >& /dev/null
 mkdir openerr >& /dev/null
 mkdir inccyc  >& /dev/null
+mkdir bohc >& /dev/null
 rm td.dat
 echo "                                   waserr , toomany ,  chdetot , chdetotv, chktst , chklla , chkdiis, ene   " | tee -a $LOGFILE   
 openerr=0
@@ -103,7 +104,11 @@ while read -r line; do
 	    else
 		echo $line , $waserr , $tma , $chdetot , $chdetotv, $chktst , $chklla , $chkdiis, $ene | tee -a $LOGFILE   
 		bohc=$((bohc+1))
-		echo " -- boh == " $bohc | tee -a $LOGFILE   
+		echo " -- boh == " $bohc | tee -a $LOGFILE  
+       if [ "$move" == "MOVEBOHC" ] || [ "$move" == "MOVE" ]; then
+             echo "mv $line bohc" | tee -a $LOGFILE
+                   mv $line bohc
+	   fi			   
                 str="boh"  
 		#		exit
 	    fi
