@@ -147,7 +147,7 @@ while read -r line; do
     fi
     #    exit
      echo $line $detota $llaa $tst $diis $enemay "|" $waserr  $tma  $chdetot $chdetotv,  $chktst  $chklla  $chkdiis $ene $str  >> td.dat 
-	 rmax=`cat $line.eigs.rmax`
+	 rmax=`cat $line.eigs.rmax | awk '{print $2}'`
      echo $rmax $ene >> notconvall.dat
 done <listout
 wc -l listout
