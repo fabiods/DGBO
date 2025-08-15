@@ -14,6 +14,8 @@ newfmt=$1
 
 mkdir  INC
 cp ENEREFZERO.dat INC
+cp gamma.info INC  
+cp maxrmax.info INC 
 ~/DGBO/xdiff.x < basrun.allene.dat.uniq > xdiff.out
 gran=`grep granularity xdiff.out | awk '{print $2}'`
 echo "gran" $gran
