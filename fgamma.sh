@@ -17,8 +17,8 @@ minr=` tail -n 1 tmpx | awk '{printf $3}'`
 eneatminr=`tail -n 1 tmpx | awk '{printf "%15.9f",$6}'` 
 echo $minr $eneatminr
 
-mine=`sort -k 6 -g -r tmpx  | tail -n 1 | awk '{print $6}'`  
-rmaxatmine=`sort -k 6 -g -r tmpx | tail -n 1 | awk '{printf "%15.9f",$3}'`
+mine=`sort -k 6 -g -r tmpx  | tail -n 1 | awk '{printf "%15.9f",$6}'`  
+rmaxatmine=`sort -k 6 -g -r tmpx | tail -n 1 | awk '{print $3}'`
 echo $rmaxatmine $mine
 
 # debug
