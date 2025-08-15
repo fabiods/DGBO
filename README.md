@@ -168,11 +168,11 @@ OPTIONS:
 
 gamma.info : this file contain the gamma parameter
              If not preset is zero
-             the value of gamma can be obtained with the script
+             the value of gamma can be obtained (after a run without gamma)  with the script
 
              fgamma.sh
 
-          to be lauched after a run without gamma
+      
              
 maxrmax.info  : this file contains the maximum rmax values (eigmax/eigmin)
                if not present is 10000
