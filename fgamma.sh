@@ -11,7 +11,8 @@ do
 echo
 echo $xfile
 
-sort -k 3 -g -r $xfile | grep -v NA | uniq > tmpxx
+# same rmax can be obtained by many different basis-set
+sort -k 3,3 -k 6,6 -g -r $xfile | grep -v NA | uniq > tmpxx
 wc tmpxx
 awk -v mm=$maxrmax  '{if ( $3 < mm ) {print $1,$2,$3,$4,$5,$6,$7}}' tmpxx >tmpx
 wc tmpx
