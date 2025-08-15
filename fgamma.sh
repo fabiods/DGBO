@@ -8,6 +8,7 @@ echo "maxrmax" $maxrmax
 
 for xfile in notconv.dat notconvall.dat; 
 do
+echo
 echo $xfile
 sort -k 3 -g -r $xfile | grep -v NA | uniq > tmpx
 wc tmpx
