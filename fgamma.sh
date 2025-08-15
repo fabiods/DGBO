@@ -10,8 +10,12 @@ for xfile in notconv.dat notconvall.dat;
 do
 echo
 echo $xfile
-sort -k 3 -g -r $xfile | grep -v NA | uniq > tmpx
+
+sort -k 3 -g -r $xfile | grep -v NA | uniq > tmpxx
+wc tmpxx
+awk -v mm=$maxrmax  '{if ( $3 < mm ) {print $1,$2,$3,$4,$5,$6,$7}}' tmpxx >tmpx
 wc tmpx
+
 
 minr=` tail -n 1 tmpx | awk '{printf $3}'`
 eneatminr=`tail -n 1 tmpx | awk '{printf "%15.9f",$6}'` 
