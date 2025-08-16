@@ -61,9 +61,9 @@ fi
     
     ~/DGBO/basdergmf.sh > yyy.$cnt
     echo               >> $LOGFILE
-	echo "GMF START {" >> $LOGFILE
+	echo "DERGMF START {" >> $LOGFILE
     cat basdergmf.log >> $LOGFILE
-    echo "DERGMF END} >> $LOGFILE
+    echo "}DERGMF END}" >> $LOGFILE
 	echo              >>$LOGFILE
  
     rrr=`grep enezero yyy.$cnt | awk '{print $2}'`
