@@ -23,7 +23,7 @@ fi
 echo "GMF" $GMF | tee -a $LOGFILE 
 
 if [ ! -e inputhf.d12.par ];  then
-    echo "inputhf.d12.par not found"
+    echo "inputhf.d12.par not found"  | tee -a $LOGFILE
     exit
 fi
 
@@ -34,20 +34,24 @@ tolb=`echo $tol | awk '{printf "%15.10f",$1}'`
 echo 'tol', $told $tol $tolb >> $LOGFILE
 
 if [ ! -e  'basrunsed.dat' ]; then
-	echo "cannot found basrunsed.dat"
+	echo "cannot found basrunsed.dat"  | tee -a $LOGFILE
 	exit
 fi
     echo "input basrunsed.dat" | tee -a $LOGFILE
     cat basrunsed.dat | tee -a $LOGFILE    
     sss="%s "$GMF"\n" 
+	
     awk -v fmt="$sss" '{printf fmt,$1,$2}' basrunsed.dat >tmt
     mv basrunsed.dat basrunsed.dat.old
     mv tmt basrunsed.dat
+	
     echo "formatted basrunsed.dat" | tee -a $LOGFILE    
     cat basrunsed.dat | tee -a $LOGFILE 
+	
     # max number of cycles param*10
-    npart=`wc -l basrunsed.dat | awk '{print $1*10}'`
+    npart=`wc -l basrunsed.dat | awk '{print $1*20}'`
     echo "npart" $npart >> $LOGFILE
+	
     conv="no"
     cnt=0
     echo "Starting cycles:" | tee -a $LOGFILE
@@ -56,36 +60,47 @@ fi
     cp basrunsed.dat basrunsed.dat.$cnt	 
     
     ~/DGBO/basdergmf.sh > yyy.$cnt
+    echo               >> $LOGFILE
+	echo "GMF START {" >> $LOGFILE
     cat basdergmf.log >> $LOGFILE
-    
+    echo "DERGMF END} >> $LOGFILE
+	echo              >>$LOGFILE
+ 
     rrr=`grep enezero yyy.$cnt | awk '{print $2}'`
-    echo "cycle= " $cnt "energy= " $rrr
+	echo >> $LOGFILE
+    echo "cycle= " $cnt "energy= " $rrr | tee -a $LOGFILE
+    echo >> $LOGFILE
+	
     echo $cnt $rrr > basderfol.energy
 #                1     2   3        
 #               ene   pos diff    
 #     ENEDIFF 16.9502 3 1E+00
+
     grep minimum yyy.$cnt
     vv=`grep ENEDIFF yyy.$cnt | awk '{ if ( $2 < 0.0) {print $2,$3,$4}}' | sort -k 1 -g | head -n 1`
+	
     cnt=$((cnt+1)) 
 #    echo $vv
     newpos=`echo $vv | awk '{print $2}'`
     newxxx=`echo $vv | awk '{print $3}'`
     newdif=`echo $vv | awk '{printf "%30.10f",$1}'`  
     if [ -z $newpos ]; then
-	conv="yes"
+	 conv="yes"
     else
-	echo $newpos $newxxx $newdif 
-	isok=`echo "sqrt($newdif*$newdif) > $tolb*5" | bc -l`
+	 echo $newpos $newxxx $newdif 
+	 isok=`echo "sqrt($newdif*$newdif) > $tolb*5" | bc -l`
         if [ "$isok" == "1" ] ; then
-	awk -v pp=$newpos -v vv=$newxxx '{ if ( NR-1 == pp ) {print $1,vv} else {print $1,$2}}' basrunsed.dat > new
-	mv new basrunsed.dat
-	else
-	    echo "too small variation" $newdif
-	    conv="yes"
-	fi    
+	     awk -v pp=$newpos -v vv=$newxxx '{ if ( NR-1 == pp ) {print $1,vv} else {print $1,$2}}' basrunsed.dat > new
+	     mv new basrunsed.dat
+	    else
+	     echo "too small variation" $newdif
+	     conv="yes"
+	    fi    
     fi 	
   done
-  
+  if [ "$cnt" == "$npart" ]; then
+    echo "MAX NUMBER OF CYCLES" | tee -a $LOGFILE
+  fi	
 #    echo "lastdiff" $newdif
 	
     str=`awk 'BEGIN {printf "["}  { printf "%s ",$2} END {printf "]\n"} ' basrunsed.dat `
