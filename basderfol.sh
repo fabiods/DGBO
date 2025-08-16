@@ -87,7 +87,7 @@ fi
     if [ -z $newpos ]; then
 	 conv="yes"
     else
-	 echo $newpos $newxxx $newdif 
+#	 echo $newpos $newxxx $newdif 
 	 isok=`echo "sqrt($newdif*$newdif) > $tolb*5" | bc -l`
         if [ "$isok" == "1" ] ; then
 	     awk -v pp=$newpos -v vv=$newxxx '{ if ( NR-1 == pp ) {print $1,vv} else {print $1,$2}}' basrunsed.dat > new
