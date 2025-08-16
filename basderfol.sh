@@ -45,7 +45,8 @@ fi
     mv tmt basrunsed.dat
     echo "formatted basrunsed.dat" | tee -a $LOGFILE    
     cat basrunsed.dat | tee -a $LOGFILE 
-    npart=`wc -l basrunsed.dat | awk '{print $1*2}'`
+    # max number of cycles param*4
+    npart=`wc -l basrunsed.dat | awk '{print $1*4}'`
     echo "npart" $npart >> $LOGFILE
     conv="no"
     cnt=0
