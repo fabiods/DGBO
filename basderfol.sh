@@ -92,10 +92,12 @@ fi
         if [ "$isok" == "1" ] ; then
 	     awk -v pp=$newpos -v vv=$newxxx '{ if ( NR-1 == pp ) {print $1,vv} else {print $1,$2}}' basrunsed.dat > new
 	     mv new basrunsed.dat
+	      ddd=`awk -v fmt=$GMF '{printf fmt" ", $2}' basrunsed.dat`
 	    else
 	     echo "too small variation" $newdif
 	     conv="yes"
 	    fi    
+	     echo $newpos $newxxx $newdif $conv $ddd
     fi 	
   done
   if [ "$cnt" == "$npart" ]; then
