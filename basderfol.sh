@@ -45,8 +45,8 @@ fi
     mv tmt basrunsed.dat
     echo "formatted basrunsed.dat" | tee -a $LOGFILE    
     cat basrunsed.dat | tee -a $LOGFILE 
-    # max number of cycles param*6
-    npart=`wc -l basrunsed.dat | awk '{print $1*6}'`
+    # max number of cycles param*10
+    npart=`wc -l basrunsed.dat | awk '{print $1*10}'`
     echo "npart" $npart >> $LOGFILE
     conv="no"
     cnt=0
@@ -85,6 +85,7 @@ fi
 	fi    
     fi 	
   done
+  
 #    echo "lastdiff" $newdif
 	
     str=`awk 'BEGIN {printf "["}  { printf "%s ",$2} END {printf "]\n"} ' basrunsed.dat `
