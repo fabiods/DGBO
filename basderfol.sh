@@ -12,8 +12,17 @@
 #          APPEND to notconv.dat
 #          basdergmf.log  (last cycle)
 #          gradinet.basrunsed.dat (last cycle)
-LOGFILE='basderfol.log'
+
+if [ -e "gamma.info" ]; then
+   gamma=`cat gamma.info`
+   else
+   gamma=0    
+fi
+
+LOGFILE="basderfol.$gamma.log"
 rm $LOGFILE
+echo "gamma" $gamma >> $LOGFILE
+
 echo "---- bas der fol ---"  | tee -a $LOGFILE
 numpar=$#
 if [ -z $GMF ]; then
@@ -106,7 +115,7 @@ fi
 #    echo "lastdiff" $newdif
 	
     str=`awk 'BEGIN {printf "["}  { printf "%s ",$2} END {printf "]\n"} ' basrunsed.dat `
-	nc=`grep notconv basderfol.log  | tail -n 1| awk '{print $2}'`
-    nm=`grep minimum basderfol.log  | tail -n 1| awk '{print $2}'`
+	nc=`grep notconv $LOGFILE  | tail -n 1| awk '{print $2}'`
+    nm=`grep minimum $LOGFILE  | tail -n 1| awk '{print $2}'`
 
     echo " energy:" $rrr "dstr:" $str  "min:" $nm "conv:" $nc
