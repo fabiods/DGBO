@@ -6,9 +6,16 @@
 
 # recreated basrun.allene.dat.uniq and nc.dat
 # allene.dat is from basdergmf
-cat basrun.allene.dat allene.dat > tmpx
-sort -k 2 -r -g  tmpx  | uniq > basrun.allene.dat.uniq
-awk '{print NF-3}' basrun.allene.dat.uniq | head -n 1 > nc.dat
+
+if [ -e "gamma.info" ]; then
+   gamma=`cat gamma.info`
+   else
+   gamma=0    
+fi
+
+cat basrun.allene.$gamma.dat allene.$gamma.dat > tmpx
+sort -k 2 -r -g  tmpx  | uniq > basrun.allene.$gamma.dat.uniq
+awk '{print NF-3}' basrun.allene.$gamma.dat.uniq | head -n 1 > nc.dat
 
 newfmt=$1
 
@@ -16,7 +23,7 @@ mkdir  INC
 cp ENEREFZERO.dat INC
 cp gamma.info INC  
 cp maxrmax.info INC 
-~/DGBO/xdiff.x < basrun.allene.dat.uniq > xdiff.out
+~/DGBO/xdiff.x < basrun.allene.$gamma.dat.uniq > xdiff.out
 gran=`grep granularity xdiff.out | awk '{print $2}'`
 echo "gran" $gran
 
@@ -28,7 +35,7 @@ awk -v gg=$gran '{print $1*gg}' ox.list > ox.listg
 
 for kk in {1..2}; do
     
-tail -n $kk basrun.allene.dat.uniq | head -n 1  | awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
+tail -n $kk basrun.allene.$gamma.dat.uniq | head -n 1  | awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
 echo
 echo
 echo 'selected minima : ' $kk
@@ -63,10 +70,10 @@ paste INC/sedfile.dat.tmp.$kk | awk '{print $1,$1}' > bounds_inc.dat
 #exit
 cd INC
 if [ "$kk" == "1" ]; then
-rm basrun.allene.dat
-rm notconv.dat
-rm basrun.log
-rm allene.dat
+rm basrun.allene.$gamma.dat
+rm notconv.$gamma.dat
+rm basrun.$gamma.log
+rm allene.$gamma.dat
 fi
 #pwd
 #python -u ~/opt3.py nd
