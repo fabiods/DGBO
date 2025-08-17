@@ -143,7 +143,7 @@ awk '{print $3,$6}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA > rmax0_enef.
 
 
 sort -k 2 -r -g  basrun.allene.$gamma.dat  | uniq > basrun.allene.$gamma.dat.uniq
-awk '{print NF-3}' basrun.allene.dat.$gamma.uniq | head -n 1 > nc.dat
+awk '{print NF-3}' basrun.allene.$gamma.dat.uniq | head -n 1 > nc.dat
 ~/DGBO/xdiff.x < basrun.allene.$gamma.dat.uniq
 
 grep "" *.ene | sort -k 2 -r -g | grep -v NA | tail -n 10
