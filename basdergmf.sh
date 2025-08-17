@@ -249,10 +249,8 @@ fi
 echo "final basrunsed.dat" | tee -a $LOGFILE
 cat basrunsed.dat | tee -a $LOGFILE 
 #---------------required global------------------
-LISTENE='allene.dat'
+LISTENE="allene.$gamma.dat"
 #rm $LISTENE
-
-
 
 if [ -e "maxrmax.info" ]; then
    maxrmax=`cat maxrmax.info`
