@@ -239,7 +239,7 @@ class StoppingCriterion:
         self.__best_result = 0
         self.__count = 0
         self.__total_count = 0
-        self.__count_limit = 200*(dim_size+1)
+        self.__count_limit = max(500,200*(dim_size))
 
     def check(self, optcontent):
         """
@@ -260,7 +260,7 @@ class StoppingCriterion:
             self.__best_result = content_best_value
             self.__count = 0
         if self.__count >= self.__count_limit:
-            print("stopping criterion holds, total_count: %d" % self.__total_count)
+            print("[zoopt] stopping criterion holds, total_count: %d" % self.__total_count)
             return True
         else:
             return False
