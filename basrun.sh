@@ -13,8 +13,17 @@ if [ ! -e inputhf.d12.par ];  then
     exit
 fi
 
-LOGFILE="basrun.log"
+if [ -e "gamma.info" ]; then
+   gamma=`cat gamma.info`
+   else
+   gamma=0    
+fi
+  
+   
+LOGFILE="basrun.$gamma.log"
 
+echo "gamma" $gamma >> $LOGFILE
+ 
 SILENT="yes"
 
 if [ "$numpar" -ne 0 ]; then 
@@ -61,7 +70,7 @@ fi
 #	 
 #fi	 
 
-LISTENE='basrun.allene.dat'
+LISTENE="basrun.allene.$gamma.dat"
 
 #rm $LISTENE >& /dev/null
 
@@ -82,12 +91,7 @@ tolb=`echo $tol | awk '{printf "%30.10f",$1}'`
 echo "tol" $told $tol $tolb >> $LOGFILE
 
 
-if [ -e "gamma.info" ]; then
-   gamma=`cat gamma.info`
-   else
-   gamma=0    
-fi
-   echo "gamma" $gamma >> $LOGFILE
+
 
 if [ -e "maxrmax.info" ]; then
    maxrmax=`cat maxrmax.info`
