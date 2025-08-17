@@ -337,9 +337,9 @@ function runcrycond(){
         echo "COND " $cond >> $LOGFILE
 	echo "conddiff"  $conddiff >> $LOGFILE
 	echo $ene $enef $conddiff $dstr >> $LISTENE
-	echo "rmax rmax0" $rmax $rmax0 $ene $enef $str >> notconv.dat
+	echo "rmax rmax0" $rmax $rmax0 $ene $enef $str >> notconv.$gamma.dat
     else
-	echo "rmax rmax0" $rmax $rmax0 $ene $ene $str >> notconv.dat
+	echo "rmax rmax0" $rmax $rmax0 $ene $ene $str >> notconv.$gamma.dat
     fi
     if [ -e "ENEREFZERO.dat" ]; then
 	enerefzero=`awk '{printf "%30.10f",$1}' ENEREFZERO.dat`
