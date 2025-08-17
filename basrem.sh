@@ -27,8 +27,9 @@ while read -r line; do
     sed -i "s/$sss/$ttt/g" $par/inputhf.d12.par
     cp sedfile.dat $par/basrunsed.dat
     cd $par
-    enehere=`~/DGBO/basrun.sh | awk '{print $1}'`
- #   echo $enehere
+    eneherefull=`~/DGBO/basrun.sh | awk '{print $1,$2}'`
+    echo $eneherefull
+    enehere=`echo $eneherefull | awk '{print $1}'`
     echo $enehere $enezero | awk '{print $1-$2'}
     cd ..
     else
