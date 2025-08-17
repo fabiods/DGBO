@@ -87,23 +87,23 @@ cp basrunsed.dat basrunsed.orig$count
 
 #exit
 
-if [ "1" == "0" ]; then 
-pwd
-python -u ~/opt3.py nd
-wc basrun.allene.dat
-wc notconv.dat
-pwd
-python -u ~/opt3.py pow
-wc basrun.allene.dat
-wc notconv.dat
+#if [ "1" == "0" ]; then 
+#pwd
+#python -u ~/opt3.py nd
+#wc basrun.allene.dat
+#wc notconv.dat
+#pwd
+#python -u ~/opt3.py pow
+#wc basrun.allene.dat
+#wc notconv.dat
 #python ~/opt3.py direct
 #wc basrun.allene.dat
 #wc notconv.dat
-pwd
-python -u ~/opt3.py boby
-wc basrun.allene.dat
-wc notconv.dat
-fi
+#pwd
+#python -u ~/opt3.py boby
+#wc basrun.allene.dat
+#wc notconv.dat
+#fi
 
 
 pwd
