@@ -71,7 +71,7 @@ fi
     ~/DGBO/basdergmf.sh > yyy.$cnt
     echo               >> $LOGFILE
 	echo "DERGMF START {" >> $LOGFILE
-    cat basdergmf.log >> $LOGFILE
+    cat basdergmf.$gamma.log >> $LOGFILE
     echo "}DERGMF END}" >> $LOGFILE
 	echo              >>$LOGFILE
  
