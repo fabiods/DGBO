@@ -182,8 +182,17 @@ done
 }
 
 
-LOGFILE='basdergmf.log'
+#-------------------MAIN-------------
+
+if [ -e "gamma.info" ]; then
+   gamma=`cat gamma.info`
+   else
+   gamma=0    
+fi
+LOGFILE="basdergmf.$gamma.log"
 rm $LOGFILE
+echo "gamma" $gamma  >> $LOGFILE
+   
 echo "---- bas der gmf ---"  | tee -a $LOGFILE
 numpar=$#
 if [ -z $GMF ]; then
@@ -206,8 +215,8 @@ if [ "$numpar" == "0" ]; then
     echo "parameter not specified" | tee -a $LOGFILE 
     echo "using basrunsed.dat" | tee -a $LOGFILE 
     if [ ! -e  'basrunsed.dat' ]; then
-	echo "cannot found basrunsed.dat"
-	exit
+ 	 echo "cannot found basrunsed.dat"
+	 exit
     fi
     cat basrunsed.dat
     sss="%s "$GMF"\n" 
@@ -236,18 +245,14 @@ else
  fi   
  paste tmpsed2 tmpsed | awk '{print $1,$3}' > basrunsed.dat
 fi
+
 echo "final basrunsed.dat" | tee -a $LOGFILE
 cat basrunsed.dat | tee -a $LOGFILE 
 #---------------required global------------------
 LISTENE='allene.dat'
 #rm $LISTENE
 
-if [ -e "gamma.info" ]; then
-   gamma=`cat gamma.info`
-   else
-   gamma=0    
-fi
-   echo "gamma" $gamma  >> $LOGFILE
+
 
 if [ -e "maxrmax.info" ]; then
    maxrmax=`cat maxrmax.info`
