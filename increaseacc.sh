@@ -14,8 +14,8 @@ if [ -e "gamma.info" ]; then
 fi
 
 cat basrun.allene.$gamma.dat allene.$gamma.dat > tmpx
-sort -k 2 -r -g  tmpx  | uniq > basrun.allene.$gamma.dat.uniq
-awk '{print NF-3}' basrun.allene.$gamma.dat.uniq | head -n 1 > nc.dat
+sort -k 2 -r -g  tmpx  | uniq > basrun.allene.$gamma.uniq.dat
+awk '{print NF-3}' basrun.allene.$gamma.uniq.dat | head -n 1 > nc.dat
 
 newfmt=$1
 
@@ -23,7 +23,7 @@ mkdir  INC
 cp ENEREFZERO.dat INC
 cp gamma.info INC  
 cp maxrmax.info INC 
-~/DGBO/xdiff.x < basrun.allene.$gamma.dat.uniq > xdiff.out
+~/DGBO/xdiff.x < basrun.allene.$gamma.uniq.dat > xdiff.out
 gran=`grep granularity xdiff.out | awk '{print $2}'`
 echo "gran" $gran
 
@@ -35,7 +35,7 @@ awk -v gg=$gran '{print $1*gg}' ox.list > ox.listg
 
 for kk in {1..2}; do
     
-tail -n $kk basrun.allene.$gamma.dat.uniq | head -n 1  | awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
+tail -n $kk basrun.allene.$gamma.uniq.dat | head -n 1  | awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
 echo
 echo
 echo 'selected minima : ' $kk
