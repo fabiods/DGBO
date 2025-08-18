@@ -14,7 +14,7 @@ if [ -e "gamma.info" ]; then
 fi
 
 cat basrun.allene.$gamma.dat allene.$gamma.dat > tmpx
-sort -k 2 -r -g  tmpx  | uniq > basrun.allene.$gamma.uniq.dat
+sort -k 1 -r -g  tmpx  | uniq > basrun.allene.$gamma.uniq.dat
 awk '{print NF-3}' basrun.allene.$gamma.uniq.dat | head -n 1 > nc.dat
 
 newfmt=$1
