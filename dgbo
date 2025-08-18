@@ -150,7 +150,7 @@ grep "" *.ene | sort -k 1 -r -g | grep -v NA | tail -n 10
 #grep "SCF ENDED - CONVERGENCE ON ENERGY" out* | sort -k 10 -g -r | tail -n 10
 echo "check sizes"
 echo "allene.dat:"
-cat basrun.allene.$gamma.dat allene.$gamma.dat  | sort -k 2 -g -r | uniq | wc
+cat basrun.allene.$gamma.dat allene.$gamma.dat  | sort -k 1 -g -r | uniq | wc
 echo "notconv.$gamma.dat"
 sort -k 5 -g -r notconv.$gamma.dat   | grep -v NA | uniq | wc
 echo "*.ene"
