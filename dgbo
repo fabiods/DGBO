@@ -141,8 +141,8 @@ done
 awk '{print $3,$5,$7}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA | uniq > rmax0_enec.$gamma.dat
 awk '{print $3,$6,$7}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA | uniq > rmax0_enef.$gamma.dat
 
-# this is without allene !
-sort -k 1 -r -g  basrun.allene.$gamma.dat  | uniq > basrun.allene.$gamma.uniq.dat
+# this was without allene !
+sort -k 1 -r -g  basrun.allene.$gamma.dat allene.$gamma.dat | uniq > basrun.allene.$gamma.uniq.dat
 awk '{print NF-3}' basrun.allene.$gamma.uniq.dat | head -n 1 > nc.dat
 ~/DGBO/xdiff.x < basrun.allene.$gamma.uniq.dat
 
