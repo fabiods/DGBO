@@ -6,7 +6,7 @@ if [ -e "maxrmax.info" ]; then
 fi
 echo "maxrmax" $maxrmax
 
-for xfile in notconv.dat notconvall.dat; 
+for xfile in notconv.*.dat notconvall.dat; 
 do
 echo
 echo $xfile
