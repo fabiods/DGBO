@@ -58,7 +58,7 @@ fi
     cat basrunsed.dat | tee -a $LOGFILE 
 	
     # max number of cycles param*10
-    npart=`wc -l basrunsed.dat | awk '{print $1*20}'`
+    npart=`wc -l basrunsed.dat | awk '{print $1*10}'`
     echo "npart" $npart >> $LOGFILE
 	
     conv="no"
