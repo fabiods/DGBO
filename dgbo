@@ -146,7 +146,7 @@ sort -k 1 -r -g  basrun.allene.$gamma.dat  | uniq > basrun.allene.$gamma.uniq.da
 awk '{print NF-3}' basrun.allene.$gamma.uniq.dat | head -n 1 > nc.dat
 ~/DGBO/xdiff.x < basrun.allene.$gamma.uniq.dat
 
-grep "" *.ene | sort -k 2 -r -g | grep -v NA | tail -n 10
+grep "" *.ene | sort -k 1 -r -g | grep -v NA | tail -n 10
 #grep "SCF ENDED - CONVERGENCE ON ENERGY" out* | sort -k 10 -g -r | tail -n 10
 echo "check sizes"
 echo "allene.dat:"
