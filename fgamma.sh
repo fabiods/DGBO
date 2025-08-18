@@ -10,7 +10,7 @@ for xfile in notconv.*.dat notconvall.dat;
 do
 echo
 echo $xfile
-
+if [ -s $xfile ]; then
 # same rmax can be obtained by many different basis-set
 sort -k 3,3 -k 6,6 -g -r $xfile | grep -v NA | uniq > tmpxx
 wc tmpxx
@@ -57,5 +57,6 @@ gammaof=`echo $gammao | awk '{printf "%2.0E\n",$1}' | awk '{printf "%8.5f",$1}'`
 echo "GAMMA FINAL" $gammaof
 echo "$eneatminr+$gammaof*l($minr)"   | bc -l
 echo "$mine     +$gammaof*l($rmaxatmine)"  | bc -l 
+fi
 done
 
