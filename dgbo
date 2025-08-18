@@ -138,8 +138,8 @@ fi # file orig
     ~/DGBO/basrun.sh
 done
 
-awk '{print $3,$5}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA > rmax0_enec.dat
-awk '{print $3,$6}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA > rmax0_enef.dat
+awk '{print $3,$5,$7}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA > rmax0_enec.$gamma.dat
+awk '{print $3,$6,$7}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA > rmax0_enef.$gamma.dat
 
 
 sort -k 2 -r -g  basrun.allene.$gamma.dat  | uniq > basrun.allene.$gamma.uniq.dat
