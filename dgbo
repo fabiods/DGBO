@@ -11,7 +11,7 @@ if [ -e "gamma.info" ]; then
    gamma=0    
 fi
 
-LOGFILE="dgbo."$gamma".out"
+LOGFILE="dgbo."$gamma".log"
 rm $LOGFILE
 
 echo "gamma" | tee -a $LOGFILE
