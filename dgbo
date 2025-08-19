@@ -11,10 +11,11 @@ if [ -e "gamma.info" ]; then
    gamma=0    
 fi
 
-LOGFILE="dgbo."$gamma".log"
-rm $LOGFILE
+#LOGFILE="dgbo."$gamma".log"
+#rm $LOGFILE
 
-echo "gamma" | tee -a $LOGFILE
+echo "gamma"
+#| tee -a $LOGFILE
 
 pwd 
 rm basrun.$gamma.log
@@ -33,12 +34,16 @@ fi
 count=0
 for start in inputhf.d12.orig inputhf.d12.orig? ; do
   if [[ "$start" != *~ ]] && [[ -e "$start" ]] ; then
-    echo 	| tee -a $LOGFILE
-    echo "STARTFILE" $start | tee -a $LOGFILE
-    echo   | tee -a $LOGFILE
+    echo 	
+#| tee -a $LOGFILE
+    echo "STARTFILE" $start
+#| tee -a $LOGFILE
+    echo  
+#| tee -a $LOGFILE
     count=$((count+1))
 
-    ~/DGBO/cry2basrun.sh $start >> $LOGFILE
+    ~/DGBO/cry2basrun.sh $start 
+#>> $LOGFILE
 
     if [ -e "bounds_ext.dat" ]; then
  	 echo "using external bounds file "
