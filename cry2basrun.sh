@@ -183,7 +183,8 @@ done < bounds.dat
 
 paste sedfile.dat tmpsx | awk '{print $1,$3}' > tmpsx2
 cp tmpsx2 sedfile.dat
-
+echo "final sedfile.dat"
+cat sedfile.dat
 
 echo "Now creating $name.par ... "
 # str sed
