@@ -254,7 +254,10 @@ function getenefromout {
 }
 
 function runcry() {
+# input is the output file of crystal
     input=$1
+# inputhf is inputhf without d12	
+	inputhf=$2
     if [ "$silent" == "no" ]; then
 	echo "Running in " $input
     else
