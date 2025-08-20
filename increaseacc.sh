@@ -12,7 +12,7 @@ if [ -e "gamma.info" ]; then
    else
    gamma=0    
 fi
-
+echo "gamma" $gamma
 cat basrun.allene.$gamma.dat allene.$gamma.dat > tmpx
 sort -k 1 -r -g  tmpx  | uniq > basrun.allene.$gamma.uniq.dat
 awk '{print NF-3}' basrun.allene.$gamma.uniq.dat | head -n 1 > nc.dat
