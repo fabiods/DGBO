@@ -9,9 +9,10 @@ source ~/DGBO/basuty.sh
 
 function gradient() {
 #    set -x
-# input  sedfile   
+# input: sedfile, ezero, inputhf    
     fname=$1
     ezero=$2
+    inputhf=$3
 #  
  nbas=`wc -l $fname |awk '{print $1}'`
  store=gradient.$fname
@@ -35,9 +36,9 @@ function gradient() {
 
  
 
-    cp inputhf.d12.par inputhf.d12
+    cp inputhf.d12.par $inputhf".d12"
       
-    sedinputx $fname $i $pn
+    sedinputx $fname $i $pn $inputhf
     echo "" >> $LOGFILE  
     echo ">>>> pn= $pn i=$i $xvaln" >>  $LOGFILE
     echo " ~/DGBO/checkbr.x 1.4 $dstr > br.out" >>$LOGFILE
@@ -48,7 +49,7 @@ function gradient() {
 #    echo " " $str
 #    runcry  out.$pnname.$xname
     
-    runcrycond  out.$str $nxtot
+    runcrycond  out.$str $nxtot $inputhf
 
 #   MAIN OUT ENEDIFF
     echo $ene $enezero $i $xvaln $enevera | awk '{print " ENEDIFF",$1-$2,$3,$4,$5}' | tee -a $LOGFILE 
@@ -219,8 +220,10 @@ echo 'tol', $told $tol $tolb >> $LOGFILE
 #cat basrunsed.dat >>$LOGFILE
 
 #-------------------run the starting point -----------------------------------
-cp inputhf.d12.par inputhf.d12
-sedinputx basrunsed.dat -1 -1 inputhf.d12
+myinputhf="inputhf"
+
+cp inputhf.d12.par $myinputhf".d12"
+sedinputx basrunsed.dat -1 -1 $myinputhf
 
 echo " ~/DGBO/checkbr.x 1.4 $dstr > br.out" >>$LOGFILE   
 ~/DGBO/checkbr.x 1.4 $dstr > br.out
@@ -242,7 +245,8 @@ else
  
  cp basrunsed.dat   basrunsed.dat.g
 
- gradient basrunsed.dat $enezero
+# this can be parallelized:
+ gradient basrunsed.dat $enezero $myinputhf
  
  mv basrunsed.dat.g basrunsed.dat
 fi
