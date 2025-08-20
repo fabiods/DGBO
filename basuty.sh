@@ -46,7 +46,7 @@ function eigratio() {
   if [ ! -e $input.eigs.rmax ]; then 
    runcry23OMP 4 $inputhfeigs &>> $LOGFILE
    cp $inputhfeigs".out" $input.eigs
-#	/home/atom/ATOMSOFT/CRYSTAL/NEWOMP2/bin/Linux-ifort_i64_omp/dev/crystalOMP < inputhfeigs.d12 > $input.eigs
+   
    ball=`grep "ALL G-VECTORS USED" $input.eigs | wc -l`
    if [ "$ball" -ne "1" ]; then 
     nk=`grep "NUMBER OF K POINTS IN THE IBZ" $input.eigs | awk '{print $13}'`
@@ -314,10 +314,11 @@ function runcrycond(){
     echo "errxbas" $errxbas >> $LOGFILE
     if [ "$errxbas" -eq "0" ]; then
       if [ ! -e $input.eigs.rmax ]; then   
-          sed  s/EXCHGENE/EIGS/g $inputhf".d12" > inputhfeigs.d12
-          sed -i '/GUESSP/d'  inputhfeigs.d12
+          sed  s/EXCHGENE/EIGS/g $inputhf".d12" > $inputhf"eigs.d12"
+          sed -i '/GUESSP/d'  $inputhf"eigs.d12"
       fi
-      eigratio $input
+      eigratio $input $inputhf"eigs"
+	  
       toom=`echo "$rmax > $maxrmax" | bc -l`
       if [ "$toom" == 1 ]; then
 	   ene="NARMAX"
