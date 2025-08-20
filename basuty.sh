@@ -44,8 +44,8 @@ function eigratio() {
   inputeigs=$2
   echo "eigratio{",$input, $inputeigs >> $LOGFILE
   if [ ! -e $input.eigs.rmax ]; then 
-   runcry23OMP 4 $inputhfeigs &>> $LOGFILE
-   cp $inputhfeigs".out" $input.eigs
+   runcry23OMP 4 $inputeigs &>> $LOGFILE
+   cp $inputeigs".out" $input.eigs
    
    ball=`grep "ALL G-VECTORS USED" $input.eigs | wc -l`
    if [ "$ball" -ne "1" ]; then 
