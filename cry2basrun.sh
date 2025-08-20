@@ -3,7 +3,7 @@
 # take in input a crystal file       with "*" for basis set optimization
 # make in output a crytstal file.par with parameter string for optimization 
 
-echo " --- From crystal input for optbasis to basrunopt ---"
+echo " --- From crystal input for optbasis to basrunopt ---{"
 name=$1
 if [ "$name" == "" ]; then
     echo " ERROR: syntax"
@@ -156,7 +156,27 @@ for ((k = 1 ; k <= $num ; k++ )); do
     fi
     
 done
+echo "bounda.dat:"
 cat bounds.dat
+#--------------force that x0 is within the bounds-------------------
+
+k=0
+while read -r line; do
+k=%((k+1))
+fval=${myexpa[k]}
+fmin=`echo $line | awk '{print sqrt($1*$1)}' `
+fmax=`echo $line | awk '{print sqrt($2*$2)}' `
+ttn=`echo "$fmin < $fval" | bc -l`
+ttx=`echo "$fmax > $fval" | bc -l`
+echo $fmin $fval $fmax $ttn $ttx
+if [ "$ttb" == "0" ]; then
+ fval=$fmin
+elif   [ "$ttx" == "0" ]; then
+ fval=$fmax
+fi 
+done < bounds.dat
+
+
 echo "Now creating $name.par ... "
 # str sed
 declare -a MYARRAY
@@ -176,3 +196,4 @@ while read -r line; do
     #    sed -i s/"$line"/"PAR"$c"X +1.0"/g $name.par
     sed -i s/"$line"/${MYARRAY[c]}" 1.0"/g $name.par 
 done < tmp
+echo "}END cry2basrun
