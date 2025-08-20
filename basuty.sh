@@ -41,6 +41,8 @@ fi
 function eigratio() {
   echo "eigratio{",$1 >> $LOGFILE
   input=$1
+  inputeigs=$2
+  
   if [ ! -e $input.eigs.rmax ]; then 
    runcry23OMP 4 inputhfeigs &>> $LOGFILE
    cp inputhfeigs.out $input.eigs
@@ -299,21 +301,23 @@ function runcry() {
 
 function runcrycond(){
     #    set -x
-    echo "runcrycond{" $1 >> $LOGFILE
+   
     input=$1
     errxbas=$2
+	inputhf=$3
+    echo "runcrycond{" $input $errxbas $inputhf >> $LOGFILE
     echo "errxbas" $errxbas >> $LOGFILE
     if [ "$errxbas" -eq "0" ]; then
       if [ ! -e $input.eigs.rmax ]; then   
-          sed  s/EXCHGENE/EIGS/g inputhf.d12 > inputhfeigs.d12
+          sed  s/EXCHGENE/EIGS/g $inputhf".d12" > inputhfeigs.d12
           sed -i '/GUESSP/d'  inputhfeigs.d12
       fi
       eigratio $input
       toom=`echo "$rmax > $maxrmax" | bc -l`
       if [ "$toom" == 1 ]; then
-	ene="NARMAX"
+	   ene="NARMAX"
       else	
-	runcry $input
+	   runcry $input $inputhf
       fi	
 #rmax
     #    gamma=0.000005
@@ -321,9 +325,9 @@ function runcrycond(){
 #    gamma=0.001
 #    gamma=0.000000
     else
-	ene="NAPROG"
-	rmax=10000
-	rmax0=10000
+	 ene="NAPROG"
+	 rmax=10000
+	 rmax0=10000
     fi
 
     enevera=$ene
@@ -345,9 +349,9 @@ function runcrycond(){
 	echo "rmax rmax0" $rmax $rmax0 $ene $ene $str >> notconv.$gamma.dat
     fi
     if [ -e "ENEREFZERO.dat" ]; then
-	enerefzero=`awk '{printf "%30.10f",$1}' ENEREFZERO.dat`
+	 enerefzero=`awk '{printf "%30.10f",$1}' ENEREFZERO.dat`
     else
-	enerefzero=0
+	 enerefzero=0
     fi
     echo "enerefzero" $enerefzero >> $LOGFILE
     if [[ $ene == NA* ]]; then
