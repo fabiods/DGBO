@@ -89,6 +89,15 @@ it can happen that different starting point gives different global minimum
 because the bounds are different.
 To use an external bound file, create the 'bounds_ext.dat' file
 
+-------------------------------------------------------------
+
+dgbo also create many log files
+
+     basderfol.0.log
+     basdergmf.0.log
+     basrun.0.log
+
+where 0 is the gamma parameter
 
 ---------------------------------------------------
 GMF is a REQUIRED (!!!) enviroment variable
