@@ -358,45 +358,51 @@ function runcrycond(){
 }
 
 function sedinput() {
-    
+    # this function read $fname and modify the $inputhf file [eventually changing $ii $pn]   
+    # fname is the sedfile.dat
+	# global var: $GMF,  $LOGFILE
+ 
     fname=$1
     ii=$2
     pn=$3
-    echo "sedinput{" $fname $ii $pn $GMF >> $LOGFILE
+	inputhf=$4
+ 
+    echo "sedinput{" $fname $ii $pn $inputhf $GMF >> $LOGFILE
     j=0
     str=""
     dstr=""
     xvaln="0"
     cat $fname >> $LOGFILE
     while read -r line; do
-	pnname=""
-	name=`echo $line  | awk '{print $1}'` 	
+	 pnname=""
+	 name=`echo $line  | awk '{print $1}'` 	
      if [ "$j" == "$ii" ]; then 
-	val=`echo $line  | awk '{print $2}'`
-	if [ "$pn" == "1" ] ; then 
-	 valn=`echo $val | awk -v p=$perc -v fmt=$GMF  '{printf fmt, $1*(1+p)}'`   
-	 pnname='pos'
-	 xname=$name
-	 xvaln=$valn
-        else
-         valn=`echo $val | awk -v p=$perc -v fmt=$GMF '{printf fmt, $1*(1-p)}'`
-         pnname='neg'
-	 xname=$name
-	 xvaln=$valn
-	fi 
+	  val=`echo $line  | awk '{print $2}'`
+	  if [ "$pn" == "1" ] ; then 
+	   valn=`echo $val | awk -v p=$perc -v fmt=$GMF  '{printf fmt, $1*(1+p)}'`   
+	   pnname='pos'
+	   xname=$name
+	   xvaln=$valn
+      else
+       valn=`echo $val | awk -v p=$perc -v fmt=$GMF '{printf fmt, $1*(1-p)}'`
+       pnname='neg'
+	   xname=$name
+	   xvaln=$valn
+	  fi 
      else	
          valn=`echo $line  | awk -v fmt=$GMF '{printf fmt, $2}'`
      fi
+	 
      if [ "$str" != "" ]; then 
-	 str=$str"_"$name$valn
-	 dstr=$dstr" "$valn
+	  str=$str"_"$name$valn
+	  dstr=$dstr" "$valn
      else
-	 str=$name$valn
-	 dstr=$valn
+	  str=$name$valn
+	  dstr=$valn
      fi	
        
      echo " " $pnname $name $valn  >> $LOGFILE
-     sed -i s/$name/$valn/g inputhf.d12
+     sed -i s/$name/$valn/g $inputhf
      j=$((j + 1))
 
     done < $fname
@@ -404,5 +410,60 @@ function sedinput() {
     echo " dstr" $dstr >> $LOGFILE
     echo "  xvaln" $xvaln >> $LOGFILE
     echo "}sedinput" >> $LOGFILE
+    }
+
+function sedinputx() {
+# same as sedinput, but using xprec and xnext
+    fname=$1
+    ii=$2
+    pn=$3
+	inputhf=$4
+ 
+    echo "sedinputx{" $fname $ii $pn $inputhf >> $LOGFILE
+    j=0
+    str=""
+    dstr=""
+    xvaln="0"
+    cat $fname >> $LOGFILE
+    while read -r line; do
+ 	 pnname=""
+	 name=`echo $line  | awk '{print $1}'` 	
+     if [ "$j" == "$ii" ]; then 
+	  val=`echo $line  | awk '{print $2}'`
+	  echo "val" $val >> $LOGFILE
+	  if [ "$pn" == "1" ] ; then
+	   valn=`xnext $val $GMF`   
+#	   valn=`echo $val | awk -v p=$perc -v fmt=$GMF  '{printf fmt, $1*(1+p)}'`   
+	   pnname='pos'
+	   xname=$name
+	   xvaln=$valn
+      else
+	   valn=`xprec $val $GMF`
+#      valn=`echo $val | awk -v p=$perc -v fmt=$GMF '{printf fmt, $1*(1-p)}'`
+       pnname='neg'
+	   xname=$name
+	   xvaln=$valn
+	  fi 
+     else	
+      valn=`echo $line  | awk -v fmt=$GMF '{printf fmt, $2}'`
+     fi
+	 
+     if [ "$str" != "" ]; then 
+	  str=$str"_"$name$valn
+	  dstr=$dstr" "$valn
+     else
+	  str=$name$valn
+	  dstr=$valn
+     fi	
+       
+     echo " " $pnname $name $valn  >> $LOGFILE
+     sed -i s/$name/$valn/g $inputhf
+     j=$((j + 1))
+
+    done < $fname
+    echo "  str" $str >> $LOGFILE
+    echo " dstr" $dstr >> $LOGFILE
+    echo "  xvaln" $xvaln >> $LOGFILE
+    echo "}sedinputx" >> $LOGFILE
     }
 
