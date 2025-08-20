@@ -363,6 +363,7 @@ function runcrycond(){
 function sedinput() {
     # this function read $fname and modify the $inputhf file [eventually changing $ii $pn]   
     # fname is the sedfile.dat
+	# inputhf is inputhf without .d12
 	# global var: $GMF,  $LOGFILE
  
     fname=$1
@@ -405,7 +406,7 @@ function sedinput() {
      fi	
        
      echo " " $pnname $name $valn  >> $LOGFILE
-     sed -i s/$name/$valn/g $inputhf
+     sed -i s/$name/$valn/g $inputhf".d12"
      j=$((j + 1))
 
     done < $fname
@@ -460,7 +461,7 @@ function sedinputx() {
      fi	
        
      echo " " $pnname $name $valn  >> $LOGFILE
-     sed -i s/$name/$valn/g $inputhf
+     sed -i s/$name/$valn/g $inputhf".d12"
      j=$((j + 1))
 
     done < $fname
