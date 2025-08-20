@@ -25,7 +25,7 @@ LOGFILE="basrun.$gamma.log"
 
 echo "gamma" $gamma >> $LOGFILE
  
-SILENT="yes"
+silent="yes"
 
 if [ "$numpar" -ne 0 ]; then 
  rm tmpsed
