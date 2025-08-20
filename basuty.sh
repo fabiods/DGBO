@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -u
+set -u
 #set -x
 function xnext() {
     val=$1
