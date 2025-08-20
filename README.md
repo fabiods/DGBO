@@ -54,6 +54,7 @@ The main results for the optimization can be easi visualized using the command:
      grep res: dgbo.out
 
 with results:
+
      enerefzero  -7.44947518180000000000 res:
      fun  -7.4494751818  res:  [2, 10, 11]
       fun -7.4579874517  res:  [6.   0.8  0.08]  opt: zoo , x0: [2.  1.  0.2]  gamma: 0 cnt: 450 min: 3 3 conv: 0 boundok: True
