@@ -156,9 +156,10 @@ for ((k = 1 ; k <= $num ; k++ )); do
     fi
     
 done
-echo "bounda.dat:"
+echo "bounds.dat:"
 cat bounds.dat
-#--------------force that x0 is within the bounds-------------------
+
+echo " force that x0 is within the bounds"
 
 k=1
 rm tmpsx
@@ -171,8 +172,10 @@ while read -r line; do
  echo $fmin $fval $fmax $ttn $ttx
  if [ "$ttb" == "0" ]; then
   fval=$fmin
+  echo "FORCED to MIN"
  elif   [ "$ttx" == "0" ]; then
   fval=$fmax
+  echo "FORCED to MAX"
  fi 
  echo $fval >> tmpsx
   k=$((k+1))
