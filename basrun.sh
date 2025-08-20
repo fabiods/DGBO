@@ -1,5 +1,6 @@
 #!/bin/bash
 #set -x
+set -u
 source ~/DGBO/basuty.sh
 
 
