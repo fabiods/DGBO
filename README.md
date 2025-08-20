@@ -54,17 +54,19 @@ The main results for the optimization can be easi visualized using the command:
      grep res: dgbo.out
 
 with results:
-
      enerefzero  -7.44947518180000000000 res:
      fun  -7.4494751818  res:  [2, 10, 11]
       fun -7.4579874517  res:  [6.   0.8  0.08]  opt: zoo , x0: [2.  1.  0.2]  gamma: 0 cnt: 450 min: 3 3 conv: 0 boundok: True
       ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [2.  1.  0.2]  gamma: 0 cnt: 451 min: 3 3 conv: 0 boundok: True
+     origene  -7.45164345730000000000 res:
      fun  -7.4484632856  res:  [3, 5, 10]
       fun -7.4579874517  res:  [6.   0.8  0.08]  opt: zoo , x0: [3.31   0.5488 0.106 ]  gamma: 0 cnt: 542 min: 3 3 conv: 0 boundok: True
       ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [3.31   0.5488 0.106 ]  gamma: 0 cnt: 543 min: 3 3 conv: 0 boundok: True
+     origene  -7.45582531920000000000 res:
      fun  -7.4558253192  res:  [3, 4, 10]
       fun -7.4579874517  res:  [6.   0.8  0.08]  opt: zoo , x0: [3.  0.4 0.1]  gamma: 0 cnt: 542 min: 3 3 conv: 0 boundok: True
       ffun -7.4579874517  res: [6.   0.8  0.08]  opt: zoo, x0: [3.  0.4 0.1]  gamma: 0 cnt: 543 min: 3 3 conv: 0 boundok: True
+
 
 As you can see there are three group of solution (as there are three orig* files)
 The first fun is the starting point
@@ -72,12 +74,12 @@ the second fun is the optimzed solution
 the third ffun is an additional check to verify that it is a local miminum
    min: 3 3 indicates that is it the minimum for 3 direction over 3
    conv: 0 indicates that it is converged solution (i.e. closest point are also SCF converged)
-enerefzero at the beginning is the energy of the first orig file, without discrete-integer approximation (i.e. with exponent with all digits)
+enerefzero (origene) at the beginning is the energy of the first orig file, without discrete-integer approximation (i.e. with exponent with all digits)
 
 cnt is the number of times crystal calculations have been called
 However, DGBO, saves on disk all the crystal calculations, thus the real number of cystal calculation can be obtained from:
 
-        sort -k 1 -g -r basrun.allene.dat  | uniq | wc
+        sort -k 1 -g -r basrun.allene.0.dat  | uniq | wc
 to be compared with the full dimensional space
 
         grep allsize dgbo.out | tail -n 1
