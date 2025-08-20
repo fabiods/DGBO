@@ -145,6 +145,6 @@ else
 fi
 
 
-runcrycond  out.$str $nxtot
+runcrycond  out.$str $nxtot "inputhf"
 echo $ene $enevera
 
