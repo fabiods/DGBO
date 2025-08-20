@@ -39,10 +39,10 @@ fi
 
 
 function eigratio() {
-  echo "eigratio{",$1 >> $LOGFILE
+
   input=$1
   inputeigs=$2
-  
+  echo "eigratio{",$input, $inputeigs >> $LOGFILE
   if [ ! -e $input.eigs.rmax ]; then 
    runcry23OMP 4 $inputhfeigs &>> $LOGFILE
    cp $inputhfeigs".out" $input.eigs
