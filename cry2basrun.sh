@@ -161,10 +161,11 @@ cat bounds.dat
 #--------------force that x0 is within the bounds-------------------
 
 k=1
+rm tmpsx
 while read -r line; do
  fval=${myexp[k]}
- fmin=`echo $line | awk '{print sqrt($1*$1)}' `
- fmax=`echo $line | awk '{print sqrt($2*$2)}' `
+ fmin=`echo $line | awk   '{print sqrt($1*$1)}' `
+ fmax=`echo $line | awk   '{print sqrt($2*$2)}' `
  ttn=`echo "$fmin < $fval" | bc -l`
  ttx=`echo "$fmax > $fval" | bc -l`
  echo $fmin $fval $fmax $ttn $ttx
@@ -173,8 +174,12 @@ while read -r line; do
  elif   [ "$ttx" == "0" ]; then
   fval=$fmax
  fi 
+ echo $fval >> tmpsx
   k=$((k+1))
 done < bounds.dat
+
+paste sedfile.dat tmpsx | awk '{print $1,$3}' > tmpsx2
+cp tmpsx2 sedfile.dat
 
 
 echo "Now creating $name.par ... "
