@@ -162,18 +162,18 @@ cat bounds.dat
 
 k=0
 while read -r line; do
-k=%((k+1))
-fval=${myexpa[k]}
-fmin=`echo $line | awk '{print sqrt($1*$1)}' `
-fmax=`echo $line | awk '{print sqrt($2*$2)}' `
-ttn=`echo "$fmin < $fval" | bc -l`
-ttx=`echo "$fmax > $fval" | bc -l`
-echo $fmin $fval $fmax $ttn $ttx
-if [ "$ttb" == "0" ]; then
- fval=$fmin
-elif   [ "$ttx" == "0" ]; then
- fval=$fmax
-fi 
+ k=$((k+1))
+ fval=${myexpa[k]}
+ fmin=`echo $line | awk '{print sqrt($1*$1)}' `
+ fmax=`echo $line | awk '{print sqrt($2*$2)}' `
+ ttn=`echo "$fmin < $fval" | bc -l`
+ ttx=`echo "$fmax > $fval" | bc -l`
+ echo $fmin $fval $fmax $ttn $ttx
+ if [ "$ttb" == "0" ]; then
+  fval=$fmin
+ elif   [ "$ttx" == "0" ]; then
+  fval=$fmax
+ fi 
 done < bounds.dat
 
 
