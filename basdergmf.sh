@@ -136,7 +136,7 @@ done
 
 if [ -e "gamma.info" ]; then
    gamma=`cat gamma.info`
-   else
+else
    gamma=0    
 fi
 LOGFILE="basdergmf.$gamma.log"
@@ -204,7 +204,7 @@ LISTENE="allene.$gamma.dat"
 
 if [ -e "maxrmax.info" ]; then
    maxrmax=`cat maxrmax.info`
-   else
+else
    maxrmax=10000    
 fi
    echo "maxrmax" $maxrmax >> $LOGFILE
@@ -217,9 +217,10 @@ tolb=`echo $tol | awk '{printf "%15.10f",$1}'`
 
 echo 'tol', $told $tol $tolb >> $LOGFILE
 #cat basrunsed.dat >>$LOGFILE
-#------------------------------------------------------
+
+#-------------------run the starting point -----------------------------------
 cp inputhf.d12.par inputhf.d12
-sedinputx basrunsed.dat -1 -1
+sedinputx basrunsed.dat -1 -1 inputhf.d12
 
 echo " ~/DGBO/checkbr.x 1.4 $dstr > br.out" >>$LOGFILE   
 ~/DGBO/checkbr.x 1.4 $dstr > br.out
@@ -229,6 +230,8 @@ echo "nxtot" $nxtot >>$LOGFILE
 #set -x
 runcrycond out.$str $nxtot
 #exit
+
+
 enezero=$ene
 
 if [[ $enevera == NA* ]]; then
