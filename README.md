@@ -39,7 +39,7 @@ This file is also used for the starting point.
 To consider a second ( a third, ... )  starting point use
 
        inputhf.d12.orig2
-       (input.d12.orig3)
+       (inputhf.d12.orig3)
 
 and dgbo will run from all these starting point.
 In the Li3 example three different starting points are used:
