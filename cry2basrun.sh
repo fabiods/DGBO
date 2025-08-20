@@ -201,4 +201,4 @@ while read -r line; do
     #    sed -i s/"$line"/"PAR"$c"X +1.0"/g $name.par
     sed -i s/"$line"/${MYARRAY[c]}" 1.0"/g $name.par 
 done < tmp
-echo "}END cry2basrun
+echo "}END cry2basrun"
