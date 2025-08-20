@@ -44,8 +44,8 @@ function eigratio() {
   inputeigs=$2
   
   if [ ! -e $input.eigs.rmax ]; then 
-   runcry23OMP 4 inputhfeigs &>> $LOGFILE
-   cp inputhfeigs.out $input.eigs
+   runcry23OMP 4 $inputhfeigs &>> $LOGFILE
+   cp $inputhfeigs".out" $input.eigs
 #	/home/atom/ATOMSOFT/CRYSTAL/NEWOMP2/bin/Linux-ifort_i64_omp/dev/crystalOMP < inputhfeigs.d12 > $input.eigs
    ball=`grep "ALL G-VECTORS USED" $input.eigs | wc -l`
    if [ "$ball" -ne "1" ]; then 
@@ -260,14 +260,15 @@ function runcry() {
     input=$1
 # inputhf is inputhf without d12	
 	inputhf=$2
+ 
     if [ "$silent" == "no" ]; then
 	echo "Running in " $input
     else
 	echo "runcry{ Running in " $input >> $LOGFILE
     fi	
 #    export OMP_NUM_THREADS=20
-    sed -i '/GUESSP/d'  inputhf.d12
-    sed -i '/EXCHGENE/d' inputhf.d12
+    sed -i '/GUESSP/d'  $inputhf".d12"
+    sed -i '/EXCHGENE/d' $inputhf".d12"
     waserr="yes"
     cc=0
     chdetot=1
@@ -277,17 +278,21 @@ function runcry() {
 # cc=1 is the first check, can be wrong ouutput	
 	if [ ! -s "$input" ]; then
 	    echo "running crystal" >> $LOGFILE
+
 #	    if [ "$chdetot" -eq "0" ] && [ "$chklla" -eq "0" ]; then
 #	      sed -i '/HISTDIIS/{ n; s/5/30/g }' inputhf.d12
 #	      sed -i 's/DIIS/SLOSHING/g' inputhf.d12
 #	    fi  
 #	    runPcry23 14 inputhf  &>> $LOGFILE
-	    #	    runcry23 inputhf &>> $LOGFILE
-	    runcry23OMP 16 inputhf &>> $LOGFILE
+#	    runcry23 inputhf &>> $LOGFILE
+
+	    runcry23OMP 16 $inputhf &>> $LOGFILE
 	    #	 /home/atom/ATOMSOFT/CRYSTAL/NEWOMP2/bin/Linux-ifort_i64_omp/dev/crystalOMP < inputhf.d12 > $input
-	    cp inputhf.out $input
+	 
+	    cp $inputhf".out" $input
 	    # cp fort.9 fort.20.$input
-	    cp inputhf.f9 fort.20.$input
+	 
+	    cp $inputhf".f9" fort.20.$input
         fi
          getenefromout $input $tolb $silent "yes"
 	
