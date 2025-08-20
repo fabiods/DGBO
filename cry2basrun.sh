@@ -160,7 +160,7 @@ echo "bounda.dat:"
 cat bounds.dat
 #--------------force that x0 is within the bounds-------------------
 
-k=0
+k=1
 while read -r line; do
  fval=${myexp[k]}
  fmin=`echo $line | awk '{print sqrt($1*$1)}' `
