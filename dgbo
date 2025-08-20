@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -u
 if [ -z $GMF ]; then
     echo GMF not defined
     exit
