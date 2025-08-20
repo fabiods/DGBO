@@ -56,7 +56,7 @@ for start in inputhf.d12.orig inputhf.d12.orig? ; do
 
 cp $start".par" inputhf.d12.par
 
-set -x
+#set -x
 # do always but sotre only for the first orig file
 if [ ! -e ENEREFZERO.dat ]; then
     echo "creating ENEREFZERO.dat"  
@@ -76,7 +76,7 @@ if [ ! -e ENEREFZERO.dat ]; then
 else
   echo "origene " $enerefzero  "res:"
 fi
-set +x
+#set +x
 
 grep -m 1 gamma basrun.$gamma.log
 grep -m 1 maxrmax basrun.$gamma.log
