@@ -134,7 +134,7 @@ if [ -e "maxrmax.info" ]; then
 fi
    echo "maxrmax" $maxrmax >> $LOGFILE
    
-sedinput basrunsed.dat -1 -1 $myinputhfnn
+sedinput $mybasrunsed -1 -1 $myinputhfnn
 
 #----------check------------range---------
 if [ "1" -eq "0" ]; then 
