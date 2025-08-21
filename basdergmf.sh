@@ -59,6 +59,10 @@ function gradientpara() {
  done
  echo "final wait" | tee -a $LOGFILE  
  wait
+ for ((i = 1 ; i <= $ck ; i++ ))
+ do
+ rm $inputhf.$ck.*
+ done
  echo "}GRADIENT PARA " >>$LOGFILE
 }
 
