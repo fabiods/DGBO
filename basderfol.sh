@@ -104,7 +104,7 @@ fi
 	 conv="yes"
     else
 #	 echo $newpos $newxxx $newdif 
-	 isok=`echo "sqrt($newdif*$newdif) > $tolb*$convnult" | bc -l`
+	 isok=`echo "sqrt($newdif*$newdif) > $tolb*$convmult" | bc -l`
         if [ "$isok" == "1" ] ; then
 	     awk -v pp=$newpos -v vv=$newxxx '{ if ( NR-1 == pp ) {print $1,vv} else {print $1,$2}}' basrunsed.dat > new
 	     mv new basrunsed.dat
