@@ -5,11 +5,11 @@ source ~/DGBO/basuty.sh
 
 
 numpar=$#
-if [ -z $GMF ]; then
+if [  ${GMF:-"undef"} == "undef" ]; then
     GMF="%5.3E"
 fi
 
-if [ -z $BPROG ]; then
+if [ -z ${BPROG:-"undef"} == "undef" ]; then
   BPROG=1.618
 fi  
 
