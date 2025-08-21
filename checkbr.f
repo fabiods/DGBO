@@ -1,6 +1,6 @@
       program checkbr 
       implicit none
-      character(len=30)       :: arg,str,ss(20)
+      character(len=30)       :: arg,str,ss(20),filename
       integer                 :: i, x,j,c(3),numpar,ierr,numj,k
       double precision        :: vv(20),vvk(20,3),par(20),ratio,geop
       character(len=2)            ::type(3)
@@ -8,23 +8,27 @@
       type(2)='P'
       type(3)='D'
 ! input:
-! checkbr.x maxratio par1 par2 ....parN
-      numpar=command_argument_count()-1
+! checkbr.x filename maxratio par1 par2 ....parN
+      numpar=command_argument_count()-2
       write(*,*) 'numpar',numpar
-
-      call GET_COMMAND_ARGUMENT(1, arg)
+      
+      call GET_COMMAND_ARGUMENT(1,arg)
+      read(arg,*) filename
+      write(*,*) 'filename', filename
+      
+      call GET_COMMAND_ARGUMENT(2, arg)
       read(arg,*) geop
       write(*,*) 'geo prog',geop
       
       do i = 1, numpar
-      call GET_COMMAND_ARGUMENT(i+1, arg)
+      call GET_COMMAND_ARGUMENT(i+2, arg)
 !      write(*,*) arg
       read(arg,*) par(i)
 !      write(*,') par(i)
       enddo
       write(*,'("dstr",20E10.3)') par(1:numpar)
-      write(*,*) 'reading basrunsed.dat'
-      open(UNIT=44,FILE='basrunsed.dat',STATUS='OLD')
+      write(*,*) 'reading ',filename
+      open(UNIT=44,FILE=filename,STATUS='OLD')
       j=0
  39   j=j+1
       read(44,*,END=40) ss(j),vv(j)
