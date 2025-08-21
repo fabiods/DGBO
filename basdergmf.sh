@@ -277,6 +277,7 @@ else
  cp basrunsed.dat   basrunsed.dat.g
 
 # this can be parallelized:
+# gradientpara basrunsed.dat $enezero $myinputhf   1  
  gradient basrunsed.dat $enezero $myinputhf
  
  mv basrunsed.dat.g basrunsed.dat
