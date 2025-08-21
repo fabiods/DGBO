@@ -23,24 +23,25 @@ function gradientpara() {
   for pn in {1..2}
   do
       ck=$((ck+1))
-      echo $i $pn ":" $ck
+      echo $i $pn ":" $ck | tee -a $LOGFILE  
     cp inputhf.d12.par $inputhf.$ck".d12"
       
     sedinputx $fname $i $pn $inputhf.$ck
     if [ -e out.$str ]; then
-	echo out.$str found 
+	echo out.$str found  | tee -a $LOGFILE  
     else
 	checktoberun 1.4 "$dstr" out.$str $inputhf.$ck $fname
-	echo "toberun $toberun" 
+	echo "toberun $toberun"  | tee -a $LOGFILE  
         if [ "$toberun" == "yes" ]; then	
 	 tosim=$((tosim+1))
 	 pp=`echo $ck | awk '{printf "P%d",$1}'`
-	 echo "tosim" $tosim $pp
+	 echo "tosim" $tosim $pp | tee -a $LOGFILE  
 	 if [ "$tosim" -le 3 ]; then
-	     echo "~/DGBO/basrun.sh $pp $dstr >& runcry.$pp &   "
+	     echo "~/DGBO/basrun.sh $pp $dstr >& runcry.$pp &   " | tee -a $LOGFILE  
 	           ~/DGBO/basrun.sh $pp $dstr >& runcry.$pp &
 	 fi
 	 if [ "$tosim" -eq 3 ]; then
+        echo "wait 3 run" | tee -a $LOGFILE  
 	    wait
 	    tosim=0
 	 fi
@@ -56,7 +57,7 @@ function gradientpara() {
   done
 
  done
- echo "final wait"
+ echo "final wait" | tee -a $LOGFILE  
  wait
  echo "}GRADIENT PARA " >>$LOGFILE
 }
