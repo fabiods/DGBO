@@ -30,7 +30,7 @@ function gradientpara() {
     if [ -e out.$str ]; then
 	echo out.$str found  | tee -a $LOGFILE  
     else
-	checktoberun 1.4 "$dstr" out.$str $inputhf.$ck $fname
+	checktoberun $BPROG "$dstr" out.$str $inputhf.$ck $fname
 	echo "toberun $toberun"  | tee -a $LOGFILE  
         if [ "$toberun" == "yes" ]; then	
 	 tosim=$((tosim+1))
@@ -279,14 +279,15 @@ tolb=`echo $tol | awk '{printf "%15.10f",$1}'`
 echo 'tol', $told $tol $tolb >> $LOGFILE
 #cat basrunsed.dat >>$LOGFILE
 
+export BPROG="1.4"
 #-------------------run the starting point -----------------------------------
 myinputhf="inputhf"
 
 cp inputhf.d12.par $myinputhf".d12"
 sedinputx basrunsed.dat -1 -1 $myinputhf
 
-echo " ~/DGBO/checkbr.x basrunsed.dat 1.4 $dstr > br.out" >>$LOGFILE   
-~/DGBO/checkbr.x basrunsed.dat 1.4 $dstr > br.out
+echo " ~/DGBO/checkbr.x basrunsed.dat $BPROG $dstr > br.out" >>$LOGFILE   
+~/DGBO/checkbr.x basrunsed.dat $BPROG $dstr > br.out
 #cat br.out >>$LOGFILE
 nxtot=`grep ierr br.out | awk '{print $2}'`
 echo "nxtot" $nxtot >>$LOGFILE
