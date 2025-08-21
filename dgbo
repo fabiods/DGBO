@@ -14,7 +14,7 @@ fi
 #LOGFILE="dgbo."$gamma".log"
 #rm $LOGFILE
 
-echo "gamma"
+echo "gamma" $gamma
 #| tee -a $LOGFILE
 
 pwd 
