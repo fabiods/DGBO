@@ -313,6 +313,37 @@ function runcry() {
     echo "}runcry" >> $LOGFILE
 }   
 
+function checktoberun() {
+    local lprog=$1
+	local ldstr=$2
+    local input=$3
+	local linputhf=$4
+    echo " ~/DGBO/checkbr.x $lprog $ldstr > br.out" >>$LOGFILE
+    ~/DGBO/checkbr.x $lprog $ldstr > br.out
+    nxtot=`grep ierr br.out | awk '{print $2}'`
+    if [ "$nxtot" == "" ]; then
+       echo "nxtot undefined"
+       exit -1
+    fi 
+    echo "nxtot" $nxtot >> $LOGFILE
+	if [ "$nxtot" -eq "0" ]; then
+      if [ ! -e $input.eigs.rmax ]; then   
+          sed  s/EXCHGENE/EIGS/g $linputhf".d12" > $linputhf"eigs.d12"
+          sed -i '/GUESSP/d'  $linputhf"eigs.d12"
+      fi
+      eigratio $input $linputhf"eigs"
+	  
+      toom=`echo "$rmax > $maxrmax" | bc -l`
+      if [ "$toom" == 1 ]; then
+	   toberun="no"
+      else	
+	   toberun="yes"
+      fi	
+    else
+	 toberun="no"
+    fi
+}
+
 function runcrycond(){
     #    set -x
    
