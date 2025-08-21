@@ -1,6 +1,6 @@
 #!/bin/bash
 set -u
-if [ -z $GMF ]; then
+if [ ${GMF:-"undef"} == "undef" ]; then
     echo GMF not defined
     exit
 fi
