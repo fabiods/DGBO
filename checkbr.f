@@ -14,7 +14,7 @@
       write(*,*) 'numpar',numpar
       
       call GET_COMMAND_ARGUMENT(1,arg)
-      read(arg,*) filenamebasdergmf.0.log
+      read(arg,*) filename
       write(*,*) 'filename', filename
       
       call GET_COMMAND_ARGUMENT(2, arg)
