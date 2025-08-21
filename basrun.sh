@@ -51,7 +51,7 @@ fi
 mybasrunsed="basrunsed"$procnum".dat"
 
 if [ "$strspec" == "no" ]; then
-    echo "using $mybasrunsed >> $LOGFILE
+    echo "using $mybasrunsed" >> $LOGFILE
     if [ ! -e $mybasrunsed ]; then
 	 echo "$mybasrunsed not found" >> $LOGFILE
 	 exit
