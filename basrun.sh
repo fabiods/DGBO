@@ -9,6 +9,7 @@ if [ -z $GMF ]; then
     GMF="%5.3E"
 fi
 
+
 if [ ! -e inputhf.d12.par ];  then
     echo "inputhf.d12.par not found"
     exit
@@ -23,36 +24,63 @@ fi
    
 LOGFILE="basrun.$gamma.log"
 
-echo "gamma" $gamma >> $LOGFILE
- 
+echo "gamma" $gamma >> $LOGFILE 
 silent="yes"
 
-if [ "$numpar" -ne 0 ]; then 
+# format: basrun 
+# format: basrun PN             proc=yes
+# format: basrun PN dstr        proc=yes   str=yes
+# format: basrun dstr                      str=yes
+procspec="no"
+strspec="no"
+procnum=""
+firstarg=1
+if [ "$numpar" -ge 1 ]; then
+ if [[ $1 == P* ]]; then
+   process="yes"
+   procnum=`echo $1 | awk -F P '{print "."$2}'`
+     if [ "$numpar" -ge 2 ]; then
+	   strspec=yes
+	   firstarg=2
+	 fi
+ else 
+   strspec="yes"
+fi 
+
+mybasrunsed="basrunsed"$procnum".dat"
+
+if [ "$strspec" == "no" ]; then
+    echo "using $mybasrunsed >> $LOGFILE
+    if [ ! -e $mybasrunsed ]; then
+	 echo "$mybasrunsed not found" >> $LOGFILE
+	 exit
+    fi
+    cat $mybasrunsed  >> $LOGFILE
+elif [ "$strspec" == "yes" ]; then 
  rm tmpsed
- for var in "$@"
+ args=$#
+ for (( i=$firstarg; i<=$args; i+=1 ))
  do
-    echo "$var" >> tmpsed
+    echo "${!i}" >>tmpsed
  done
+
+# for var in "$@"
+# do
+#    echo "$var" >> tmpsed
+# done
 # tmpsed can be wITHOUT GMF format
 
  if [ ! -e tmpsed2 ]; then
     # this is alwats the same
     grep PAR inputhf.d12.par > tmpsed2
  fi
-
+ lpars=`wc -l tmpsed | awk '{print $1}'`
  lpar=`wc -l tmpsed2 | awk '{print $1}'`
- if [ "$lpar" != "$numpar" ]; then
-   echo "different par" $lpar $numpar
+ if [ "$lpar" != "$lpars" ]; then
+   echo "different par" $lpar $lpars
    exit
  fi   
-paste tmpsed2 tmpsed | awk '{print $1,$3}' > basrunsed.dat
-else
-    echo "using basrunsed.dat" >> $LOGFILE
-    if [ ! -e basrunsed.dat ]; then
-	echo "basrunsed.dat not found" >> $LOGFILE
-	exit
-    fi
-    cat basrunsed.dat  >> $LOGFILE
+paste tmpsed2 tmpsed | awk '{print $1,$3}' > $mybasrunsed
 fi    
 
 #rm $LOGFILE >& /dev/null
@@ -84,7 +112,10 @@ LISTENE="basrun.allene.$gamma.dat"
 #echo "PARTHR" $parthr >> sedfile.dat
 # fi
 echo $GMF >> $LOGFILE	
-cp inputhf.d12.par inputhf.d12
+
+myinputhf="inputhf"$procnum".d12"
+myinputhfnn="inputhf"$procnum
+cp inputhf.d12.par $myinputhf
 
 told=`grep -A 1 "TOLDEE" inputhf.d12.par | tail -n 1 `
 tol=`echo $told | awk '{print 10**(-$1)}'`
@@ -101,7 +132,7 @@ if [ -e "maxrmax.info" ]; then
 fi
    echo "maxrmax" $maxrmax >> $LOGFILE
    
-sedinput basrunsed.dat -1 -1 "inputhf"
+sedinput basrunsed.dat -1 -1 
 
 #----------check------------range---------
 if [ "1" -eq "0" ]; then 
@@ -146,6 +177,6 @@ else
 fi
 
 
-runcrycond  out.$str $nxtot "inputhf"
+runcrycond  out.$str $nxtot $myinputhfnn
 echo $ene $enevera
 
