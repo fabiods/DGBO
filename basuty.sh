@@ -389,7 +389,9 @@ function sedinput() {
     local ii=$2
     local pn=$3
 	local linputhf=$4
-    local j,pnname,name
+    local j
+	local pnname
+    local name
 	
     echo "sedinput{" $fname $ii $pn $linputhf $GMF >> $LOGFILE
     j=0
@@ -442,7 +444,9 @@ function sedinputx() {
     local ii=$2
     local pn=$3
 	local linputhf=$4
-    local j,pnname,name 
+    local j
+	local pnname
+    local name 
     echo "sedinputx{" $fname $ii $pn $linputhf >> $LOGFILE
     j=0
     str=""
