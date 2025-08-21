@@ -47,7 +47,7 @@ if [ "$numpar" -ge 1 ]; then
    strspec="yes"
  fi   
 fi 
-
+echo "procnum " $procnum >> $LOGFILE
 mybasrunsed="basrunsed"$procnum".dat"
 
 if [ "$strspec" == "no" ]; then
@@ -115,6 +115,8 @@ echo $GMF >> $LOGFILE
 
 myinputhf="inputhf"$procnum".d12"
 myinputhfnn="inputhf"$procnum
+echo "myinputhf" $myinputhf >>$LOGFILE
+
 cp inputhf.d12.par $myinputhf
 
 told=`grep -A 1 "TOLDEE" inputhf.d12.par | tail -n 1 `
