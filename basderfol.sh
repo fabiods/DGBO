@@ -71,6 +71,7 @@ fi
     conv="no"
     cnt=0
     echo "Starting cycles:" | tee -a $LOGFILE
+	rm yyy.*
 #    rm basderfol.energy
   while [ "$conv" == "no" ] && [ "$cnt" -lt "$npart" ]; do
     cp basrunsed.dat basrunsed.dat.$cnt	 
