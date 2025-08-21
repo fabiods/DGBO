@@ -32,7 +32,7 @@ else
 fi   
    
 echo "conv mult" $convmult | tee -a $LOGFILE
-if [ -z $GMF ]; then
+if [  ${GMF:-"undef"} == "undef" ]; then
     echo "GMF NOT DEFINED" | tee -a $LOGFILE 
     GMF="%5.3E"
 fi
