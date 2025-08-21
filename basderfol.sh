@@ -25,6 +25,13 @@ echo "gamma" $gamma >> $LOGFILE
 
 echo "---- bas der fol ---"  | tee -a $LOGFILE
 numpar=$#
+if [ "$numpar" == "1" ]; then
+   convmult=$1
+else
+   convmult=5
+fi   
+   
+echo "conv mult" $convmult | tee -a $LOGFILE
 if [ -z $GMF ]; then
     echo "GMF NOT DEFINED" | tee -a $LOGFILE 
     GMF="%5.3E"
@@ -97,7 +104,7 @@ fi
 	 conv="yes"
     else
 #	 echo $newpos $newxxx $newdif 
-	 isok=`echo "sqrt($newdif*$newdif) > $tolb*5" | bc -l`
+	 isok=`echo "sqrt($newdif*$newdif) > $tolb*$convnult" | bc -l`
         if [ "$isok" == "1" ] ; then
 	     awk -v pp=$newpos -v vv=$newxxx '{ if ( NR-1 == pp ) {print $1,vv} else {print $1,$2}}' basrunsed.dat > new
 	     mv new basrunsed.dat
