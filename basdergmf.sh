@@ -206,7 +206,7 @@ echo "gamma" $gamma  >> $LOGFILE
    
 echo "---- bas der gmf ---"  | tee -a $LOGFILE
 numpar=$#
-if [ -z $GMF ]; then
+if [ ${GMF:-"undef"} == "undef" ]; then
     echo "GMF NOT DEFINED" | tee -a $LOGFILE 
     GMF="%5.3E"
 fi
