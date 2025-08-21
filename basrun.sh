@@ -42,9 +42,10 @@ if [ "$numpar" -ge 1 ]; then
      if [ "$numpar" -ge 2 ]; then
 	   strspec=yes
 	   firstarg=2
-	 fi
+	 fi  
  else 
    strspec="yes"
+ fi   
 fi 
 
 mybasrunsed="basrunsed"$procnum".dat"
@@ -58,8 +59,7 @@ if [ "$strspec" == "no" ]; then
     cat $mybasrunsed  >> $LOGFILE
 elif [ "$strspec" == "yes" ]; then 
  rm tmpsed
- args=$#
- for (( i=$firstarg; i<=$args; i+=1 ))
+ for (( i=$firstarg; i<=$numpar; i+=1 ))
  do
     echo "${!i}" >>tmpsed
  done
