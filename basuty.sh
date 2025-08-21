@@ -2,8 +2,10 @@
 set -u
 #set -x
 function xnext() {
-    val=$1
-    fff=$2
+    local val=$1
+    local fff=$2
+	local dec
+    local ordg
 if [ "$fff" == "%2.0E" ]; then
     dec=1
 elif [ "$fff" == "%3.1E" ]; then
@@ -20,8 +22,10 @@ fi
 }
 
 function xprec() {
-    val=$1
-    fff=$2
+    local val=$1
+    local fff=$2
+	local dec
+    local ordg
 if [ "$fff" == "%2.0E" ]; then
     dec=1
 elif [ "$fff" == "%3.1E" ]; then
@@ -40,8 +44,13 @@ fi
 
 function eigratio() {
 
-  input=$1
-  inputeigs=$2
+  local input=$1
+  local inputeigs=$2
+  local ball
+  local nk
+  local k
+  local sr
+  local xmin
   echo "eigratio{",$input, $inputeigs >> $LOGFILE
   if [ ! -e $input.eigs.rmax ]; then 
    runcry23OMP 4 $inputeigs &>> $LOGFILE
@@ -107,10 +116,10 @@ function eigratio() {
 }
 
 function getenefromout {
-    inp=$1
-    ttol=$2
-    tsilent=$3
-    removefile=$4
+    local inp=$1
+    local ttol=$2
+    local tsilent=$3
+    local removefile=$4
 #---output------------------
 #    ene
 #    waserr
@@ -257,18 +266,18 @@ function getenefromout {
 
 function runcry() {
 # input is the output file of crystal
-    input=$1
+    local input=$1
 # inputhf is inputhf without d12	
-	inputhf=$2
+	local linputhf=$2
  
     if [ "$silent" == "no" ]; then
-	echo "Running in " $input
+	echo "Running in " $input $linputhf
     else
-	echo "runcry{ Running in " $input >> $LOGFILE
+	echo "runcry{ Running in " $input $linputhf >> $LOGFILE
     fi	
 #    export OMP_NUM_THREADS=20
-    sed -i '/GUESSP/d'  $inputhf".d12"
-    sed -i '/EXCHGENE/d' $inputhf".d12"
+    sed -i '/GUESSP/d'  $linputhf".d12"
+    sed -i '/EXCHGENE/d' $linputhf".d12"
     waserr="yes"
     cc=0
     chdetot=1
@@ -286,13 +295,13 @@ function runcry() {
 #	    runPcry23 14 inputhf  &>> $LOGFILE
 #	    runcry23 inputhf &>> $LOGFILE
 
-	    runcry23OMP 16 $inputhf &>> $LOGFILE
+	    runcry23OMP 16 $linputhf &>> $LOGFILE
 	    #	 /home/atom/ATOMSOFT/CRYSTAL/NEWOMP2/bin/Linux-ifort_i64_omp/dev/crystalOMP < inputhf.d12 > $input
 	 
-	    cp $inputhf".out" $input
+	    cp $linputhf".out" $input
 	    # cp fort.9 fort.20.$input
 	 
-	    cp $inputhf".f9" fort.20.$input
+	    cp $linputhf".f9" fort.20.$input
         fi
          getenefromout $input $tolb $silent "yes"
 	
@@ -307,23 +316,23 @@ function runcry() {
 function runcrycond(){
     #    set -x
    
-    input=$1
-    errxbas=$2
-	inputhf=$3
-    echo "runcrycond{" $input $errxbas $inputhf >> $LOGFILE
+    local input=$1
+    local errxbas=$2
+	local linputhf=$3
+    echo "runcrycond{" $input $errxbas $linputhf >> $LOGFILE
     echo "errxbas" $errxbas >> $LOGFILE
     if [ "$errxbas" -eq "0" ]; then
       if [ ! -e $input.eigs.rmax ]; then   
-          sed  s/EXCHGENE/EIGS/g $inputhf".d12" > $inputhf"eigs.d12"
-          sed -i '/GUESSP/d'  $inputhf"eigs.d12"
+          sed  s/EXCHGENE/EIGS/g $linputhf".d12" > $linputhf"eigs.d12"
+          sed -i '/GUESSP/d'  $linputhf"eigs.d12"
       fi
-      eigratio $input $inputhf"eigs"
+      eigratio $input $linputhf"eigs"
 	  
       toom=`echo "$rmax > $maxrmax" | bc -l`
       if [ "$toom" == 1 ]; then
 	   ene="NARMAX"
       else	
-	   runcry $input $inputhf
+	   runcry $input $linputhf
       fi	
 #rmax
     #    gamma=0.000005
@@ -376,12 +385,13 @@ function sedinput() {
 	# inputhf is inputhf without .d12
 	# global var: $GMF,  $LOGFILE
  
-    fname=$1
-    ii=$2
-    pn=$3
-	inputhf=$4
- 
-    echo "sedinput{" $fname $ii $pn $inputhf $GMF >> $LOGFILE
+    local fname=$1
+    local ii=$2
+    local pn=$3
+	local linputhf=$4
+    local j,pnname,name
+	
+    echo "sedinput{" $fname $ii $pn $linputhf $GMF >> $LOGFILE
     j=0
     str=""
     dstr=""
@@ -416,7 +426,7 @@ function sedinput() {
      fi	
        
      echo " " $pnname $name $valn  >> $LOGFILE
-     sed -i s/$name/$valn/g $inputhf".d12"
+     sed -i s/$name/$valn/g $linputhf".d12"
      j=$((j + 1))
 
     done < $fname
@@ -428,12 +438,12 @@ function sedinput() {
 
 function sedinputx() {
 # same as sedinput, but using xprec and xnext
-    fname=$1
-    ii=$2
-    pn=$3
-	inputhf=$4
- 
-    echo "sedinputx{" $fname $ii $pn $inputhf >> $LOGFILE
+    local fname=$1
+    local ii=$2
+    local pn=$3
+	local linputhf=$4
+    local j,pnname,name 
+    echo "sedinputx{" $fname $ii $pn $linputhf >> $LOGFILE
     j=0
     str=""
     dstr=""
@@ -471,7 +481,7 @@ function sedinputx() {
      fi	
        
      echo " " $pnname $name $valn  >> $LOGFILE
-     sed -i s/$name/$valn/g $inputhf".d12"
+     sed -i s/$name/$valn/g $linputhf".d12"
      j=$((j + 1))
 
     done < $fname
