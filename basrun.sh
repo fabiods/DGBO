@@ -9,6 +9,9 @@ if [ -z $GMF ]; then
     GMF="%5.3E"
 fi
 
+if [ -z $BPROG ]; then
+  BPROG=1.618
+fi  
 
 if [ ! -e inputhf.d12.par ];  then
     echo "inputhf.d12.par not found"
@@ -112,6 +115,7 @@ LISTENE="basrun.allene.$gamma.dat"
 #echo "PARTHR" $parthr >> sedfile.dat
 # fi
 echo "GMF" $GMF >> $LOGFILE	
+echo "BPROG" $BPROG >> $LOGFILE
 
 myinputhf="inputhf"$procnum".d12"
 myinputhfnn="inputhf"$procnum
@@ -168,8 +172,8 @@ if [ "1" -eq "0" ]; then
  nxtot=`echo $nxs $nxp $nxd | awk '{print $1+$2+$3}' `
  echo "nxtot" $nxtot >> $LOGFILE
 else
-    echo " ~/DGBO/checkbr.x 1.618 $dstr > br.out" >>$LOGFILE
-    ~/DGBO/checkbr.x $mybasrunsed 1.618 $dstr > br.out
+    echo " ~/DGBO/checkbr.x $BPROG $dstr > br.out" >>$LOGFILE
+    ~/DGBO/checkbr.x $mybasrunsed $BPROG $dstr > br.out
     nxtot=`grep ierr br.out | awk '{print $2}'`
     if [ "$nxtot" == "" ]; then
        echo "nxtot undefined"
