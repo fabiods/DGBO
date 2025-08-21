@@ -262,7 +262,7 @@ echo " ~/DGBO/checkbr.x 1.4 $dstr > br.out" >>$LOGFILE
 nxtot=`grep ierr br.out | awk '{print $2}'`
 echo "nxtot" $nxtot >>$LOGFILE
 #set -x
-runcrycond out.$str $nxtot $inputhf
+runcrycond out.$str $nxtot $myinputhf
 #exit
 
 
