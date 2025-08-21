@@ -111,7 +111,7 @@ LISTENE="basrun.allene.$gamma.dat"
 #echo "PARTWO" $partwo >> sedfile.dat
 #echo "PARTHR" $parthr >> sedfile.dat
 # fi
-echo $GMF >> $LOGFILE	
+echo "GMF" $GMF >> $LOGFILE	
 
 myinputhf="inputhf"$procnum".d12"
 myinputhfnn="inputhf"$procnum
