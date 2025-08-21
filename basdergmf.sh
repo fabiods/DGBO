@@ -5,6 +5,37 @@ source ~/DGBO/basuty.sh
 
 # test at ~/optpy/li6/f1/INC/lowoptquesto
 
+function gradientpara() {
+    set -x
+# input: sedfile, ezero, inputhf, nprocs    
+    fname=$1
+    ezero=$2
+    inputhf=$3
+    nprocs=$4
+#  
+ nbas=`wc -l $fname |awk '{print $1}'`
+
+ echo "gradientpara" $fname $ezero $inputhf $nprocs | tee -a $LOGFILE
+ ck=0
+ for ((i = 0 ; i < $nbas ; i++ ))
+ do
+  for pn in {1..2}
+  do
+      ck=$((ck+1))
+      echo $ck
+    cp inputhf.d12.par $inputhf.$ck".d12"
+      
+    sedinputx $fname $i $pn $inputhf.$ck
+    ~/DGBO/checkbr.x 1.4 $dstr > br.out
+    cat br.out >> $LOGFILE
+    nxtot=`grep ierr br.out | awk '{print $2}'`
+    runcrycond  out.$str $nxtot $inputhf.$ck 
+
+  done
+
+done
+
+}
 
 
 function gradient() {
