@@ -108,7 +108,7 @@ for ((k = 0 ; k <= $num ; k++ )); do
     myexpa[$k]=`echo ${myexp[k]} ${myexp[k+1]} | awk '{ print sqrt($2*$1)}' `
     echo $k ${myexpa[k]}
 done
-if [ ${GMF:-"undef" == "undef" ]; then
+if [ ${GMF:-"undef"} == "undef" ]; then
    echo "GMF not set in the environment" 
    GMF="%5.3E"
 else
