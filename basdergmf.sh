@@ -6,35 +6,59 @@ source ~/DGBO/basuty.sh
 # test at ~/optpy/li6/f1/INC/lowoptquesto
 
 function gradientpara() {
-    set -x
+#    set -x
 # input: sedfile, ezero, inputhf, nprocs    
     fname=$1
     ezero=$2
     inputhf=$3
     nprocs=$4
 #  
- nbas=`wc -l $fname |awk '{print $1}'`
-
- echo "gradientpara" $fname $ezero $inputhf $nprocs | tee -a $LOGFILE
+    nbas=`wc -l $fname |awk '{print $1}'`
+ echo  | tee -a $LOGFILE       
+ echo "gradientpara{ " $fname $ezero $inputhf $nprocs | tee -a $LOGFILE
  ck=0
+ tosim=0
  for ((i = 0 ; i < $nbas ; i++ ))
  do
   for pn in {1..2}
   do
       ck=$((ck+1))
-      echo $ck
+      echo $i $pn ":" $ck
     cp inputhf.d12.par $inputhf.$ck".d12"
       
     sedinputx $fname $i $pn $inputhf.$ck
-    ~/DGBO/checkbr.x 1.4 $dstr > br.out
-    cat br.out >> $LOGFILE
-    nxtot=`grep ierr br.out | awk '{print $2}'`
-    runcrycond  out.$str $nxtot $inputhf.$ck 
+    if [ -e out.$str ]; then
+	echo out.$str found 
+    else
+	checktoberun 1.4 "$dstr" out.$str $inputhf.$ck $fname
+	echo "toberun $toberun" 
+        if [ "$toberun" == "yes" ]; then	
+	 tosim=$((tosim+1))
+	 pp=`echo $ck | awk '{printf "P%d",$1}'`
+	 echo "tosim" $tosim $pp
+	 if [ "$tosim" -le 3 ]; then
+	     echo "~/DGBO/basrun.sh $pp $dstr >& runcry.$pp &   "
+	           ~/DGBO/basrun.sh $pp $dstr >& runcry.$pp &
+	 fi
+	 if [ "$tosim" -eq 3 ]; then
+	    wait
+	    tosim=0
+	 fi
+	fi 
+    fi
+    
+#    ~/DGBO/checkbr.x 1.4 $dstr > br.out
+#    cat br.out >> $LOGFILE
+#    nxtot=`grep ierr br.out | awk '{print $2}'`
+#    if [ ! -e ~/DGBO/basrun.sh $str
+#    runcrycond  out.$str $nxtot $inputhf.$ck 
 
   done
 
-done
-
+ done
+ echo "final wait"
+ wait
+ echo "}GRADIENT PARA " >>$LOGFILE
 }
 
 
@@ -44,11 +68,14 @@ function gradient() {
     fname=$1
     ezero=$2
     inputhf=$3
-#  
+    #
+   
  nbas=`wc -l $fname |awk '{print $1}'`
  store=gradient.$fname
 # if [ ! -e $store ]; then 
  rm $store
+ echo >>$LOGFILE    
+ echo "GRADIENT{" >>$LOGFILE
  echo "gradient" $fname $nbas  | tee -a $LOGFILE
  ismin=0
  isnc=0
@@ -72,9 +99,9 @@ function gradient() {
     sedinputx $fname $i $pn $inputhf
     echo "" >> $LOGFILE  
     echo ">>>> pn= $pn i=$i $xvaln" >>  $LOGFILE
-    echo " ~/DGBO/checkbr.x 1.4 $dstr > br.out" >>$LOGFILE
+    echo " ~/DGBO/checkbr.x basrunsed.dat 1.4 $dstr > br.out" >>$LOGFILE
     
-    ~/DGBO/checkbr.x 1.4 $dstr > br.out
+    ~/DGBO/checkbr.x basrunsed.dat 1.4 $dstr > br.out
     cat br.out >> $LOGFILE
     nxtot=`grep ierr br.out | awk '{print $2}'`
 #    echo " " $str
@@ -160,7 +187,8 @@ done
      cat $store  | tee -a $LOGFILE
 
      echo "notconv" $isnc    $nbas | tee -a $LOGFILE
-     echo "minimum" $ismin  $nbas  | tee -a $LOGFILE   
+     echo "minimum" $ismin  $nbas  | tee -a $LOGFILE
+ echo "}GRADIENT"     >> $LOGFILE
 }
 
 
@@ -256,8 +284,8 @@ myinputhf="inputhf"
 cp inputhf.d12.par $myinputhf".d12"
 sedinputx basrunsed.dat -1 -1 $myinputhf
 
-echo " ~/DGBO/checkbr.x 1.4 $dstr > br.out" >>$LOGFILE   
-~/DGBO/checkbr.x 1.4 $dstr > br.out
+echo " ~/DGBO/checkbr.x basrunsed.dat 1.4 $dstr > br.out" >>$LOGFILE   
+~/DGBO/checkbr.x basrunsed.dat 1.4 $dstr > br.out
 #cat br.out >>$LOGFILE
 nxtot=`grep ierr br.out | awk '{print $2}'`
 echo "nxtot" $nxtot >>$LOGFILE
@@ -277,9 +305,9 @@ else
  cp basrunsed.dat   basrunsed.dat.g
 
 # this can be parallelized:
-# gradientpara basrunsed.dat $enezero $myinputhf   1  
+ gradientpara basrunsed.dat $enezero $myinputhf   1
+# exit
  gradient basrunsed.dat $enezero $myinputhf
  
  mv basrunsed.dat.g basrunsed.dat
 fi
-    
