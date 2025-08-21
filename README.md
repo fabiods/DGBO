@@ -133,9 +133,10 @@ You can also do a discrete descent run using
 
       cd Li3
        export GMF="%2.0E"
-       ~/DGBO/basderfol.sh 
+       ~/DGBO/basderfol.sh 10
        
-the starting point is specified in the file basrunsed.dat
+the starting point is specified in the file basrunsed.dat, and the paramter (10) specify
+a multiplicator for the convergence (e.g TOLDEE=1.d-7 *10 = 1.d-6)
 Using the first starting point ,i.e.
 
         PAR1P 2.000000
