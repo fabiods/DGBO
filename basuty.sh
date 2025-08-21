@@ -318,7 +318,7 @@ function checktoberun() {
 	local ldstr=$2
     local input=$3
 	local linputhf=$4
-    echo "checktoberun $lprog $ldstr $input $inputhf {"
+    echo "checktoberun $lprog $ldstr $input $inputhf {" >>$LOGFILE
     echo " ~/DGBO/checkbr.x $lprog $ldstr > br.out" >>$LOGFILE
     ~/DGBO/checkbr.x $lprog $ldstr > br.out
     nxtot=`grep ierr br.out | awk '{print $2}'`
