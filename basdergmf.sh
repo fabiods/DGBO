@@ -100,9 +100,9 @@ function gradient() {
     sedinputx $fname $i $pn $inputhf
     echo "" >> $LOGFILE  
     echo ">>>> pn= $pn i=$i $xvaln" >>  $LOGFILE
-    echo " ~/DGBO/checkbr.x basrunsed.dat 1.4 $dstr > br.out" >>$LOGFILE
+    echo " ~/DGBO/checkbr.x basrunsed.dat $BPROG $dstr > br.out" >>$LOGFILE
     
-    ~/DGBO/checkbr.x basrunsed.dat 1.4 $dstr > br.out
+    ~/DGBO/checkbr.x basrunsed.dat $BPROG $dstr > br.out
     cat br.out >> $LOGFILE
     nxtot=`grep ierr br.out | awk '{print $2}'`
 #    echo " " $str
