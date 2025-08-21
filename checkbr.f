@@ -9,11 +9,12 @@
       type(3)='D'
 ! input:
 ! checkbr.x filename maxratio par1 par2 ....parN
+!           filename is used only to read the string PAR*
       numpar=command_argument_count()-2
       write(*,*) 'numpar',numpar
       
       call GET_COMMAND_ARGUMENT(1,arg)
-      read(arg,*) filename
+      read(arg,*) filenamebasdergmf.0.log
       write(*,*) 'filename', filename
       
       call GET_COMMAND_ARGUMENT(2, arg)
