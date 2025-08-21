@@ -318,6 +318,7 @@ function checktoberun() {
 	local ldstr=$2
     local input=$3
 	local linputhf=$4
+    echo "checktoberun $lprog $ldstr $input $inputhf {"
     echo " ~/DGBO/checkbr.x $lprog $ldstr > br.out" >>$LOGFILE
     ~/DGBO/checkbr.x $lprog $ldstr > br.out
     nxtot=`grep ierr br.out | awk '{print $2}'`
@@ -342,6 +343,8 @@ function checktoberun() {
     else
 	 toberun="no"
     fi
+	echo "toberun" $toberun >>$LOGFILE
+    echo "} checktoberun" >>$LOGFILE
 }
 
 function runcrycond(){
