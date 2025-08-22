@@ -61,7 +61,7 @@ function gradientpara() {
  wait
  for ((i = 1 ; i <= $ck ; i++ ))
  do
- rm $inputhf.$ck.*
+ rm $inputhf.$i.*
  done
  echo "}GRADIENT PARA " >>$LOGFILE
 }
