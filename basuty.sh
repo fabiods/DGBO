@@ -136,22 +136,29 @@ function getenefromout {
     llaa="1"
     tst="1"
     diis="1"
+	
+    grep DETOT $inp | awk '{print $2}' > tmpcer
+	bcer=`awk '{sum+=(NR-$1-1)**2} END {print sum}' tmpcer`	
+    echo "bcer" $bcer  >> $LOGFILE
+	
     if [ "$blin" -eq "1" ] || [ "$ball" -eq "1" ] || [ "$bila" -eq "1" ] ; then
 	 if [ "$tsilent" == "no" ];  then
-	     echo "LIN DEP or ALLG or ILA"
+	     echo "LIN DEP or ALLG or ILA or corrupted "
 	 else
-	      echo "LIN DEP or ALLG or ILA" >>$LOGFILE
+	      echo "LIN DEP or ALLG or ILA or corrupted" >>$LOGFILE
 	 fi    
          ene="NACRASH"
 	 waserr="no"
     else
- 	zerohfene=`grep -A 1 "ZNUC  SCFIT" $inp | tail -n 1 | awk '{print $3}'`
+	
+     
+ 	 zerohfene=`grep -A 1 "ZNUC  SCFIT" $inp | tail -n 1 | awk '{print $3}'`
 #	 tma=`grep "SCF ENDED - TOO MANY CYCLES"   $inp | wc -l`
 	 isdetot=`grep "TOTAL ENERGY(HF)"            $inp | wc -l | awk '{print $1}'`
 	 #	 echo $tma , $isdetot , $detot
 	 echo "isdetot" $isdetot >> $LOGFILE
-	 if [ "$isdetot" -eq "0" ]; then
-            waserr="yes"
+	 if [ "$isdetot" -eq "0" ] || [ "$bcer" -gt "0" ]; then
+        waserr="yes"
 	    ene="NAERR"
 	    chdetot=-1
 	 else     
@@ -168,14 +175,14 @@ function getenefromout {
 #	 if [ "$tma" -eq "1" ]; then
                if [ "$tsilent" == "no" ]; then
 		 echo "NOT CONV"
-	       else
+	           else
 		  echo "NOT CONV" >>$LOGFILE
-	       fi	 
+	           fi	 
                ene="NANOTCONV"
 #	     echo "NAAAAAAAAAA"
 	       waserr="no"
 
-            else
+        else
 		
 # 1          2          3           4            5   	     
 #TOTAL ENERGY(HF)(AU)(  26) -7.6128265114468E+00 DE-2.6E-08 tst 5.4E-13 PX 6.8E-07
@@ -189,7 +196,7 @@ function getenefromout {
               else
 		 chktst=-1 
 		 waserr="yes" 
-	      fi
+	          fi
 	      # ---------------last but one cycle-----------
 	      lla=`grep DETOT              $inp | tail -n 2 | head -n 1 | awk '{printf "%30.10f",$6}'`
 	      llaa=`echo "sqrt($lla*$lla)" | bc -l` 
@@ -197,7 +204,7 @@ function getenefromout {
 	      if [ "$lla" != "" ]; then 
 	       chklla=`echo "sqrt($lla*$lla) <= $ttol" | bc -l`
 	       echo "checklast" $lla $chklla >> $LOGFILE
-              else
+          else
 		  chklla=-1
 		  waserr="yes"
 	      fi
@@ -218,12 +225,13 @@ function getenefromout {
 	        fi
 	      elif [ "$chklla" -eq "1" ]; then
 #	      elif [ "$chktst" -eq "1" ] ||  [ "$chklla" -eq "1" ] ; then
+
 	        if [ "$chkdiis" -eq "0" ]; then
-		   if [ "$tsilent" == "no" ]; then 
+		     if [ "$tsilent" == "no" ]; then 
 		       echo "DIIS FAIL"
-		   else
+		     else
 		       echo "DIIS FAIL" >> $LOGFILE
-		   fi
+		     fi
 		   ene="NADIIS"
 		   waserr="no"
 	        else   
@@ -239,7 +247,7 @@ function getenefromout {
 	           waserr="yes"
 	           if [ "$removefile" == "yes" ]; then
 		     rm $input
-		   fi    
+		       fi    
 	          fi #ene
 	        fi #diis	
 	      else
@@ -255,8 +263,9 @@ function getenefromout {
 	        ene="NANOTCONV"
 	        waserr="no"
 	      fi # maincheck
+	   
 	    fi #chdetot    
-         fi # isdetot
+      fi # isdetot
 	     
     fi  # bline
     echo "waserr" $waserr >> $LOGFILE
