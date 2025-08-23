@@ -12,12 +12,13 @@ fi
 
 cp sedfile.dat basrunsed.dat
 echo "Running from sedfile.dat"
+export BPROG="1.4"
 enezero=` ~/DGBO/basrun.sh | awk '{print $1}'`
 sss=`grep -m 1 -A 1 "END" inputhf.d12.par |tail -n 1`
 ttt=`echo $sss | awk '{print $1,$2-1}'`
 echo $sss
 echo $ttt
-export BPROG="1.4"
+echo "Running with one removed"
 while read -r line; do
     par=`echo $line | awk '{print $1}'`
     echo $par
