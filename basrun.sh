@@ -43,7 +43,7 @@ if [ "$numpar" -ge 1 ]; then
    process="yes"
    procnum=`echo $1 | awk -F P '{print "."$2}'`
      if [ "$numpar" -ge 2 ]; then
-	   strspec=yes
+	   strspec="yes"
 	   firstarg=2
 	 fi  
  else 
@@ -61,7 +61,9 @@ if [ "$strspec" == "no" ]; then
     fi
     cat $mybasrunsed  >> $LOGFILE
 elif [ "$strspec" == "yes" ]; then 
+ if [ -e tmpsed]; then
  rm tmpsed
+ fi 
  for (( i=$firstarg; i<=$numpar; i+=1 ))
  do
     echo "${!i}" >>tmpsed
