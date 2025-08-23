@@ -97,7 +97,7 @@ echo "mytyp:"
 echo ${mytyp[@]}
 echo "mytyp full:"
 myexp[0]=100000
-myexp[$numl]=0.0
+myexp[$numl]=0.06
 mytyp[0]=""
 mytyp[$numl]=""
 
