@@ -61,7 +61,7 @@ if [ "$strspec" == "no" ]; then
     fi
     cat $mybasrunsed  >> $LOGFILE
 elif [ "$strspec" == "yes" ]; then 
- if [ -e tmpsed]; then
+ if [ -e tmpsed ]; then
  rm tmpsed
  fi 
  for (( i=$firstarg; i<=$numpar; i+=1 ))
