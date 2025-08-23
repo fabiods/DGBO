@@ -97,7 +97,7 @@ echo "mytyp:"
 echo ${mytyp[@]}
 echo "mytyp full:"
 myexp[0]=100000
-myexp[$numl]=0.06
+myexp[$numl]=0
 mytyp[0]=""
 mytyp[$numl]=""
 
@@ -106,6 +106,10 @@ echo "average:"
 for ((k = 0 ; k <= $num ; k++ )); do
 #    echo ${myexp[k]} ${myexp[k+1]} | awk '{ print sqrt($2*$1)}'
     myexpa[$k]=`echo ${myexp[k]} ${myexp[k+1]} | awk '{ print sqrt($2*$1)}' `
+    cvv=`echo "myexpa[$k] < 0.06" | bc -l`
+	if [ "$cvv" -eq "1" ]; then
+        myexpa[$k]=0.06
+	fi	
     echo $k ${myexpa[k]}
 done
 if [ ${GMF:-"undef"} == "undef" ]; then
