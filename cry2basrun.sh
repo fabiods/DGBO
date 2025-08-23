@@ -106,7 +106,7 @@ echo "average:"
 for ((k = 0 ; k <= $num ; k++ )); do
 #    echo ${myexp[k]} ${myexp[k+1]} | awk '{ print sqrt($2*$1)}'
     myexpa[$k]=`echo ${myexp[k]} ${myexp[k+1]} | awk '{ print sqrt($2*$1)}' `
-    cvv=`echo "myexpa[$k] < 0.06" | bc -l`
+    cvv=`echo "${myexpa[$k]} < 0.06" | bc -l`
 	if [ "$cvv" -eq "1" ]; then
         myexpa[$k]=0.06
 	fi	
