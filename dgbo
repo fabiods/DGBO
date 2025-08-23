@@ -182,5 +182,7 @@ cp inputhf.d12.par optfinal$gamma
 cp gamma.info    optfinal$gamma
 cp maxrmax.info  optfinal$gamma
 cp $gfile        optfinal$gamma
+cd  optfinal$gamma
 ~/DGBO/basrem.sh
+cd ..
 exit
