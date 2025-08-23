@@ -143,6 +143,7 @@ fi # file orig
     echo "to:"
     cat basrunsed.dat
     ~/DGBO/basrun.sh
+    cp basrunsed.dat basrunsed.optorig$count.dat
 done
 # turned for xmgrace plot
 awk '{print $3,$5,$7,$6}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA | uniq > rmax0_enec.$gamma.dat
