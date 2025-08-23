@@ -17,6 +17,7 @@ sss=`grep -m 1 -A 1 "END" inputhf.d12.par |tail -n 1`
 ttt=`echo $sss | awk '{print $1,$2-1}'`
 echo $sss
 echo $ttt
+export BPROG="1.4"
 while read -r line; do
     par=`echo $line | awk '{print $1}'`
     echo $par
