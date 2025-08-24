@@ -93,7 +93,7 @@ fi
 #               ene   pos diff    
 #     ENEDIFF 16.9502 3 1E+00
 
-    grep minimum yyy.$cnt
+    grep minimum yyy.$cnt |tee -a $LOGFILE
     vv=`grep ENEDIFF yyy.$cnt | awk '{ if ( $2 < 0.0) {print $2,$3,$4}}' | sort -k 1 -g | head -n 1`
 	
     cnt=$((cnt+1)) 
@@ -111,10 +111,10 @@ fi
 	     mv new basrunsed.dat
 	      ddd=`awk -v fmt=$GMF '{printf fmt" ", $2}' basrunsed.dat`
 	    else
-	     echo "too small variation" $newdif
+	     echo "too small variation" $newdif |tee -a $LOGFILE
 	     conv="yes"
 	    fi    
-	     echo $newpos $newxxx $newdif $conv $ddd
+	     echo $newpos $newxxx $newdif $conv $ddd |tee -a $LOGFILE
     fi 	
   done
   if [ "$cnt" == "$npart" ]; then
@@ -126,4 +126,4 @@ fi
 	nc=`grep notconv $LOGFILE  | tail -n 1| awk '{print $2}'`
     nm=`grep minimum $LOGFILE  | tail -n 1| awk '{print $2}'`
 
-    echo " energy:" $rrr "dstr:" $str  "min:" $nm "conv:" $nc
+    echo " energy:" $rrr "dstr:" $str  "min:" $nm "conv:" $nc | tee -a $LOGFILE
