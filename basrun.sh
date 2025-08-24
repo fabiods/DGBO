@@ -61,12 +61,12 @@ if [ "$strspec" == "no" ]; then
     fi
     cat $mybasrunsed  >> $LOGFILE
 elif [ "$strspec" == "yes" ]; then 
- if [ -e tmpsed.$procnum ]; then
- rm tmpsed.$procnum
+ if [ -e tmpsed$procnum ]; then
+ rm tmpsed$procnum
  fi 
  for (( i=$firstarg; i<=$numpar; i+=1 ))
  do
-    echo "${!i}" >>tmpsed.$procnum
+    echo "${!i}" >>tmpsed$procnum
  done
 
 # for var in "$@"
@@ -79,13 +79,13 @@ elif [ "$strspec" == "yes" ]; then
     # this is alwats the same
     grep PAR inputhf.d12.par > tmpsed2
  fi
- lpars=`wc -l tmpsed.$procnum | awk '{print $1}'`
+ lpars=`wc -l tmpsed$procnum | awk '{print $1}'`
  lpar=`wc -l tmpsed2 | awk '{print $1}'`
  if [ "$lpar" != "$lpars" ]; then
    echo "different par" $lpar $lpars
    exit
  fi   
-paste tmpsed2 tmpsed.$procnum | awk '{print $1,$3}' > $mybasrunsed
+paste tmpsed2 tmpsed$procnum | awk '{print $1,$3}' > $mybasrunsed
 fi    
 
 #rm $LOGFILE >& /dev/null
