@@ -67,10 +67,11 @@ function eigratio() {
      sr=`echo $k | awk  '{printf "%d(",$1+1}'`
 #    echo $sr >> $LOGFILE
 #     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 | awk '{print $1,"\n",$NF}'    > tmpee
-     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 > tmpee
-     awk '{ for (i=1;i<=NF; i++) printf("%s\n",$i); }' tmpee | sort -g  > tmpb
-     amin=`head -n 1 tmpb | awk '{printf "%30.20f", $1}'`
-     amax=`tail -n 1 tmpb`      	
+     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 > tmpee.$$
+     awk '{ for (i=1;i<=NF; i++) printf("%s\n",$i); }' tmpee.$$ | sort -g  > tmpb.$$
+     amin=`head -n 1 tmpb.$$ | awk '{printf "%30.20f", $1}'`
+     amax=`tail -n 1 tmpb.$$`
+     rm    tmpee.$$ tmpb.$$
 #    grep -A 10 "S(K) EIGENV - K =   1( 0 0 0)" $input.eigs |  awk -v RS= 'NR==1' | tail -n +2 | awk '{print $1,"\n",$NF}'    > tmp
 #    amin=`head -n 1 tmp | awk '{printf "%30.20f", $1}'`
 #    amax=`tail -n 1 tmp `
@@ -137,9 +138,10 @@ function getenefromout {
     tst="1"
     diis="1"
 	
-    grep DETOT $inp | awk '{print $2}' > tmpcer
-	bcer=`awk '{sum+=(NR-$1-1)**2} END {print sum}' tmpcer`	
+    grep DETOT $inp | awk '{print $2}' > tmpcer.$$
+	bcer=`awk '{sum+=(NR-$1-1)**2} END {print sum}' tmpcer.$$`	
     echo "bcer" $bcer  >> $LOGFILE
+    rm tmpcer.$$
 	
     if [ "$blin" -eq "1" ] || [ "$ball" -eq "1" ] || [ "$bila" -eq "1" ] ; then
 	 if [ "$tsilent" == "no" ];  then
@@ -329,14 +331,16 @@ function checktoberun() {
 	local linputhf=$4
     local lbrs=$5
     echo "checktoberun $lprog $ldstr $input $inputhf $lbrs {" >>$LOGFILE
-    echo " ~/DGBO/checkbr.x $lbrs $lprog $ldstr > br.out" >>$LOGFILE
-    ~/DGBO/checkbr.x $lbrs $lprog $ldstr > br.out
-    nxtot=`grep ierr br.out | awk '{print $2}'`
+    echo " ~/DGBO/checkbr.x $lbrs $lprog $ldstr > br.$$.out" >>$LOGFILE
+    ~/DGBO/checkbr.x $lbrs $lprog $ldstr > br.$$.out
+    nxtot=`grep ierr br.$$.out | awk '{print $2}'`
     if [ "$nxtot" == "" ]; then
        echo "nxtot undefined"
        exit -1
     fi 
     echo "nxtot" $nxtot >> $LOGFILE
+    rm  br.$$.out
+	
 	if [ "$nxtot" -eq "0" ]; then
       if [ ! -e $input.eigs.rmax ]; then   
           sed  s/EXCHGENE/EIGS/g $linputhf".d12" > $linputhf"eigs.d12"
