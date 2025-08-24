@@ -486,7 +486,7 @@ while bondsok == False or fbondsok == False:
 #       xarr = np.array(ggsx, dtype='float')
 #       print("x gmf",xarr)
         for inn in range(nn):
-             ddd=GMF % solx[inn]
+             ddd=GMF % xarrnew[inn]
              xarr[inn]=float(ddd)
         print("x gmf",xarr)   
 
