@@ -155,7 +155,7 @@ function gradient() {
 	 echo "nc" $ncup $ncdn >> $LOGFILE
 	 echo "DEBUG:" $dene "den"=$dden $i  | tee -a $LOGFILE
 	 if [ "$posup" == "1" ] && [ "$posdn" == "1" ]; then
-	     echo "minimum"  >> $LOGFILE
+	     echo "is min"  | tee -a $LOGFILE
              ismin=$((ismin+1))
 	 fi
 	 if [ "$ncup" == "1" ] && [ "$ncdn" == "1" ]; then
