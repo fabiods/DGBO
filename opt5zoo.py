@@ -480,11 +480,11 @@ while bondsok == False or fbondsok == False:
 # update x0 at the end           
       if debug == False: 
            
-%       ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
-%       ggsg=ggg.stdout.decode('UTF-8').split()
-%       ggsx=ggsg[1:]
-%       xarr = np.array(ggsx, dtype='float')
-%       print("x gmf",xarr)
+#       ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
+#       ggsg=ggg.stdout.decode('UTF-8').split()
+#       ggsx=ggsg[1:]
+#       xarr = np.array(ggsx, dtype='float')
+#       print("x gmf",xarr)
         for inn in range(nn):
              ddd=GMF % solx[inn]
              xarr[inn]=float(ddd)
