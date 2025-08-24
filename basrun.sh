@@ -174,9 +174,9 @@ if [ "1" -eq "0" ]; then
  nxtot=`echo $nxs $nxp $nxd | awk '{print $1+$2+$3}' `
  echo "nxtot" $nxtot >> $LOGFILE
 else
-    echo " ~/DGBO/checkbr.x $BPROG $dstr > br.$procnum.out" >>$LOGFILE
-    ~/DGBO/checkbr.x $mybasrunsed $BPROG $dstr > br.$procnum.out
-    nxtot=`grep ierr br.$procnum.out | awk '{print $2}'`
+    echo " ~/DGBO/checkbr.x $BPROG $dstr > br$procnum.out" >>$LOGFILE
+    ~/DGBO/checkbr.x $mybasrunsed $BPROG $dstr > br$procnum.out
+    nxtot=`grep ierr br$procnum.out | awk '{print $2}'`
     if [ "$nxtot" == "" ]; then
        echo "nxtot undefined"
        exit -1
