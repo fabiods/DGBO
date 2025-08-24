@@ -279,6 +279,8 @@ datax0 = np.loadtxt('sedfile.dat', dtype='float', usecols=(1))
 print (" data from sedfile.dat:")
 print(datax0)
 
+GMF=os.getenv("GMF")
+
 gamma=0
 if os.path.isfile('gamma.info'):
   gamma=  np.loadtxt('gamma.info', dtype='float')
@@ -457,7 +459,8 @@ while bondsok == False or fbondsok == False:
     print(cnt,parameter.get_budget())
 #    print(solution_list)
     for solution in solution_list:
-      print(" call at the minimum:",solution.get_x())     
+      solx=solution.get_x()
+      print(" call at the minimum:",solx)     
       res=ackley(solution)
     
      # bounds.dat need to be updated
@@ -472,15 +475,20 @@ while bondsok == False or fbondsok == False:
       xarrnew=[0]*nn
       xarr=[0]*nn
       for inn in range(nn):
-         xarrnew[inn]=i2v(solution.get_x()[inn],scal.get(inn),dig)
+         xarrnew[inn]=i2v(solx[inn],scal.get(inn),dig)
          xarr[inn]=xarrnew[inn] 
 # update x0 at the end           
       if debug == False: 
-       ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
-       ggsg=ggg.stdout.decode('UTF-8').split()
-       ggsx=ggsg[1:]
-       xarr = np.array(ggsx, dtype='float')
-       print("x gmf",xarr)
+           
+%       ggg=subprocess.run("grep dstr br.out", shell=True, stdout=subprocess.PIPE)
+%       ggsg=ggg.stdout.decode('UTF-8').split()
+%       ggsx=ggsg[1:]
+%       xarr = np.array(ggsx, dtype='float')
+%       print("x gmf",xarr)
+        for inn in range(nn):
+             ddd=GMF % solx[inn]
+             xarr[inn]=float(ddd)
+        print("x gmf",xarr)   
 
 # WRONG in python: this copy as pointer !! 
 #      gscal=scal
