@@ -61,12 +61,12 @@ if [ "$strspec" == "no" ]; then
     fi
     cat $mybasrunsed  >> $LOGFILE
 elif [ "$strspec" == "yes" ]; then 
- if [ -e tmpsed ]; then
- rm tmpsed
+ if [ -e tmpsed.$procnum ]; then
+ rm tmpsed.$procnum
  fi 
  for (( i=$firstarg; i<=$numpar; i+=1 ))
  do
-    echo "${!i}" >>tmpsed
+    echo "${!i}" >>tmpsed.$procnum
  done
 
 # for var in "$@"
@@ -79,13 +79,13 @@ elif [ "$strspec" == "yes" ]; then
     # this is alwats the same
     grep PAR inputhf.d12.par > tmpsed2
  fi
- lpars=`wc -l tmpsed | awk '{print $1}'`
+ lpars=`wc -l tmpsed.$procnum | awk '{print $1}'`
  lpar=`wc -l tmpsed2 | awk '{print $1}'`
  if [ "$lpar" != "$lpars" ]; then
    echo "different par" $lpar $lpars
    exit
  fi   
-paste tmpsed2 tmpsed | awk '{print $1,$3}' > $mybasrunsed
+paste tmpsed2 tmpsed.$procnum | awk '{print $1,$3}' > $mybasrunsed
 fi    
 
 #rm $LOGFILE >& /dev/null
@@ -174,9 +174,9 @@ if [ "1" -eq "0" ]; then
  nxtot=`echo $nxs $nxp $nxd | awk '{print $1+$2+$3}' `
  echo "nxtot" $nxtot >> $LOGFILE
 else
-    echo " ~/DGBO/checkbr.x $BPROG $dstr > br.out" >>$LOGFILE
-    ~/DGBO/checkbr.x $mybasrunsed $BPROG $dstr > br.out
-    nxtot=`grep ierr br.out | awk '{print $2}'`
+    echo " ~/DGBO/checkbr.x $BPROG $dstr > br.$procnum.out" >>$LOGFILE
+    ~/DGBO/checkbr.x $mybasrunsed $BPROG $dstr > br.$procnum.out
+    nxtot=`grep ierr br.$procnum.out | awk '{print $2}'`
     if [ "$nxtot" == "" ]; then
        echo "nxtot undefined"
        exit -1
