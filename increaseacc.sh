@@ -114,7 +114,9 @@ sort -k 2 -g -r rmax0_enec.$gamma.dat > rmax0_enec_sorted.$gamma.dat
 sort -k 2 -g -r rmax0_enef.$gamma.dat > rmax0_enef_sorted.$gamma.dat
 
 echo " ---over all final basis set---"
-sort -k 1 -r -g  basrun.allene.$gamma.dat allene.$gamma.dat | uniq > basrun.allene.$gamma.uniq.dat
+cat basrun.allene.$gamma.dat allene.$gamma.dat > tmpx
+sort -k 1 -r -g  tmpx  | uniq > basrun.allene.$gamma.uniq.dat
+rm tmpx
 tail -n 1 basrun.allene.$gamma.uniq.dat  
 
 #prepare for basrem
