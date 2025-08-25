@@ -15,6 +15,7 @@ fi
 echo "gamma" $gamma
 cat basrun.allene.$gamma.dat allene.$gamma.dat > tmpx
 sort -k 1 -r -g  tmpx  | uniq > basrun.allene.$gamma.uniq.dat
+rm tmpx
 awk '{print NF-3}' basrun.allene.$gamma.uniq.dat | head -n 1 > nc.dat
 
 newfmt=$1
@@ -33,9 +34,18 @@ awk -v gg=$gran '{print $1*gg}' ox.list > ox.listg
 
 
 
-for kk in {1..2}; do
-    
+for kk in {1..3}; do
+# 1 abs min
+# 2 abs min
+# 3 min basrun
+
+ if [ "$kk" == "3" ]; then
+   sort -k 1 -r -g   basrun.allene.$gamma.dat | uniq > tmpx
+   tail -n 1 tmpx  | awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
+    rm tmpx
+    else
 tail -n $kk basrun.allene.$gamma.uniq.dat | head -n 1  | awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
+    fi 
 echo
 echo
 echo 'selected minima : ' $kk
