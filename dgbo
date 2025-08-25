@@ -57,9 +57,9 @@ for start in inputhf.d12.orig inputhf.d12.orig? ; do
 cp $start".par" inputhf.d12.par
 
 # save
-    mv basrun.$gamma.log           xggg1
-    mv basrun.allene.$gamma.dat    xggg2
-    mv notconv.$gamma.dat          xggg3
+    mv basrun.$gamma.log           xggg1 >& /dev/null
+    mv basrun.allene.$gamma.dat    xggg2 >& /dev/null
+    mv notconv.$gamma.dat          xggg3 >& /dev/null
 
 #set -x
 # do always but sotre only for the first orig file
@@ -90,9 +90,9 @@ grep -m 1 maxrmax basrun.$gamma.log
      rm basrun.$gamma.log
      rm basrun.allene.$gamma.dat
      rm notconv.$gamma.dat
-     mv xggg1  basrun.$gamma.log
-     mv xggg2  basrun.allene.$gamma.dat
-     mv xggg3  notconv.$gamma.dat
+     mv xggg1  basrun.$gamma.log        >& /dev/null
+     mv xggg2  basrun.allene.$gamma.dat >& /dev/null
+     mv xggg3  notconv.$gamma.dat       >& /dev/null
 
 #---------this is the run with orig and GMF
 echo $GMF
