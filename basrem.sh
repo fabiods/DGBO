@@ -28,7 +28,7 @@ while read -r line; do
     tac inputhf.d12.par | sed "/$par/I,+1 d" | tac > $par/inputhf.d12.par
     sed -i "s/$sss/$ttt/g" $par/inputhf.d12.par
     cp sedfile.dat $par/basrunsed.dat
-    cp *.info $par
+    cp *.info $par >& /dev/null
     cd $par
     eneherefull=`~/DGBO/basrun.sh | awk '{print $1,$2}'`
     echo $eneherefull
