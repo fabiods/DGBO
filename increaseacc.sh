@@ -101,3 +101,38 @@ cd ..
 
 done
 echo "end loop over minima"
+
+cd INC
+echo "min gamma:"
+sort -k 1 -g -r basrun.allene.$gamma.dat | uniq | tail -n 5
+echo "min total:"
+sort -k 2 -g -r basrun.allene.$gamma.dat | uniq | tail -n 5
+
+awk '{print $3,$5,$7,$6}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA | uniq > rmax0_enec.$gamma.dat
+awk '{print $3,$6,$7}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA | uniq > rmax0_enef.$gamma.dat
+sort -k 2 -g -r rmax0_enec.$gamma.dat > rmax0_enec_sorted.$gamma.dat
+sort -k 2 -g -r rmax0_enef.$gamma.dat > rmax0_enef_sorted.$gamma.dat
+
+echo " ---over all final basis set---"
+tail -n 1 basrun.allene.$gamma.uniq.dat  
+
+#prepare for basrem
+grep PAR inputhf.d12.par | awk '{print $1}' > tmpxx1
+tail -n 1 basrun.allene.$gamma.uniq.dat |  awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' >tmpxx2
+paste tmpxx1 tmpxx2 > basrunsed.optfinal$gamma.dat
+rm tmpxx1 tmpxx2
+gfile=`sort -k 5 -g -r notconv.$gamma.dat   | grep -v NA | uniq | tail -n 1 | awk '{printf "out.%s* ",$7}'`
+
+mkdir optfinal$gamma
+cp  basrunsed.optfinal$gamma.dat optfinal$gamma/sedfile.dat
+cp inputhf.d12.par optfinal$gamma
+cp gamma.info    optfinal$gamma  >& /dev/null
+cp maxrmax.info  optfinal$gamma   >& /dev/null
+cp $gfile        optfinal$gamma
+cd  optfinal$gamma
+~/DGBO/basrem.sh
+cd ..
+
+#INC
+cd ..
+
