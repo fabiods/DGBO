@@ -78,7 +78,9 @@ paste INC/sedfile.dat.tmp.$kk | awk '{print $1,$1}' > bounds_inc.dat
 
 #paste INC/sedfile.dat.tmp.$kk ox.listg | awk '{print $1-$2/2,$1+$2/2}' >INC/bounds.dat
 #exit
+
 cd INC
+
 if [ "$kk" == "1" ]; then
 rm basrun.allene.$gamma.dat
 rm notconv.$gamma.dat
@@ -96,6 +98,7 @@ fi
 
 pwd
 python -u ~/DGBO/opt5zoo.py
+cp basrunsed.dat basrunsed.min$kk.dat
 
 cd ..
 
