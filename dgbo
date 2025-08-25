@@ -179,8 +179,8 @@ gfile=`sort -k 5 -g -r notconv.$gamma.dat   | grep -v NA | uniq | tail -n 1 | aw
 mkdir optfinal$gamma
 cp  basrunsed.optfinal$gamma.dat optfinal$gamma/sedfile.dat
 cp inputhf.d12.par optfinal$gamma
-cp gamma.info    optfinal$gamma
-cp maxrmax.info  optfinal$gamma
+cp gamma.info    optfinal$gamma  >& /dev/null
+cp maxrmax.info  optfinal$gamma   >& /dev/null
 cp $gfile        optfinal$gamma
 cd  optfinal$gamma
 ~/DGBO/basrem.sh
