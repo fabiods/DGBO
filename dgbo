@@ -56,6 +56,11 @@ for start in inputhf.d12.orig inputhf.d12.orig? ; do
 
 cp $start".par" inputhf.d12.par
 
+# save
+    mv basrun.$gamma.log           xggg1
+    mv basrun.allene.$gamma.dat    xggg2
+    mv notconv.$gamma.dat          xggg3
+
 #set -x
 # do always but sotre only for the first orig file
 if [ ! -e ENEREFZERO.dat ]; then
@@ -81,12 +86,15 @@ fi
 grep -m 1 gamma basrun.$gamma.log
 grep -m 1 maxrmax basrun.$gamma.log
 
-    rm basrun.$gamma.log
-    rm basrun.allene.$gamma.dat
-    rm notconv.$gamma.dat
+# output from basrun of the orig point are useless
+     rm basrun.$gamma.log
+     rm basrun.allene.$gamma.dat
+     rm notconv.$gamma.dat
+     mv xggg1  basrun.$gamma.log
+     mv xggg2  basrun.allene.$gamma.dat
+     mv xggg3  notconv.$gamma.dat
 
-
-
+#---------this is the run with orig and GMF
 echo $GMF
 cp sedfile.dat basrunsed.dat
 ~/DGBO/basrun.sh
