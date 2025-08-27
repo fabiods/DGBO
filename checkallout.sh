@@ -39,6 +39,7 @@ okbuttst=0
 bohc=0
 waserrc=0
 rm notconvall.dat
+rm rtime.dat
 while read -r line; do
 #    echo $line
     isopenerr=0    
@@ -55,7 +56,7 @@ while read -r line; do
     else
 #     echo $line
 	getenefromout $line $tolb "yes" "no"
-
+    timef=`grep "TTTTT END         TELAPSE" $line | awk '{print $4}'`
 #	echo $line , $waserr , $tma , $chdetot , $chdetotv, $chktst , $chklla , $chkdiis, $ene 
 	# tma too many cicles not considered
 	if [ "$waserr" == "no" ]; then
@@ -154,6 +155,7 @@ while read -r line; do
      echo $line $detota $llaa $tst $diis $enemay "|" $waserr  $tma  $chdetot $chdetotv,  $chktst  $chklla  $chkdiis $ene $str  >> td.dat 
 	 rmax=`cat $line.eigs.rmax | awk '{print $2}'`
      echo "rmax rmax0" $rmax $rmax $ene $ene $line >> notconvall.dat
+	 echo $rmax $time >> rtime.dat
 done <listout
 wc -l listout
 echo "tuttok" $tuttok | tee -a $LOGFILE   
