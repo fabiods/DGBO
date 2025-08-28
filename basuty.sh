@@ -133,6 +133,7 @@ function getenefromout {
     chktst=""
     chdetot=""
     chkdiis=""
+	chktotv=""
     lla="1"
     llaa="1"
     tst="1"
