@@ -138,6 +138,7 @@ function getenefromout {
     tst="1"
     diis="1"
 	detota="1"
+    tma=""
 	
     grep DETOT $inp | awk '{print $2}' > tmpcer.$$
 	bcer=`awk '{sum+=(NR-$1-1)**2} END {print sum}' tmpcer.$$`	
