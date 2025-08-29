@@ -126,7 +126,7 @@ function gradient() {
 	derright=`echo $ene $enezero  | awk '{printf "%15.10e",$1-$2}'`   
 	denright=`echo $xvaln $val     | awk '{printf "%4.3e",$1-$2}'`
 	echo "xx" $xvaln $val >> $LOGFILE
-	posup=`echo "$ene>$enezero+0*$tolb" | bc -l`
+	posup=`echo "$ene>$enezero-$tolb" | bc -l`
 	ncup=0
 	if [[ $enevera == NA* ]]; then
                 if [ "$enevera" != "NAPROG" ]; then  
@@ -137,7 +137,7 @@ function gradient() {
     else
 	# negative
 	if [ "$ene" != "NA" ]; then
-         posdn=`echo "$ene>$enezero+0*$tolb" | bc -l`
+         posdn=`echo "$ene>$enezero-$tolb" | bc -l`
 	 dene=`echo $der $ene | awk '{printf "%15.10e",$1-$2}'`
 	 dden=`echo $den $xvaln | awk '{printf "%4.3e",$1-$2}'`
 	 eneneg=$ene
