@@ -1,4 +1,4 @@
-chmod +x *.sh dgbo
+chmod +x *.sh dgbo rundgbo runincacc
 ifx readlc2.f -o readlc2.x
 ifx checkbr.f -o checkbr.x
 ifx xdiff.f -o xdiff.x
