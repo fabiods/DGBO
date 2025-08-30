@@ -11,3 +11,6 @@ echo 0 > gamma.info
 echo 0.002 > gamma.info
 ~/DGBO/dgbo | tee dgbo5g0.002.out
   
+grep res: dgbo5g0.out dgbo5g0.001.out dgbo5g0.002.out
+
+tail -n 1 rmax0_enec_sorted.0.dat rmax0_enec_sorted.0.001.dat  rmax0_enec_sorted.0.002.dat
