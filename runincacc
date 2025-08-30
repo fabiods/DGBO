@@ -1,0 +1,7 @@
+export GMF="%2.0E"
+echo 0.002 > gamma.info
+~/DGBO/increaseacc.sh  "%3.1E" | tee INC/dgbo5g0.002.out
+
+echo 0.001 > gamma.info
+~/DGBO/increaseacc.sh  "%3.1E" | tee INC/dgbo5g0.001.out
+
