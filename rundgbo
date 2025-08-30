@@ -1,0 +1,13 @@
+export GMF="%2.0E"
+
+
+echo 0.001 > gamma.info
+~/DGBO/dgbo | tee dgbo5g0.001.out
+
+echo 0 > gamma.info
+~/DGBO/dgbo | tee dgbo5g0.out 
+
+# last is the default
+echo 0.002 > gamma.info
+~/DGBO/dgbo | tee dgbo5g0.002.out
+  
