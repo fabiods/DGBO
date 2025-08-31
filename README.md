@@ -177,9 +177,11 @@ or you can also do
      cd basfol
      ~/DGBO/basderfol.sh
 ---------------------------------------------------------
-OPTIONS:
+OPTIONS FILES:
 
-gamma.info : this file contain the gamma parameter
+            gamma.info 
+            
+            this file contain the gamma parameter
              If not preset is zero
              the value of gamma can be obtained (after a run without gamma)  with the script
 
@@ -187,10 +189,15 @@ gamma.info : this file contain the gamma parameter
 
       
              
-maxrmax.info  : this file contains the maximum rmax values (eigmax/eigmin)
+             maxrmax.info  
+             
+             this file contains the maximum rmax values (eigmax/eigmin)
                if not present is 10000
 
 
+              bmax.dat
+
+              
 change the function runcry in basuty.sh to change how crystal is lauched
 (by default runcry23OMP)
 
