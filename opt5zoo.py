@@ -535,8 +535,8 @@ while bondsok == False or fbondsok == False:
         ggg=subprocess.run("cat basrunsed.dat", shell=True, stdout=subprocess.PIPE)
         print(ggg.stdout.decode('UTF-8'))
            
-        ggg=subprocess.run("~/DGBO/basderfol.sh 10", shell=True,stdout=subprocess.PIPE)
-        print(ggg.stdout.decode('UTF-8'))
+        ggg=subprocess.run("~/DGBO/basderfol.sh 10", shell=True) #,stdout=subprocess.PIPE)
+                                                                 #print(ggg.stdout.decode('UTF-8'))
         if ggg.returncode != 0 :
              print("~/DGBO/basderfol.sh failed")
              quit()
