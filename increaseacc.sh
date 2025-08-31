@@ -71,7 +71,7 @@ if [ ! -e "bmax.dat" ]; then
  echo "bmax.dat not found"
  exit
 fi
-
+cp bmax.dat INC
 paste INC/sedfile.dat.tmp.$kk | awk '{print $1,$1}' > bounds_inc.dat
 
 ~/DGBO/boundsinc.sh bounds_inc.dat   bmax.dat > bounds_inc1.dat
@@ -79,8 +79,9 @@ paste INC/sedfile.dat.tmp.$kk | awk '{print $1,$1}' > bounds_inc.dat
 ~/DGBO/boundsinc.sh bounds_inc2.dat  bmax.dat > bounds_inc3.dat
 ~/DGBO/boundsinc.sh bounds_inc3.dat  bmax.dat > bounds_inc4.dat
 ~/DGBO/boundsinc.sh bounds_inc4.dat  bmax.dat > INC/bounds.dat  
-
+echo "bounds.dat"
 cat INC/bounds.dat
+
 
 #paste INC/sedfile.dat.tmp.$kk ox.listg | awk '{print $1-$2/2,$1+$2/2}' >INC/bounds.dat
 #exit
