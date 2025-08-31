@@ -14,8 +14,8 @@ if [ ! -e $name ]; then
  echo $name "not found"
  exit
 fi
-
-paste $name $bmaxname > tmp
+tmpff=tmp.$$
+paste $name $bmaxname > $tmpff
 while read -r line; do
     
     gmin=`echo $line | awk '{printf "%f",$1}'`
@@ -42,7 +42,8 @@ while read -r line; do
       fmaxx=`echo $bmax | awk -v fmt=$GMF '{printf fmt,-$1}'`
     fi	
     echo $fminx $fmaxx
-done < tmp
+done < $tmpff
+rm $tmpff
 
 exit
 
