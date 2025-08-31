@@ -1,5 +1,6 @@
 #!/bin/bash
-#set -x
+set -u
+set -e
 # input file:
 # basrun.allene.dat
 # sedfile.dat
