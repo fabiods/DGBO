@@ -98,7 +98,6 @@ class Scaling:
                 upb[i]=i2v(upbi[i], self.get(i)  ,dig)
 #                print("upbi",upbi[i],"upb",upb[
                 if abs(upb[i]) > bmax[i]:
-                    
                     bmaxint=v2i( bmax[i] ,self.get(i) ,dig)
                     upb[i]= -i2v(bmaxint,self.get(i) ,dig)
                     upbi[i]=bmaxint
