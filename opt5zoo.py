@@ -40,6 +40,7 @@ class Scaling:
     def checkbound(self,checkandupdate,xarr,fixedcheck):
       global dig
       global upb,lob,upbi,lobi
+      global bmax   
       print("CHECK BOUNDS:")
       bok=True
       shift=10**(dig-1)
@@ -96,7 +97,10 @@ class Scaling:
                 # recompute upb    
                 upb[i]=i2v(upbi[i], self.get(i)  ,dig)
 #                print("upbi",upbi[i],"upb",upb[
-           
+                if abs(upb[i]) > bmax[i]:
+                    bmaxint=v2i( bmax[i] ,self.get(i) ,dig)
+                    upb[i]= -i2v(bmaxint,self.get(i) ,dig)
+                    upbi[i]=bmaxint
       return bok
 
 def ackleydd(solution):
@@ -273,11 +277,15 @@ debug = False
 cnt = 0
 # Open the file in read mode
 print(" ===== opt5zoo.py=========")
-print("  require sedfile.dat , bounds.dat ,  input.d12.par ")
+print("  require sedfile.dat , bounds.dat , bmax.dat,  input.d12.par ")
 np.set_printoptions(linewidth=130)
 datax0 = np.loadtxt('sedfile.dat', dtype='float', usecols=(1))
 print (" data from sedfile.dat:")
 print(datax0)
+
+bmax=np.loadtxt('bmax.dat', dtype='float', usecols=(1))
+print( " bmax from bmax.dat")
+print(bmax)
 
 GMF=os.getenv("GMF")
 
