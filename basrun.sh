@@ -28,6 +28,7 @@ fi
 LOGFILE="basrun.$gamma.log"
 
 echo "gamma" $gamma >> $LOGFILE 
+echo "ARGS: $@" >> $LOGFILE
 silent="yes"
 
 # format: basrun 
