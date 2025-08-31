@@ -355,9 +355,10 @@ function checktoberun() {
 	local linputhf=$4
     local lbrs=$5
     echo "checktoberun $lprog $ldstr $input $inputhf $lbrs {" >>$LOGFILE
-    echo " ~/DGBO/checkbr.x $lbrs $lprog $ldstr > br.$$.out" >>$LOGFILE
-    ~/DGBO/checkbr.x $lbrs $lprog $ldstr > br.$$.out
-    nxtot=`grep ierr br.$$.out | awk '{print $2}'`
+	tmpgname=br.$$.out
+    echo " ~/DGBO/checkbr.x $lbrs $lprog $ldstr > $tmpgname" >>$LOGFILE
+           ~/DGBO/checkbr.x $lbrs $lprog $ldstr > $tmpgname
+    nxtot=`grep ierr $tmpgname | awk '{print $2}'`
     if [ "$nxtot" == "" ]; then
        echo "nxtot undefined"
        exit -1
