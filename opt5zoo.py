@@ -100,7 +100,7 @@ class Scaling:
                 if abs(upb[i]) > bmax[i]:
                     bmaxint=v2i( bmax[i] ,self.get(i) ,dig)
                     upb[i]= -i2v(bmaxint,self.get(i) ,dig)
-                    upbi[i]=bmaxint
+                    upbi[i]=-bmaxint
                     print("bmax reached",bmax[i],bmaxint,upb[i])
       return bok
 
