@@ -461,16 +461,18 @@ function sedinput() {
     local ii=$2
     local pn=$3
 	local linputhf=$4
+    local bmaxname=$5
     local j
 	local pnname
     local name
 	
-    echo "sedinput{" $fname $ii $pn $linputhf $GMF >> $LOGFILE
+    echo "sedinput{" $fname $ii $pn $linputhf $bmaxname $GMF >> $LOGFILE
     j=0
     str=""
     dstr=""
     xvaln="0"
-    cat $fname >> $LOGFILE
+	paste $fname $bmaxname > tmpz
+    cat tmpz >> $LOGFILE
     while read -r line; do
 	 pnname=""
 	 name=`echo $line  | awk '{print $1}'` 	
@@ -503,7 +505,7 @@ function sedinput() {
      sed -i s/$name/$valn/g $linputhf".d12"
      j=$((j + 1))
 
-    done < $fname
+    done < tmpz
     echo "  str" $str >> $LOGFILE
     echo " dstr" $dstr >> $LOGFILE
     echo "  xvaln" $xvaln >> $LOGFILE
@@ -516,23 +518,26 @@ function sedinputx() {
     local ii=$2
     local pn=$3
 	local linputhf=$4
+    local bmaxname=$5
     local j
 	local pnname
     local name 
-    echo "sedinputx{" $fname $ii $pn $linputhf >> $LOGFILE
+    echo "sedinputx{" $fname $ii $pn $linputhf $bmaxname >> $LOGFILE
     j=0
     str=""
     dstr=""
     xvaln="0"
-    cat $fname >> $LOGFILE
+	paste $fname $bmax >tmpz
+    cat tmpz >> $LOGFILE
     while read -r line; do
  	 pnname=""
 	 name=`echo $line  | awk '{print $1}'` 	
      if [ "$j" == "$ii" ]; then 
 	  val=`echo $line  | awk '{print $2}'`
+      valmax=`echo $line  | awk '{print $4}'`
 	  echo "val" $val >> $LOGFILE
 	  if [ "$pn" == "1" ] ; then
-	   valn=`xnext $val $GMF 0`   
+	   valn=`xnext $val $GMF $valmax`   
 #	   valn=`echo $val | awk -v p=$perc -v fmt=$GMF  '{printf fmt, $1*(1+p)}'`   
 	   pnname='pos'
 	   xname=$name
@@ -560,7 +565,8 @@ function sedinputx() {
      sed -i s/$name/$valn/g $linputhf".d12"
      j=$((j + 1))
 
-    done < $fname
+    done < tmpz
+	
     echo "  str" $str >> $LOGFILE
     echo " dstr" $dstr >> $LOGFILE
     echo "  xvaln" $xvaln >> $LOGFILE
