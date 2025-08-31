@@ -142,10 +142,11 @@ for ((k = 1 ; k <= $num ; k++ )); do
 	 vv=${myexpdef[k]}
 	 if [ "$vv" == "1" ]; then 
           echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,-$2}' >> bounds.dat
+		  echo $k  ${myexppt[k]} >> bmax.dat
      else
           echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$2}' >> bounds.dat
+		  echo $k 0 >> bmax.dat
      fi
-	 echo $k  ${myexppt[k]} >> bmax.dat
 
     else
 	 if [ "$last" == "yes" ]; then
