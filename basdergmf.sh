@@ -26,7 +26,7 @@ function gradientpara() {
       echo $i $pn ":" $ck | tee -a $LOGFILE  
     cp inputhf.d12.par $inputhf.$ck".d12"
       
-    sedinputx $fname $i $pn $inputhf.$ck
+    sedinputx $fname $i $pn $inputhf.$ck bmax.dat
     if [ -e out.$str ]; then
 	echo out.$str found  | tee -a $LOGFILE  
     else
@@ -101,7 +101,7 @@ function gradient() {
 
     cp inputhf.d12.par $inputhf".d12"
       
-    sedinputx $fname $i $pn $inputhf
+    sedinputx $fname $i $pn $inputhf bmax.dat
     echo "" >> $LOGFILE  
     echo ">>>> pn= $pn i=$i $xvaln" >>  $LOGFILE
     echo " ~/DGBO/checkbr.x basrunsed.dat $BPROG $dstr > br.out" >>$LOGFILE
@@ -288,7 +288,7 @@ export BPROG="1.4"
 myinputhf="inputhf"
 
 cp inputhf.d12.par $myinputhf".d12"
-sedinputx basrunsed.dat -1 -1 $myinputhf
+sedinputx basrunsed.dat -1 -1 $myinputhf bmax.dat
 
 echo " ~/DGBO/checkbr.x basrunsed.dat $BPROG $dstr > br.out" >>$LOGFILE   
 ~/DGBO/checkbr.x basrunsed.dat $BPROG $dstr > br.out
