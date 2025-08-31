@@ -545,7 +545,8 @@ function sedinputx() {
       valmax=`echo $line  | awk '{print $4}'`
 	  echo "val" $val >> $LOGFILE
 	  if [ "$pn" == "1" ] ; then
-	   valn=`xnext $val $GMF $valmax`   
+	   svaln=`xnext $val $GMF $valmax`   
+       valn=`echo $svaln | awk -v fmt=$GMF '{printf fmt,sqrt($1*$1)}'`
 #	   valn=`echo $val | awk -v p=$perc -v fmt=$GMF  '{printf fmt, $1*(1+p)}'`   
 	   pnname='pos'
 	   xname=$name
