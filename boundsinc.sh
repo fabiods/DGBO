@@ -5,13 +5,28 @@ name=$1
 #echo $GMF
 # READ bound.dat and reformat it
 while read -r line; do
-    fmin=`echo $line | awk -v fmt=$GMF '{printf fmt,$1}'`
-    fminx=`xprec $fmin $GMF`
-    fmax=`echo $line | awk -v fmt=$GMF '{printf fmt,$2}'`
-    fmaxx=`xnext $fmax $GMF`
+    gmin=`echo $line | awk '{printf "%f",$1}'`
+    gmax=`echo $line | awk '{printf "%f",$2}'`
+#    echo $gmin $gmax
+    gminneg=`echo "$gmin < 0" | bc -l`
+    gmaxneg=`echo "$gmax < 0" | bc -l`
+    if [ "$gminneg" == "0" ]; then
+     fmin=`echo $gmin | awk -v fmt=$GMF '{printf fmt,$1}'`
+     fminx=`xprec $fmin $GMF`
+    else
+     fminx=$gmin	
+    fi
+    if [ "$gmaxneg" == "0" ]; then 
+     fmax=`echo $gmax | awk -v fmt=$GMF '{printf fmt,$1}'`
+     fmaxx=`xnext $fmax $GMF`
+    else
+     fmaxx=$gmax	
+    fi	
     echo $fminx $fmaxx
 done < $name
-exit
+
+
+
 #set -x
 # from bounds.dat to boundsint.dat
 sss=$GMF" "$GMF"\n"
