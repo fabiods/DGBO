@@ -141,7 +141,7 @@ if [ -e "maxrmax.info" ]; then
 fi
    echo "maxrmax" $maxrmax >> $LOGFILE
    
-sedinput $mybasrunsed -1 -1 $myinputhfnn
+sedinput $mybasrunsed -1 -1 $myinputhfnn "bmaxnone"
 
 #----------check------------range---------
 if [ "1" -eq "0" ]; then 
