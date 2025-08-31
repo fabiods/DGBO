@@ -291,10 +291,11 @@ cp inputhf.d12.par $myinputhf".d12"
 sedinputx basrunsed.dat -1 -1 $myinputhf bmax.dat
 
 echo " ~/DGBO/checkbr.x basrunsed.dat $BPROG $dstr > br.out" >>$LOGFILE   
-~/DGBO/checkbr.x basrunsed.dat $BPROG $dstr > br.out
+       ~/DGBO/checkbr.x basrunsed.dat $BPROG $dstr > br.out
 #cat br.out >>$LOGFILE
 nxtot=`grep ierr br.out | awk '{print $2}'`
 echo "nxtot" $nxtot >>$LOGFILE
+
 #set -x
 runcrycond out.$str $nxtot $myinputhf
 #exit
