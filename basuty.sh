@@ -4,6 +4,7 @@ set -u
 function xnext() {
     local val=$1
     local fff=$2
+	local limit=$3
 	local dec
     local ordg
 if [ "$fff" == "%2.0E" ]; then
@@ -18,12 +19,22 @@ fi
 #    echo $val
     ordg=`echo $val | awk -F E '{ print "1E"$2} '`
 #    echo $ordg
-    echo $val $ordg | awk -v fmt=$fff -v d=$dec '{printf fmt,($1/($2*d)+1)*($2*d)}'
+    valn=`echo $val $ordg | awk -v fmt=$fff -v d=$dec '{printf fmt,($1/($2*d)+1)*($2*d)}'`
+    if [ "$limit" -ne "0" ]; then
+	 valnf=`echo $valn | awk '{printf "%f", $1}'`
+     valnl=`echo $limit | awk '{printf "%f", $1}'`
+	 lsupera=`echo "$valnf > $valnl" | bc -l`
+     if [ "$lsupera" -eq "1" ]; then
+	  valn=`echo $valnl | awk -v fmt=$fff '{print fmt,$11}'`
+     fi
+	fi
+	echo $valn
 }
 
 function xprec() {
     local val=$1
     local fff=$2
+	local limit=$3
 	local dec
     local ordg
 if [ "$fff" == "%2.0E" ]; then
@@ -38,7 +49,15 @@ fi
 #    echo $val
     ordg=`echo $val | awk -F E '{if ( $1 != 1 ) {print "1E"$2} else {printf "%s%+2.2d\n","1E",($2-1)} }'`
 #    echo $ordg
-    echo $val $ordg | awk -v fmt=$fff -v d=$dec '{printf fmt,($1/($2*d)-1)*($2*d)}'
+    valn=`echo $val $ordg | awk -v fmt=$fff -v d=$dec '{printf fmt,($1/($2*d)-1)*($2*d)}'`
+    if [ "$limit" -ne "0" ]; then
+	 valnf=`echo $valn | awk '{printf "%f", $1}'`
+     valnl=`echo $limit | awk '{printf "%f", $1}'`
+	 lsupera=`echo "$valnf < $valnl" | bc -l`
+     if [ "$lsupera" -eq "1" ] ;then
+	  valn=`echo $valnl | awk -v fmt=$fff '{print fmt,$11}'`
+     fi
+	fi
 }
 
 
