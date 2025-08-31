@@ -20,8 +20,9 @@ rm tmpx
 awk '{print NF-3}' basrun.allene.$gamma.uniq.dat | head -n 1 > nc.dat
 
 newfmt=$1
-
+if [ ! -d INC ]; then
 mkdir  INC
+fi
 cp ENEREFZERO.dat INC
 cp gamma.info INC  
 cp maxrmax.info INC 
