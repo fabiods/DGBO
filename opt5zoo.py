@@ -519,6 +519,12 @@ while bondsok == False or fbondsok == False:
 #  ggg=subprocess.run("~/basdergmf.sh", shell=True, capture_output=False)  
         ggsg=ggg.stdout.decode('UTF-8')
         print(ggsg)
+        if ggg.returncode != 0 :
+          print("~/DGBO/basdergmf.sh failed")
+          quit()
+             
+        
+       
         ggsgl=ggsg.split()
         minggt=ggsgl[-1]
         minggx=ggsgl[-2]
@@ -529,8 +535,12 @@ while bondsok == False or fbondsok == False:
         ggg=subprocess.run("cat basrunsed.dat", shell=True, stdout=subprocess.PIPE)
         print(ggg.stdout.decode('UTF-8'))
            
-        ggg=subprocess.run("~/DGBO/basderfol.sh 10", shell=True)
-           
+        ggg=subprocess.run("~/DGBO/basderfol.sh 10", shell=True,stdout=subprocess.PIPE)
+        print(ggg.stdout.decode('UTF-8'))
+        if ggg.returncode != 0 :
+             print("~/DGBO/basderfol.sh failed")
+             quit()
+             
         menergylast=np.loadtxt('basderfol.energy', dtype='float', usecols=(1))
         print("energylast",menergylast)
         mxarr=np.loadtxt('basrunsed.dat', dtype='float', usecols=(1))
@@ -541,6 +551,9 @@ while bondsok == False or fbondsok == False:
         ggg=subprocess.run("~/DGBO/basdergmf.sh", shell=True, stdout=subprocess.PIPE)
         ggsg=ggg.stdout.decode('UTF-8')
         print(ggsg)
+        if ggg.returncode != 0 :
+             print("~/DGBO/basdergmf.sh failed")     
+             quit()
         ggsgl=ggsg.split()
         fminggt=ggsgl[-1]
         fminggx=ggsgl[-2]
