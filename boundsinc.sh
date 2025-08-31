@@ -25,7 +25,7 @@ while read -r line; do
     echo $fminx $fmaxx
 done < $name
 
-
+exit
 
 #set -x
 # from bounds.dat to boundsint.dat
