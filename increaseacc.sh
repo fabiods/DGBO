@@ -67,14 +67,18 @@ xxx=`tail -n 1 basderfol.out`
 echo "res:" $xxx
 cd ..
 
+if [ ! -e "bmax.dat" ]; then
+ echo "bmax.dat not found"
+ exit
+fi
 
 paste INC/sedfile.dat.tmp.$kk | awk '{print $1,$1}' > bounds_inc.dat
 
-~/DGBO/boundsinc.sh bounds_inc.dat   > bounds_inc1.dat
-~/DGBO/boundsinc.sh bounds_inc1.dat  > bounds_inc2.dat
-~/DGBO/boundsinc.sh bounds_inc2.dat  > bounds_inc3.dat
-~/DGBO/boundsinc.sh bounds_inc3.dat  > bounds_inc4.dat
-~/DGBO/boundsinc.sh bounds_inc4.dat  > INC/bounds.dat  
+~/DGBO/boundsinc.sh bounds_inc.dat   bmax.dat > bounds_inc1.dat
+~/DGBO/boundsinc.sh bounds_inc1.dat  bmax.dat > bounds_inc2.dat
+~/DGBO/boundsinc.sh bounds_inc2.dat  bmax.dat > bounds_inc3.dat
+~/DGBO/boundsinc.sh bounds_inc3.dat  bmax.dat > bounds_inc4.dat
+~/DGBO/boundsinc.sh bounds_inc4.dat  bmax.dat > INC/bounds.dat  
 
 cat INC/bounds.dat
 
