@@ -122,6 +122,7 @@ fi
 echo $fmto
 echo "Bounds: creating bounds.dat ... "
 rm bounds.dat
+rm bmax.dat
 for ((k = 1 ; k <= $num ; k++ )); do
     if [ "${mytyp[k-1]}" !=  "${mytyp[k]}" ]; then
 	first="yes"
@@ -135,29 +136,32 @@ for ((k = 1 ; k <= $num ; k++ )); do
     fi
 #    echo $k,$first,$last
     if [ "$first" == "yes" ]; then
-	echo $k,":",${myexpa[k]},"<",${myexp[k]},"<",${myexppt[k]}
-	echo "${myexpa[k]} < ${myexp[k]}" | bc -l
-	echo "${myexp[k]} < ${myexppt[k]}" | bc -l               
-	vv=${myexpdef[k]}
-	if [ "$vv" == "1" ]; then 
+	 echo $k,":",${myexpa[k]},"<",${myexp[k]},"<",${myexppt[k]}
+	 echo "${myexpa[k]} < ${myexp[k]}" | bc -l
+	 echo "${myexp[k]} < ${myexppt[k]}" | bc -l               
+	 vv=${myexpdef[k]}
+	 if [ "$vv" == "1" ]; then 
           echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,-$2}' >> bounds.dat
-        else
+     else
           echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$2}' >> bounds.dat
-        fi
+     fi
+	 echo $k  ${myexppt[k]} >> bmax.dat
+
     else
-	if [ "$last" == "yes" ]; then
+	 if [ "$last" == "yes" ]; then
             echo $k,":",${myexpdt[k]},"<",${myexp[k]},"<",${myexpa[k-1]}
 	    echo "${myexpdt[k]} <  ${myexp[k]} " | bc -l  
 	    echo "${myexp[k]} < ${myexpa[k-1]} " | bc -l
 	    echo  ${myexpdt[k]} ${myexpa[k-1]} | awk -v gm="$fmto" '{printf gm,$1,$2}'>> bounds.dat
  
-        else
+      else
 	    #	    echo $k ${myexp[k+1]} ${myexp[k]} ${myexp[k-1]} | awk '{print $1,sqrt($2*$3),sqrt($3*$4)}'
 	    echo $k,":",${myexpa[k]},"<",${myexp[k]},"<",${myexpa[k-1]}
 	    echo "${myexpa[k]} < ${myexp[k]}"     | bc -l
 	    echo "${myexp[k]} < ${myexpa[k-1]}"   | bc -l
 	    echo  ${myexpa[k]} ${myexpa[k-1]} | awk -v gm="$fmto" '{printf gm,$1,$2}' >> bounds.dat
-	fi    
+	 fi
+     echo  $k 0 >> bmax.dat
     fi
     
 done
