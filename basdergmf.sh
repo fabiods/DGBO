@@ -174,9 +174,9 @@ function gradient() {
 	echo $enepos $eneneg $denright $denleft $enezero  >> $LOGFILE
 	hess=`echo $enepos $eneneg $denright $denleft $enezero | awk '{print ($1*$4+$2*$3-$5*($3+$4))/(0.5*($3+$4)*$3*$4)}'` 
 	echo 'hess',$hess >>$LOGFILE
-     finalderright=`echo $derright $denright | awk '{printf "%15.10e", $1/$2}' `
-     finalderleft=`echo  $derleft  $denleft  | awk '{printf "%15.10e", $1/$2}' `   
-     finalder=`echo $dene $dden | awk '{printf "%15.10e", $1/$2}' `
+     finalderright=`echo $derright $denright | awk '{printf "%15.10e", $1/($2+0.000001)}' `
+     finalderleft=`echo  $derleft  $denleft  | awk '{printf "%15.10e", $1/($2+0.000001)}' `   
+     finalder=`echo $dene $dden | awk '{printf "%15.10e", $1/($2+0.0000001)}' `
      echo "der $i" $finalder  $finalderleft  $finalderright >>  $LOGFILE
      echo "der $i" $finalder  $finalderleft  $finalderright >> $store
     fi
