@@ -527,7 +527,7 @@ function sedinputx() {
     str=""
     dstr=""
     xvaln="0"
-	paste $fname $bmax >tmpz
+	paste $fname $bmaxname >tmpz
     cat tmpz >> $LOGFILE
     while read -r line; do
  	 pnname=""
