@@ -39,7 +39,7 @@ while read -r line; do
     else
 #     fmaxx=$gmax	
 #     domina bmax
-      fmaxx=`echo $bmax | awk -v fmt=$GMF '{printf fmt,$1}'`
+      fmaxx=`echo $bmax | awk -v fmt=$GMF '{printf fmt,-$1}'`
     fi	
     echo $fminx $fmaxx
 done < tmp
