@@ -2,28 +2,42 @@
 #set -x
 source ~/DGBO/basuty.sh
 name=$1
+bmaxname=$2
 #echo $GMF
 # READ bound.dat and reformat it
+kk=0
+if [ ! -e $bmaxname ]; then
+ echo $bmaxname "not found"
+ exit
+fi
+if [ ! -e $name ]; then
+ echo $name "not found"
+ exit
+fi
+
+paste $name $bmaxname > tmp
 while read -r line; do
+    
     gmin=`echo $line | awk '{printf "%f",$1}'`
     gmax=`echo $line | awk '{printf "%f",$2}'`
-#    echo $gmin $gmax
+    bmax=`echo $line | awk '{printf "%f",$3}'`
+#    echo $gmin $gmax $bmax
     gminneg=`echo "$gmin < 0" | bc -l`
     gmaxneg=`echo "$gmax < 0" | bc -l`
     if [ "$gminneg" == "0" ]; then
      fmin=`echo $gmin | awk -v fmt=$GMF '{printf fmt,$1}'`
-     fminx=`xprec $fmin $GMF`
+     fminx=`xprec $fmin $GMF 0`
     else
      fminx=$gmin	
     fi
     if [ "$gmaxneg" == "0" ]; then 
      fmax=`echo $gmax | awk -v fmt=$GMF '{printf fmt,$1}'`
-     fmaxx=`xnext $fmax $GMF`
+     fmaxx=`xnext $fmax $GMF $bmax`
     else
      fmaxx=$gmax	
     fi	
     echo $fminx $fmaxx
-done < $name
+done < tmp
 
 exit
 
