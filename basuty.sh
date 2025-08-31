@@ -20,7 +20,7 @@ fi
     ordg=`echo $val | awk -F E '{ print "1E"$2} '`
 #    echo $ordg
     valn=`echo $val $ordg | awk -v fmt=$fff -v d=$dec '{printf fmt,($1/($2*d)+1)*($2*d)}'`
-    if [ "$limit" -ne "0" ]; then
+    if [ "$limit" != "0" ]; then
 	 valnf=`echo $valn | awk '{printf "%f", $1}'`
      valnl=`echo $limit | awk '{printf "%f", $1}'`
 	 lsupera=`echo "$valnf > $valnl" | bc -l`
@@ -50,7 +50,7 @@ fi
     ordg=`echo $val | awk -F E '{if ( $1 != 1 ) {print "1E"$2} else {printf "%s%+2.2d\n","1E",($2-1)} }'`
 #    echo $ordg
     valn=`echo $val $ordg | awk -v fmt=$fff -v d=$dec '{printf fmt,($1/($2*d)-1)*($2*d)}'`
-    if [ "$limit" -ne "0" ]; then
+    if [ "$limit" != "0" ]; then
 	 valnf=`echo $valn | awk '{printf "%f", $1}'`
      valnl=`echo $limit | awk '{printf "%f", $1}'`
 	 lsupera=`echo "$valnf < $valnl" | bc -l`
