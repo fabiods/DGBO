@@ -58,6 +58,7 @@ fi
 	  valn=`echo $valnl | awk -v fmt=$fff '{print fmt,$11}'`
      fi
 	fi
+    echo $valn
 }
 
 
