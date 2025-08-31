@@ -471,7 +471,11 @@ function sedinput() {
     str=""
     dstr=""
     xvaln="0"
-	paste $fname $bmaxname > tmpz
+    if [ "$ii" == "-1" ]; then
+	 cp $fname tmpz
+    else
+	 paste $fname $bmaxname > tmpz
+    fi
     cat tmpz >> $LOGFILE
     while read -r line; do
 	 pnname=""
