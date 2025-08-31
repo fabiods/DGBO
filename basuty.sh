@@ -472,12 +472,13 @@ function sedinput() {
     str=""
     dstr=""
     xvaln="0"
+    ttt=tmpz.$$
     if [ "$ii" == "-1" ]; then
-	 cp $fname tmpz
+	 cp $fname $ttt
     else
-	 paste $fname $bmaxname > tmpz
+	 paste $fname $bmaxname > $ttt
     fi
-    cat tmpz >> $LOGFILE
+    cat $ttt >> $LOGFILE
     while read -r line; do
 	 pnname=""
 	 name=`echo $line  | awk '{print $1}'` 	
@@ -510,7 +511,8 @@ function sedinput() {
      sed -i s/$name/$valn/g $linputhf".d12"
      j=$((j + 1))
 
-    done < tmpz
+    done < $ttt
+	rm $ttt
     echo "  str" $str >> $LOGFILE
     echo " dstr" $dstr >> $LOGFILE
     echo "  xvaln" $xvaln >> $LOGFILE
@@ -532,12 +534,13 @@ function sedinputx() {
     str=""
     dstr=""
     xvaln="0"
+	ttt=tmpz.$$
     if [ "$ii" == "-1" ]; then
-	 cp $fname tmpz
+	 cp $fname $ttt
 	else
-	 paste $fname $bmaxname >tmpz
+	 paste $fname $bmaxname >$ttt
     fi
-    cat tmpz >> $LOGFILE
+    cat $ttt >> $LOGFILE
     while read -r line; do
  	 pnname=""
 	 name=`echo $line  | awk '{print $1}'` 	
@@ -575,8 +578,8 @@ function sedinputx() {
      sed -i s/$name/$valn/g $linputhf".d12"
      j=$((j + 1))
 
-    done < tmpz
-	
+    done < $ttt
+	rm $ttt
     echo "  str" $str >> $LOGFILE
     echo " dstr" $dstr >> $LOGFILE
     echo "  xvaln" $xvaln >> $LOGFILE
