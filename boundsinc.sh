@@ -21,7 +21,7 @@ while read -r line; do
     gmin=`echo $line | awk '{printf "%f",$1}'`
     gmax=`echo $line | awk '{printf "%f",$2}'`
     bmax=`echo $line | awk '{print $4}'`
-    if [ "$bmax" -ne "0" ]; then 
+    if [ "$bmax" != "0" ]; then 
     bmax=`echo $line | awk '{printf "%f",$4}'`
     fi
 #    echo $gmin $gmax $bmax
