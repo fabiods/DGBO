@@ -532,13 +532,13 @@ function sedinputx() {
 	  val=`echo $line  | awk '{print $2}'`
 	  echo "val" $val >> $LOGFILE
 	  if [ "$pn" == "1" ] ; then
-	   valn=`xnext $val $GMF`   
+	   valn=`xnext $val $GMF 0`   
 #	   valn=`echo $val | awk -v p=$perc -v fmt=$GMF  '{printf fmt, $1*(1+p)}'`   
 	   pnname='pos'
 	   xname=$name
 	   xvaln=$valn
       else
-	   valn=`xprec $val $GMF`
+	   valn=`xprec $val $GMF 0`
 #      valn=`echo $val | awk -v p=$perc -v fmt=$GMF '{printf fmt, $1*(1-p)}'`
        pnname='neg'
 	   xname=$name
