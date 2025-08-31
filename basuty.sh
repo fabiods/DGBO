@@ -25,7 +25,7 @@ fi
      valnl=`echo $limit | awk '{printf "%f", $1}'`
 	 lsupera=`echo "$valnf > $valnl" | bc -l`
      if [ "$lsupera" -eq "1" ]; then
-	  valn=`echo $valnl | awk -v fmt=$fff '{printf fmt,$1}'`
+	  valn=`echo $valnl | awk -v fmt=$fff '{printf fmt,-$1}'`
      fi
 	fi
 	echo $valn
@@ -55,7 +55,7 @@ fi
      valnl=`echo $limit | awk '{printf "%f", $1}'`
 	 lsupera=`echo "$valnf < $valnl" | bc -l`
      if [ "$lsupera" -eq "1" ] ;then
-	  valn=`echo $valnl | awk -v fmt=$fff '{printf fmt,$1}'`
+	  valn=`echo $valnl | awk -v fmt=$fff '{printf fmt,-$1}'`
      fi
 	fi
     echo $valn
