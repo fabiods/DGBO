@@ -165,7 +165,7 @@ def ackley(solution):
     if res.returncode != 0 :
          print("basrun failed")
          print(x,yy)
-         quit()
+         sys.exit(1)
     strx=res.stdout.decode().split()     
     a=float(strx[0])
 #    if (a < 0 ):
@@ -431,7 +431,7 @@ while bondsok == False or fbondsok == False:
     if allsize < 0:
          print("HARD ERROR: negative allsize")
          print("check the bounds")
-         quit()
+         sys.exit(1)
     # dim = Dimension2([(ValueType.CONTINUOUS, [-1, 1], 1e-6)]*dim_size)  # another way to form up the dimension object
     objective = Objective(ackley, dim)  # form up the objective function
 
@@ -521,7 +521,7 @@ while bondsok == False or fbondsok == False:
         print(ggsg)
         if ggg.returncode != 0 :
           print("~/DGBO/basdergmf.sh failed")
-          quit()
+          sys.exit(1)
              
         
        
@@ -539,7 +539,7 @@ while bondsok == False or fbondsok == False:
                                                                  #print(ggg.stdout.decode('UTF-8'))
         if ggg.returncode != 0 :
              print("~/DGBO/basderfol.sh failed")
-             quit()
+             sys.exit(1)
              
         menergylast=np.loadtxt('basderfol.energy', dtype='float', usecols=(1))
         print("energylast",menergylast)
@@ -553,7 +553,7 @@ while bondsok == False or fbondsok == False:
         print(ggsg)
         if ggg.returncode != 0 :
              print("~/DGBO/basdergmf.sh failed")     
-             quit()
+             sys.exit(1)
         ggsgl=ggsg.split()
         fminggt=ggsgl[-1]
         fminggx=ggsgl[-2]
