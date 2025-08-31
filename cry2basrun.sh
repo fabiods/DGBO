@@ -169,7 +169,7 @@ done
 echo "bounds.dat:"
 cat bounds.dat
 echo "bmax.dat"
-echo bmax.dat
+cat bmax.dat
 
 echo " force that x0 is within the bounds"
 
