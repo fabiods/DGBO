@@ -59,19 +59,23 @@ export GMF=$newfmt
 
 cp inputhf.d12.par INC
 
+cp bmax.dat INC
+echo "bmax.dat"
+cat INC/bmax.dat
+
 #---run bas der flow----#
 cd INC
-cp sedfile.dat basrunsed.dat
-~/DGBO/basderfol.sh 100 | tee basderfol.out
-xxx=`tail -n 1 basderfol.out`
-echo "res:" $xxx
+ cp sedfile.dat basrunsed.dat
+ ~/DGBO/basderfol.sh 100 | tee basderfol.out
+ xxx=`tail -n 1 basderfol.out`
+ echo "res:" $xxx
 cd ..
 
 if [ ! -e "bmax.dat" ]; then
  echo "bmax.dat not found"
  exit
 fi
-cp bmax.dat INC
+
 paste INC/sedfile.dat.tmp.$kk | awk '{print $1,$1}' > bounds_inc.dat
 
 ~/DGBO/boundsinc.sh bounds_inc.dat   bmax.dat > bounds_inc1.dat
