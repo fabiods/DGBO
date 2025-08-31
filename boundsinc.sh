@@ -20,7 +20,7 @@ while read -r line; do
     
     gmin=`echo $line | awk '{printf "%f",$1}'`
     gmax=`echo $line | awk '{printf "%f",$2}'`
-    bmax=`echo $line | awk '{printf "%f",$3}'`
+    bmax=`echo $line | awk '{printf "%f",$4}'`
 #    echo $gmin $gmax $bmax
     gminneg=`echo "$gmin < 0" | bc -l`
     gmaxneg=`echo "$gmax < 0" | bc -l`
