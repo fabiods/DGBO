@@ -168,6 +168,8 @@ for ((k = 1 ; k <= $num ; k++ )); do
 done
 echo "bounds.dat:"
 cat bounds.dat
+echo "bmax.dat"
+echo bmax.dat
 
 echo " force that x0 is within the bounds"
 
