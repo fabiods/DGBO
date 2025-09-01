@@ -35,6 +35,7 @@ The input file in the directory is only
 It is a stardard crystal file, with * where exponent have to be optimized
 (only exponents of uncontracted shell are supported)
 This file is also used for the starting point.
+This file MUST CONTAIN the keyword EXCHGENE (for technical reasons)
 
 To consider a second ( a third, ... )  starting point use
 
