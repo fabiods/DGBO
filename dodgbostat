@@ -35,7 +35,7 @@ runcrycondtotal=`grep "runcrycond{" $fbasrunlog | wc -l | awk '{print $1}'`
 echo "runcrycond total (from $fbasrunlog):" $runcrycondtotal
 
 runcrycondok=`grep    "runcrycond{" $fbasrunlog  | grep " 0 " | wc -l | awk '{print $1}'`
-echo "     runcrycond ok:" $runcrycondok
+echo "   runcrycond ok:" $runcrycondok
 
 runningcrys=`grep  "running crystal" $fbasrunlog  | wc -l| awk '{print $1}'`
 echo "     new runs :" $runningcrys 
