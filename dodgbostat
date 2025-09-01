@@ -1,0 +1,56 @@
+#!/bin/bash
+gamma=$1  
+  
+fbasrunlog="basrun."$gamma".log"
+notconvfile="notconv."$gamma".dat"
+brunallene="basrun.allene."$gamma".dat"
+allene="allene."$gamma".dat"
+
+totalcall=`wc -l $notconvfile | awk '{print $1}'`
+echo "total call (from $notconvfile):" $totalcall
+
+totalcallnaprog=`grep NAPROG $notconvfile | wc -l | awk '{print $1}'`
+totalcallnarmax=`grep NARMAX $notconvfile | wc -l | awk '{print $1}'`  
+totalcallna=`grep NA $notconvfile | grep -v NAPROG | grep -v NARMAX | wc -l | awk '{print $1}'`  
+totalcallok=`grep -v NA $notconvfile | wc -l | awk '{print $1}'`
+
+echo "  total call NAPROG :" $totalcallnaprog
+echo "  total call NARMAX :" $totalcallnarmax 
+echo "  total call NA     :" $totalcallna
+echo "  total call ok     :" $totalcallok
+echo
+
+brunok=` wc -l $brunallene | awk '{print $1}'`
+echo " basrun pyt ok " $brunok
+
+bderok=` wc -l $allene | awk '{print $1}'`  
+echo " basrun der ok " $bderok
+
+
+echo
+runcrycondtotal=`grep "runcrycond{" $fbasrunlog | wc -l | awk '{print $1}'`
+echo "runcrycond total (from $fbasrunlog):" $runcrycondtotal
+
+runcrycondok=`grep    "runcrycond{" $fbasrunlog  | grep " 0 " | wc -l | awk '{print $1}'`
+echo "  runcrycond ok:" $runcrycondok
+
+outexisting=`grep  "getenefromout{" $fbasrunlog  | wc -l| awk '{print $1}'`
+echo "     outfile existing:" $outexisting
+outnarmax=`grep -A 6 "runcrycond{" $fbasrunlog   | grep NARMAX | wc -l`
+echo "     narmax:          " $outnarmax
+
+runcrycondone=`grep    "runcrycond{" $fbasrunlog  | grep " 1 " | wc -l | awk '{print $1}'`
+runcrycondtwo=`grep    "runcrycond{" $fbasrunlog  | grep " 2 " | wc -l | awk '{print $1}'`   
+runcrycondtre=`grep    "runcrycond{" $fbasrunlog  | grep " 3 " | wc -l | awk '{print $1}'`
+runcrycondnaprog=`echo $runcrycondone   $runcrycondtwo  $runcrycondtre  | awk '{print $1+$2+$3}'`
+runcrycondnaprogv=`grep -A 6 "runcrycond{" $fbasrunlog   | grep NAPROG | wc -l`
+echo "  runcrycondnaprog : " $runcrycondnaprog " ==" $runcrycondnaprogv
+echo "    runcrycond 1:" $runcrycondone
+echo "    runcrycond 2:" $runcrycondtwo
+echo "    runcrycond 3:" $runcrycondtre
+echo
+outexisting=`grep  "getenefromout{" $fbasrunlog  | wc -l| awk '{print $1}'`
+echo "  outfile existing: " $outexisting
+
+runningcrys=`grep  "running crystal" $fbasrunlog  | wc -l| awk '{print $1}'`
+echo "  new runs :" $runningcrys 
