@@ -7,7 +7,7 @@ brunallene="basrun.allene."$gamma".dat"
 allene="allene."$gamma".dat"
 basgmf="basdergmf."$gamma".log"
 basfol="basderfol."$gamma".log"
-paste $basgmf $basfol > "basrunGF."$gamma".log"
+cat $basgmf $basfol > "basrunGF."$gamma".log"
 
 totalcall=`wc -l $notconvfile | awk '{print $1}'`
 echo "total call (from $notconvfile):" $totalcall
