@@ -49,8 +49,7 @@ echo "    runcrycond 1:" $runcrycondone
 echo "    runcrycond 2:" $runcrycondtwo
 echo "    runcrycond 3:" $runcrycondtre
 echo
-outexisting=`grep  "getenefromout{" $fbasrunlog  | wc -l| awk '{print $1}'`
-echo "  outfile existing: " $outexisting
+
 
 runningcrys=`grep  "running crystal" $fbasrunlog  | wc -l| awk '{print $1}'`
 echo "  new runs :" $runningcrys 
