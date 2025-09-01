@@ -36,9 +36,14 @@ echo "runcrycond total (from $fbasrunlog):" $runcrycondtotal
 
 runcrycondok=`grep    "runcrycond{" $fbasrunlog  | grep " 0 " | wc -l | awk '{print $1}'`
 echo "  runcrycond ok:" $runcrycondok
-
-outexisting=`grep  "getenefromout{" $fbasrunlog  | wc -l| awk '{print $1}'`
+runningcrys=`grep  "running crystal" $fbasrunlog  | wc -l| awk '{print $1}'`
+echo "  new runs :" $runningcrys 
+outexisting=`grep  -A 1 "runcry{" $fbasrunlog | grep getenefromout {" | wc -l| awk '{print $1}'`
 echo "     outfile existing:" $outexisting
+
+runningcrys=`grep  "running crystal" $fbasrunlog  | wc -l| awk '{print $1}'`
+echo "  new runs :" $runningcrys 
+
 outnarmax=`grep -A 6 "runcrycond{" $fbasrunlog   | grep NARMAX | wc -l`
 echo "     narmax:          " $outnarmax
 
@@ -54,5 +59,4 @@ echo "    runcrycond 3:" $runcrycondtre
 echo
 
 
-runningcrys=`grep  "running crystal" $fbasrunlog  | wc -l| awk '{print $1}'`
-echo "  new runs :" $runningcrys 
+
