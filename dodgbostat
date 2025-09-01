@@ -59,7 +59,7 @@ runcrycondone=`grep    "runcrycond{" $hhh  | grep " 1 " | wc -l | awk '{print $1
 runcrycondtwo=`grep    "runcrycond{" $hhh  | grep " 2 " | wc -l | awk '{print $1}'`   
 runcrycondtre=`grep    "runcrycond{" $hhh  | grep " 3 " | wc -l | awk '{print $1}'`
 runcrycondnaprog=`echo $runcrycondone   $runcrycondtwo  $runcrycondtre  | awk '{print $1+$2+$3}'`
-runcrycondnaprogv=`grep -A 6 "runcrycond{" $hhh   | grep NAPROG | wc -l`
+runcrycondnaprogv=`grep -A 5 "runcrycond{" $hhh   | grep NAPROG | wc -l`
 echo "  runcrycondnaprog : " $runcrycondnaprog " ==" $runcrycondnaprogv
 echo "    runcrycond 1:" $runcrycondone
 echo "    runcrycond 2:" $runcrycondtwo
