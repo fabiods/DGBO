@@ -205,7 +205,10 @@ else
    gamma=0    
 fi
 LOGFILE="basdergmf.$gamma.log"
-rm $LOGFILE
+
+# dont delete
+#rm $LOGFILE
+
 echo "gamma" $gamma  >> $LOGFILE
    
 echo "---- bas der gmf ---"  | tee -a $LOGFILE
