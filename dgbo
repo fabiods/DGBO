@@ -21,6 +21,8 @@ pwd
 rm basrun.$gamma.log
 rm basrun.allene.$gamma.dat
 rm notconv.$gamma.dat
+rm basderfol.$gamma.log
+rm basdergmf.$gamma.log
 
 # in basdergmf
 rm allene.$gamma.dat
