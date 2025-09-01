@@ -47,7 +47,7 @@ echo "     outfile existing:" $outexisting
 outnarmax=`grep -A 22 "runcrycond{" $fbasrunlog   | grep NARMAX | wc -l`
 echo "     narmax:          " $outnarmax
 
-echo $runningcrys $outexisting $outnarmax | awk '{print "CHECKTOT", $1+$2+$3}' 
+echo $runningcrys $outexisting $outnarmax | awk '{print "   CHECKTOT", $1+$2+$3}' 
 
 runcrycondone=`grep    "runcrycond{" $fbasrunlog  | grep " 1 " | wc -l | awk '{print $1}'`
 runcrycondtwo=`grep    "runcrycond{" $fbasrunlog  | grep " 2 " | wc -l | awk '{print $1}'`   
