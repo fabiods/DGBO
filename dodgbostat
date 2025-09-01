@@ -52,7 +52,7 @@ outexisting=`grep  -A 1 "runcry{" $hhh | grep "getenefromout{" | wc -l| awk '{pr
 echo "     outfile existing:" $outexisting
 
 # this is a lot because eigs canbe not present
-outnarmax=`grep -A 22 "runcrycond{" $hhh   | grep NARMAX | wc -l`
+outnarmax=`grep -A 22 "runcrycond{" $hhh   | grep NARMAX | grep -v ENEDIFF | wc -l`
 echo "     narmax:          " $outnarmax
 
 echo $runningcrys $outexisting $outnarmax | awk '{print "   CHECKTOT", $1+$2+$3}' 
