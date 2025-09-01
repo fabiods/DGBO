@@ -40,7 +40,7 @@ echo "     runcrycond ok:" $runcrycondok
 runningcrys=`grep  "running crystal" $fbasrunlog  | wc -l| awk '{print $1}'`
 echo "     new runs :" $runningcrys 
 
-outexisting=`grep  -A 1 "runcry{" $fbasrunlog | grep "getenefromout {" | wc -l| awk '{print $1}'`
+outexisting=`grep  -A 1 "runcry{" $fbasrunlog | grep "getenefromout{" | wc -l| awk '{print $1}'`
 echo "     outfile existing:" $outexisting
 
 outnarmax=`grep -A 6 "runcrycond{" $fbasrunlog   | grep NARMAX | wc -l`
