@@ -22,15 +22,17 @@ echo "  total call NAPROG :" $totalcallnaprog
 echo "  total call NARMAX :" $totalcallnarmax 
 echo "  total call NA     :" $totalcallna
 echo "  total call ok     :" $totalcallok
+
+
+brunok=` wc -l $brunallene | awk '{print $1}'`
+echo "     basrun pyt ok " $brunok
+
+bderok=` wc -l $allene | awk '{print $1}'`  
+echo "     basrun der ok " $bderok
+
 echo $totalcallnaprog $totalcallnarmax $totalcallna $totalcallok | awk '{print "CHECKTOT:",$1+$2+$3+$4}'
 
 echo
-
-brunok=` wc -l $brunallene | awk '{print $1}'`
-echo " basrun pyt ok " $brunok
-
-bderok=` wc -l $allene | awk '{print $1}'`  
-echo " basrun der ok " $bderok
 
 
 echo
