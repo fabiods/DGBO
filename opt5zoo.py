@@ -613,7 +613,8 @@ while bondsok == False or fbondsok == False:
         
   x0=xarrnew    
   counti=counti+1
-print("END LOPP BONDS")        
+print("END LOPP BONDS")     
+print("opt5zoo ENDED")
 #    print(ggg.stdout.decode('UTF-8'))
 
 #-------------------bounds part----------------
