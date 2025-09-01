@@ -68,10 +68,18 @@ while read -r line; do
     #    eedt=`echo $line | awk '{printf "%5.3E",$2/2}'`
     # most diffuse exponents 
     eedt=`echo $line | awk '{printf "%20.10f",$2/4}'`
-    eedtc=`echo "$eedt < 0.06" | bc -l`
-    if [ "$eedtc" == "1" ]; then
-	eedt=0.06 
-    fi
+	
+	# check that the input is not already very diffuse
+	eedX=`echo $line | awk '{printf "%20.10f",$2}'`
+    eedXc=`echo "$eedX < 0.06" | bc -l`
+	if  [ "$eedXc" == "1" ]; then
+     eedt=$eedX/1.5
+	else 
+     eedtc=`echo "$eedt < 0.06" | bc -l`
+     if [ "$eedtc" == "1" ]; then
+	 eedt=0.06 
+     fi
+	fi
     
     myexp[$index]=$ee
     myexppt[$index]=$eept
@@ -87,7 +95,7 @@ echo ${myexp[@]}
 echo "myexp prima (defined only for first/last):"
 echo ${myexppt[@]}
 
-echo "myexp dopo (defined only for dirst/last):"
+echo "myexp dopo (defined only for first/last):"
 echo ${myexpdt[@]}
 
 echo "myexp defined"
@@ -102,7 +110,7 @@ mytyp[0]=""
 mytyp[$numl]=""
 
 echo ${myexp[@]}
-echo "average:"
+echo "average: (not defined for first and last)"
 for ((k = 0 ; k <= $num ; k++ )); do
 #    echo ${myexp[k]} ${myexp[k+1]} | awk '{ print sqrt($2*$1)}'
     myexpa[$k]=`echo ${myexp[k]} ${myexp[k+1]} | awk '{ print sqrt($2*$1)}' `
