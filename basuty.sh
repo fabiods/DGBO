@@ -447,8 +447,8 @@ function runcrycond(){
 	ene=`echo "l($rmax) + $enerefzero" |  bc -l`
 	echo "ENERGY",$rmax,$ene >> $LOGFILE
     fi
-    echo "qui" $input.ene  >> $LOGFILE
-    echo " " $ene $enevera > $input.ene 
+    #echo "qui" $input.ene  >> $LOGFILE
+    #echo " " $ene $enevera > $input.ene 
     echo "}runcrycond" >> $LOGFILE
 }
 
