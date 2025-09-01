@@ -13,12 +13,14 @@ totalcallnaprog=`grep NAPROG $notconvfile | wc -l | awk '{print $1}'`
 totalcallnarmax=`grep NARMAX $notconvfile | wc -l | awk '{print $1}'`  
 totalcallna=`grep NA $notconvfile | grep -v NAPROG | grep -v NARMAX | wc -l | awk '{print $1}'`  
 totalcallok=`grep -v NA $notconvfile | wc -l | awk '{print $1}'`
-echo $totalcallnaprog $totalcallnarmax $totalcallna $totalcallok | awk '{print "CHECKTOT:",$1+$2+$3+$4}'
+
 
 echo "  total call NAPROG :" $totalcallnaprog
 echo "  total call NARMAX :" $totalcallnarmax 
 echo "  total call NA     :" $totalcallna
 echo "  total call ok     :" $totalcallok
+echo $totalcallnaprog $totalcallnarmax $totalcallna $totalcallok | awk '{print "CHECKTOT:",$1+$2+$3+$4}'
+
 echo
 
 brunok=` wc -l $brunallene | awk '{print $1}'`
