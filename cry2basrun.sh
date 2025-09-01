@@ -73,7 +73,7 @@ while read -r line; do
 	eedX=`echo $line | awk '{printf "%20.10f",$2}'`
     eedXc=`echo "$eedX < 0.06" | bc -l`
 	if  [ "$eedXc" == "1" ]; then
-     eedt=$eedX/1.5
+     eedt=`echo $eedX | awk '{print $1/1.5}'`
 	else 
      eedtc=`echo "$eedt < 0.06" | bc -l`
      if [ "$eedtc" == "1" ]; then
