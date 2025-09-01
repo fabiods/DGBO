@@ -79,14 +79,14 @@ fi
   while [ "$conv" == "no" ] && [ "$cnt" -lt "$npart" ]; do
     cp basrunsed.dat basrunsed.dat.$cnt	 
 	
-    rm  basdergmf.$gamma.log   
+    mv  basdergmf.$gamma.log qggg  
     ~/DGBO/basdergmf.sh > yyy.$cnt
     echo               >> $LOGFILE
 	echo "DERGMF START {" >> $LOGFILE
     cat basdergmf.$gamma.log >> $LOGFILE
     echo "}DERGMF END}" >> $LOGFILE
 	echo              >>$LOGFILE
-     rm  basdergmf.$gamma.log 
+    mv   qggg basdergmf.$gamma.log 
 	 
     rrr=`grep enezero yyy.$cnt | awk '{print $2}'`
 	echo >> $LOGFILE
