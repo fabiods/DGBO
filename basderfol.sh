@@ -20,7 +20,10 @@ if [ -e "gamma.info" ]; then
 fi
 
 LOGFILE="basderfol.$gamma.log"
-rm $LOGFILE
+
+# dont delete
+#rm $LOGFILE
+
 echo "gamma" $gamma >> $LOGFILE
 
 echo "---- bas der fol ---"  | tee -a $LOGFILE
@@ -75,14 +78,16 @@ fi
 #    rm basderfol.energy
   while [ "$conv" == "no" ] && [ "$cnt" -lt "$npart" ]; do
     cp basrunsed.dat basrunsed.dat.$cnt	 
-    
+	
+    rm  basdergmf.$gamma.log   
     ~/DGBO/basdergmf.sh > yyy.$cnt
     echo               >> $LOGFILE
 	echo "DERGMF START {" >> $LOGFILE
     cat basdergmf.$gamma.log >> $LOGFILE
     echo "}DERGMF END}" >> $LOGFILE
 	echo              >>$LOGFILE
- 
+     rm  basdergmf.$gamma.log 
+	 
     rrr=`grep enezero yyy.$cnt | awk '{print $2}'`
 	echo >> $LOGFILE
     echo "cycle= " $cnt "energy= " $rrr | tee -a $LOGFILE
