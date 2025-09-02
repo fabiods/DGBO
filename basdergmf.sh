@@ -17,7 +17,7 @@ function gradientpara() {
     nbas=`wc -l $fname |awk '{print $1}'`
  echo  | tee -a $LOGFILE       
  
- if [ -e  mv basrun.$gamma.log ]; then
+ if [ -e  basrun.$gamma.log ]; then
  mv basrun.$gamma.log  xuuuu
  fi
  
