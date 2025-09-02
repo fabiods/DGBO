@@ -19,16 +19,32 @@ find . -maxdepth 1 -iname "out*"  | xargs ls  | grep -v eigs | grep -v ene > lis
 #dir out* | grep -v eigs | grep -v ene > listout
 #head -n 1000 listout > listout1000
 wc -l listout
+
 LOGFILE="checkallout.log"
-rm $LOGFILE
+if [ -e $LOGFILE ]; then
+ rm $LOGFILE
+fi 
+
 echo $tolb | tee -a $LOGFILE
 wc -l listout    | tee -a $LOGFILE
-mkdir removed >& /dev/null
-mkdir notconv >& /dev/null
-mkdir openerr >& /dev/null
-mkdir inccyc  >& /dev/null
-mkdir bohc >& /dev/null
+if [ ! -d removed ]; then 
+mkdir removed 
+fi 
+if [ ! -d notconv ]; then 
+mkdir notconv 
+fi
+if [ ! -d openerr ]; then
+mkdir openerr 
+fi 
+if [ ! -d inccyc ]; then 
+mkdir inccyc  
+fi
+if [ ! -d bohc ]; then 
+mkdir bohc 
+fi 
+if [ -e td.dat ]; then 
 rm td.dat
+fi
 echo "                                   waserr , toomany ,  chdetot , chdetotv, chktst , chklla , chkdiis, ene   " | tee -a $LOGFILE   
 openerr=0
 notconvnormal=0
@@ -38,8 +54,12 @@ diisfail=0
 okbuttst=0
 bohc=0
 waserrc=0
+if [ -e notconvall.dat ]; then
 rm notconvall.dat
+fi
+if [ -e rtime.dat ]; then
 rm rtime.dat
+fi 
 while read -r line; do
 #    echo $line
     isopenerr=0    
@@ -48,17 +68,17 @@ while read -r line; do
     ett=`grep INPUTT $line | wc -l | awk '{print $1}'`
     ela=`grep "INCREASE ILASIZE" $line | wc -l | awk '{print $1}'`  
     if [ "$err" -ne "0" ] || [ "$ett" -ne "0" ] ||  [ "$ela" -ne "0" ]; then
-	grep -H INPBAS $line
-	echo $err $ett $ela | tee -a $LOGFILE   
-	ls -al $line
-	rm $line
-#	exit
+	 grep -H INPBAS $line
+	 echo $err $ett $ela | tee -a $LOGFILE   
+	 ls -al $line
+	 rm $line
+#	 exit
     else
-#     echo $line
-	getenefromout $line $tolb "yes" "no"
-    ncycles=`grep DETOT $line |tail -n 1 |awk '{print $2}'`
-    timef=`grep "TTTTT END         TELAPSE" $line | awk '{print $4}'`
-#	echo $line , $waserr , $tma , $chdetot , $chdetotv, $chktst , $chklla , $chkdiis, $ene 
+#    echo $line
+	 getenefromout $line $tolb "yes" "no"
+     ncycles=`grep DETOT $line |tail -n 1 |awk '{print $2}'`
+     timef=`grep "TTTTT END         TELAPSE" $line | awk '{print $4}'`
+#	 echo $line , $waserr , $tma , $chdetot , $chdetotv, $chktst , $chklla , $chkdiis, $ene 
 	# tma too many cicles not considered
 	if [ "$waserr" == "no" ]; then
 	if [ "$chdetotv" != "1" ] || [ "$chktst" != "1" ] || [ "$chklla" != "1" ] ||  [ "$chkdiis" != "1" ]; then
