@@ -75,9 +75,15 @@ for start in inputhf.d12.orig inputhf.d12.orig? ; do
 cp $start".par" inputhf.d12.par
 
 # save
-    mv basrun.$gamma.log           xggg1 >& /dev/null
-    mv basrun.allene.$gamma.dat    xggg2 >& /dev/null
-    mv notconv.$gamma.dat          xggg3 >& /dev/null
+    if [ -e basrun.$gamma.log ]; then
+    mv basrun.$gamma.log           xggg1 
+    fi
+    if [ -e basrun.allene.$gamma.dat ]; then
+    mv basrun.allene.$gamma.dat    xggg2 
+    fi
+    if [ -e notconv.$gamma.dat ]; then
+    mv notconv.$gamma.dat          xggg3 
+    fi
 
 #set -x
 # do always but sotre only for the first orig file
