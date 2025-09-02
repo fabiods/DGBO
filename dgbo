@@ -189,6 +189,11 @@ fi # file orig
     ~/DGBO/basrun.sh
     cp basrunsed.dat basrunsed.optorig$count.dat
 done
+
+# statistics
+
+~/DGBO/dodgbostat $gamma
+
 # turned for xmgrace plot
 awk '{print $3,$5,$7,$6}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA | uniq > rmax0_enec.$gamma.dat
 awk '{print $3,$6,$7}' notconv.$gamma.dat | sort -k 1 -g | grep -v NA | uniq > rmax0_enef.$gamma.dat
