@@ -79,12 +79,16 @@ fi
     conv="no"
     cnt=0
     echo "Starting cycles:" | tee -a $LOGFILE
+	if [ -e yyy.0 ]; then
 	rm yyy.*
+    fi
+	
 #    rm basderfol.energy
   while [ "$conv" == "no" ] && [ "$cnt" -lt "$npart" ]; do
     cp basrunsed.dat basrunsed.dat.$cnt	 
-	
+	if [ -e  basdergmf.$gamma.log ]; then
     mv  basdergmf.$gamma.log qggg  
+	fi 
 	echo "running ~/DGBO/basdergmf.sh > yyy.$cnt " | tee -a $LOGFILE
     ~/DGBO/basdergmf.sh > yyy.$cnt
     echo               >> $LOGFILE
@@ -92,8 +96,9 @@ fi
     cat basdergmf.$gamma.log >> $LOGFILE
     echo "}DERGMF END}" >> $LOGFILE
 	echo              >>$LOGFILE
+    if [ -e qggg ]; then
     mv   qggg basdergmf.$gamma.log 
-	 
+	fi 
     rrr=`grep enezero yyy.$cnt | awk '{print $2}'`
 	echo >> $LOGFILE
     echo "cycle= " $cnt "energy= " $rrr | tee -a $LOGFILE
