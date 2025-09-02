@@ -36,8 +36,13 @@ rm basdergmf.$gamma.log
 fi
 
 # in basdergmf
+if [ -e basderfol.sh ]; then
 rm allene.$gamma.dat
+fi
+
+if [ -e ENEREFZERO.dat ]; then
 rm ENEREFZERO.dat
+fi 
 
 if [ ! -e inputhf.d12.orig ]; then
    echo "inputhf.d12.orig missed"
