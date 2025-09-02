@@ -241,8 +241,8 @@ function getenefromout {
  # 	      -1         crash      crash       crash                        
  #
               #===============diis==============	
-			  diisth=`echo $ncycles $ttol | awk '{print (9+90/$1)*$2}'`
-	          echo "diisth" $diisth
+			  diisth=`echo $ncycles $ttol | awk '{printf "%30.15f",(9+90/$1)*$2}'`
+	          echo "diisth" $diisth >> $LOGFILE
               diis=`grep "DIIS TEST" $inp | tail -n 1 | awk '{printf "%30.15f",$3}'`
               chkdiis=`echo "sqrt($diis*$diis) <= $diisth" | bc -l`
               echo "diis" $diis $chkdiis >> $LOGFILE
