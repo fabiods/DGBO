@@ -46,6 +46,9 @@ if [ ! -e inputhf.d12.par ];  then
     exit
 fi
 
+echo "bmax.dat"
+cat bmax.dat
+
 told=`grep -A 1 "TOLDEE" inputhf.d12.par | tail -n 1 `
 tol=`echo $told | awk '{print 10**(-$1)}'`
 tolb=`echo $tol | awk '{printf "%15.10f",$1}'`
