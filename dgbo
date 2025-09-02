@@ -120,9 +120,15 @@ grep -m 1 maxrmax basrun.$gamma.log
      if [ -e notconv.$gamma.dat ]; then
      rm notconv.$gamma.dat
      fi 
-     mv xggg1  basrun.$gamma.log        >& /dev/null
-     mv xggg2  basrun.allene.$gamma.dat >& /dev/null
-     mv xggg3  notconv.$gamma.dat       >& /dev/null
+     if [ -e xggg1 ]; then
+     mv xggg1  basrun.$gamma.log   
+     fi
+     if [ -e xggg2 ]; then 
+     mv xggg2  basrun.allene.$gamma.dat 
+     fi
+     if [ -e xggg3 ]; then
+     mv xggg3  notconv.$gamma.dat     
+     fi
 
 #---------this is the run with orig and GMF
 echo $GMF
