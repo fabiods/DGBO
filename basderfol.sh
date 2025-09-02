@@ -1,6 +1,7 @@
 #!/bin/bash
 #set -x
 set -u
+set -e
 # input: GMF
 #        basrunsed.dat
 #        inputhf.d12.par
