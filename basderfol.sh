@@ -24,7 +24,7 @@ LOGFILE="basderfol.$gamma.log"
 # dont delete
 #rm $LOGFILE
 
-echo "gamma" $gamma >> $LOGFILE
+echo "gamma" $gamma | tee -a $LOGFILE
 
 echo "---- bas der fol ---"  | tee -a $LOGFILE
 numpar=$#
