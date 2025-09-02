@@ -1,6 +1,9 @@
 #!/bin/bash
 set -u
 set -e
+
+source ~/DGBO/basuty.sh
+
 if [ ${GMF:-"undef"} == "undef" ]; then
     echo GMF not defined
     exit
@@ -19,26 +22,8 @@ echo "gamma" $gamma
 #| tee -a $LOGFILE
 
 pwd 
-if [ -e basrun.$gamma.log ]; then
-rm basrun.$gamma.log
-fi
-if [ -e basrun.allene.$gamma.dat ]; then
-rm basrun.allene.$gamma.dat
-fi
-if [ -e notconv.$gamma.dat ]; then
-rm notconv.$gamma.dat
-fi
-if [ -e  basderfol.$gamma.log ]; then
-rm basderfol.$gamma.log
-fi
-if [ -e basdergmf.$gamma.log ]; then
-rm basdergmf.$gamma.log
-fi
 
-# in basdergmf
-if [ -e allene.$gamma.dat ]; then
-rm allene.$gamma.dat
-fi
+cleanrun $gamma
 
 if [ -e ENEREFZERO.dat ]; then
 rm ENEREFZERO.dat
