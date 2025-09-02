@@ -19,16 +19,16 @@ echo "gamma" $gamma
 #| tee -a $LOGFILE
 
 pwd 
-if [ -e basderfol.sh ]; then
+if [ -e basrun.$gamma.log ]; then
 rm basrun.$gamma.log
 fi
-if [ -e basderfol.sh ]; then
+if [ -e basrun.allene.$gamma.dat ]; then
 rm basrun.allene.$gamma.dat
 fi
-if [ -e basderfol.sh ]; then
+if [ -e notconv.$gamma.dat ]; then
 rm notconv.$gamma.dat
 fi
-if [ -e basderfol.sh ]; then
+if [ -e  basderfol.$gamma.log ]; then
 rm basderfol.$gamma.log
 fi
 if [ -e basdergmf.$gamma.log ]; then
