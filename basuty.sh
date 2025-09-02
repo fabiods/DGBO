@@ -188,7 +188,7 @@ function getenefromout {
 	    ene="NAERR"
 	    chdetot=-1
 	 else     
-         ncycles=`grep DETOT $inp | tail -n 1 | awk '{print $2}'
+         ncycles=`grep DETOT $inp | tail -n 1 | awk '{print $2}'`
 	     detot=`grep "TOTAL ENERGY(HF)"            $inp | awk -F DE '{print $2}' | awk '{printf "%30.10f",$1}'`
 	     detota=`echo "sqrt($detot*$detot)" | bc -l`
 	     # 8 perche ci sono problemi all ultimo ciclo 
@@ -196,7 +196,7 @@ function getenefromout {
 	    chdetotv=`echo "sqrt($detot*$detot) <= $ttol" | bc -l`
 	    chdetotf=`echo "sqrt($detot*$detot) <= 999*$ttol" | bc -l`    
 	    tma=`grep "SCF ENDED - TOO MANY CYCLES"   $inp | wc -l`             
-	    echo "tma detot chdetot chdetotv" $tma $detota $chdetot $chdetotv >> $LOGFILE 
+	    echo "tma detot chdetot chdetotv ncycles" $tma $detota $chdetot $chdetotv $ncycles >> $LOGFILE 
 
   	    if [ "$chdetot" -eq "0" ]; then   
 #	 if [ "$tma" -eq "1" ]; then
