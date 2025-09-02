@@ -1,6 +1,7 @@
 #!/bin/bash
 #set -x
 set -u
+set -e
 source ~/DGBO/basuty.sh
 
 
