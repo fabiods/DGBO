@@ -19,10 +19,10 @@ echo "gamma" $gamma
 #| tee -a $LOGFILE
 
 pwd 
-if [ -e basderfol.sh]; then
+if [ -e basderfol.sh ]; then
 rm basrun.$gamma.log
 fi
-if [ -e basderfol.sh]; then
+if [ -e basderfol.sh ]; then
 rm basrun.allene.$gamma.dat
 fi
 if [ -e basderfol.sh ]; then
