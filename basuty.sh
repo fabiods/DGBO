@@ -150,6 +150,7 @@ function getenefromout {
     ball=`grep "ALL G-VECTORS USED"          $inp | wc -l`
     bila=`grep "INCREASE ILASIZE"            $inp | wc -l`
     chklla=""
+    chkllaf=""
     chktst=""
     chdetot=""
     chkdiis=""
@@ -230,10 +231,12 @@ function getenefromout {
 	      # controllo ultimo detot, perche la convergenza e' sulla penultima
 	      if [ "$lla" != "" ]; then 
 	       chklla=`echo "sqrt($lla*$lla) <= $ttol" | bc -l`
-	       echo "checklast" $lla $chklla >> $LOGFILE
+           chkllaf=`echo "sqrt($lla*$lla) <= 999*$ttol" | bc -l`
+	       echo "checklast" $lla $chklla $chkllaf >> $LOGFILE
           else
-		  chklla=-1
-		  waserr="yes"
+ 		   chklla=-1
+	       chkllaf=-1
+		   waserr="yes"
 	      fi
  #                        1          0          -1
  #	      1                                 crash
@@ -590,26 +593,26 @@ function sedinputx() {
     }
 
 function cleanrun() {
-lgamma=$1
-if [ -e basrun.$lgamma.log ]; then
-     rm basrun.$lgamma.log
-fi
-if [ -e basrun.allene.$lgamma.dat ]; then
-     rm basrun.allene.$lgamma.dat
-fi
-if [ -e notconv.$lgamma.dat ]; then
-     rm notconv.$lgamma.dat
-fi
-if [ -e  basderfol.$lgamma.log ]; then
-      rm basderfol.$lgamma.log
-fi
-if [ -e basdergmf.$lgamma.log ]; then
-     rm basdergmf.$lgamma.log
-fi
+ local lgamma=$1
+ if [ -e basrun.$lgamma.log ]; then
+      rm basrun.$lgamma.log
+ fi
+ if [ -e basrun.allene.$lgamma.dat ]; then
+      rm basrun.allene.$lgamma.dat
+ fi
+ if [ -e notconv.$lgamma.dat ]; then
+      rm notconv.$lgamma.dat
+ fi
+ if [ -e  basderfol.$lgamma.log ]; then
+       rm basderfol.$lgamma.log
+ fi
+ if [ -e basdergmf.$lgamma.log ]; then
+      rm basdergmf.$lgamma.log
+ fi
 
 # in basdergmf
-if [ -e allene.$lgamma.dat ]; then
+ if [ -e allene.$lgamma.dat ]; then
      rm allene.$lgamma.dat
-fi
+ fi
 
 }
