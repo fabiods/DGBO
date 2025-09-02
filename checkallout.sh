@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -e
+set -e
 set -u
 source ~/DGBO/basuty.sh
 if [ $# -ge 1 ]; then
