@@ -590,5 +590,26 @@ function sedinputx() {
     }
 
 function cleanrun() {
+lgamma=$1
+if [ -e basrun.$lgamma.log ]; then
+     rm basrun.$lgamma.log
+fi
+if [ -e basrun.allene.$lgamma.dat ]; then
+     rm basrun.allene.$lgamma.dat
+fi
+if [ -e notconv.$lgamma.dat ]; then
+     rm notconv.$lgamma.dat
+fi
+if [ -e  basderfol.$lgamma.log ]; then
+      rm basderfol.$lgamma.log
+fi
+if [ -e basdergmf.$lgamma.log ]; then
+     rm basdergmf.$lgamma.log
+fi
+
+# in basdergmf
+if [ -e allene.$lgamma.dat ]; then
+     rm allene.$lgamma.dat
+fi
 
 }
