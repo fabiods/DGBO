@@ -15,6 +15,8 @@ function gradientpara() {
 #  
     nbas=`wc -l $fname |awk '{print $1}'`
  echo  | tee -a $LOGFILE       
+
+ mv basrun.$gamma.log  xuuuu
  echo "gradientpara{ " $fname $ezero $inputhf $nprocs | tee -a $LOGFILE
  ck=0
  tosim=0
@@ -64,6 +66,7 @@ function gradientpara() {
  rm $inputhf.$i.*
  done
  echo "}GRADIENT PARA " >>$LOGFILE
+ mv xuuuu basrun.$gamma.log
 }
 
 
