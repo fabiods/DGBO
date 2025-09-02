@@ -68,8 +68,11 @@ cat INC/bmax.dat
 #---run bas der flow----#
 cd INC
  cp sedfile.dat basrunsed.dat
- ~/DGBO/basderfol.sh 100 | tee basderfol.out
- xxx=`tail -n 1 basderfol.out`
+ if [ -e basderfol.$gamma.log ]; then
+   rm INC/basderfol.$gamma.log
+ fi  
+ ~/DGBO/basderfol.sh 100 | tee basderfol.$gamma.out
+ xxx=`tail -n 1 basderfol.$gamma.out`
  echo "res:" $xxx
 cd ..
 
