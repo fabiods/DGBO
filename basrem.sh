@@ -1,5 +1,7 @@
 #!/bin/bash
 #set -x
+set -e
+set -u
 if [ ! -e sedfile.dat ]; then
     echo "sedfile.dat missed"
     exit
