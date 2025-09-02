@@ -188,6 +188,7 @@ function getenefromout {
 	    ene="NAERR"
 	    chdetot=-1
 	 else     
+         ncycles=`grep DETOT $inp | tail -n 1 | awk '{print $2}'
 	     detot=`grep "TOTAL ENERGY(HF)"            $inp | awk -F DE '{print $2}' | awk '{printf "%30.10f",$1}'`
 	     detota=`echo "sqrt($detot*$detot)" | bc -l`
 	     # 8 perche ci sono problemi all ultimo ciclo 
@@ -239,9 +240,10 @@ function getenefromout {
  #	      0                     notconv     crash
  # 	      -1         crash      crash       crash                        
  #
-              #===============diis==============	      
+              #===============diis==============	
+			  diisth=echo $ncycles $ttol | awk '{print (9+90/$1)*$2}'
               diis=`grep "DIIS TEST" $inp | tail -n 1 | awk '{printf "%30.15f",$3}'`
-              chkdiis=`echo "sqrt($diis*$diis) <= 9*$ttol" | bc -l`
+              chkdiis=`echo "sqrt($diis*$diis) <= $diisth" | bc -l`
               echo "diis" $diis $chkdiis >> $LOGFILE
 	      
 	      if  [ "$chktst" -eq "-1" ] ||  [ "$chklla" -eq "-1" ] ; then
