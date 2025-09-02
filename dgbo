@@ -111,9 +111,15 @@ grep -m 1 gamma basrun.$gamma.log
 grep -m 1 maxrmax basrun.$gamma.log
 
 # output from basrun of the orig point are useless
+     if [ -e basrun.$gamma.log ]; then
      rm basrun.$gamma.log
+     fi
+     if [ -e basrun.allene.$gamma.dat ]; then
      rm basrun.allene.$gamma.dat
+     fi
+     if [ -e notconv.$gamma.dat ]; then
      rm notconv.$gamma.dat
+     fi 
      mv xggg1  basrun.$gamma.log        >& /dev/null
      mv xggg2  basrun.allene.$gamma.dat >& /dev/null
      mv xggg3  notconv.$gamma.dat       >& /dev/null
