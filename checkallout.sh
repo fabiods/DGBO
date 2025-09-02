@@ -56,6 +56,7 @@ while read -r line; do
     else
 #     echo $line
 	getenefromout $line $tolb "yes" "no"
+    ncycles=`grep DETOT $line |tail -n 1 |awk '{print $2}'`
     timef=`grep "TTTTT END         TELAPSE" $line | awk '{print $4}'`
 #	echo $line , $waserr , $tma , $chdetot , $chdetotv, $chktst , $chklla , $chkdiis, $ene 
 	# tma too many cicles not considered
@@ -152,7 +153,7 @@ while read -r line; do
     
     fi
     #    exit
-     echo $line $detota $llaa $tst $diis $enemay "|" $waserr  $tma  $chdetot $chdetotv,  $chktst  $chklla  $chkdiis $ene $str  >> td.dat 
+     echo $line $detota $llaa $tst $diis $enemay $ncycles "|" $waserr  $tma  $chdetot $chdetotv,  $chktst  $chklla  $chkdiis $ene $str  >> td.dat 
 	 rmax=`cat $line.eigs.rmax | awk '{print $2}'`
      echo "rmax rmax0" $rmax $rmax $ene $ene $line >> notconvall.dat
 	 echo $rmax $timef $ene $line >> rtime.dat
