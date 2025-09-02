@@ -1,4 +1,6 @@
 #!/bin/bash
+set -u
+set -e
 gamma=$1  
   
 fbasrunlog="basrun."$gamma".log"
