@@ -589,3 +589,6 @@ function sedinputx() {
     echo "}sedinputx" >> $LOGFILE
     }
 
+function cleanrun() {
+
+}
