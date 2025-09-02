@@ -36,7 +36,7 @@ rm basdergmf.$gamma.log
 fi
 
 # in basdergmf
-if [ -e basderfol.sh ]; then
+if [ -e allene.$gamma.dat ]; then
 rm allene.$gamma.dat
 fi
 
