@@ -69,7 +69,7 @@ cat INC/bmax.dat
 cd INC
  cp sedfile.dat basrunsed.dat
  if [ -e basderfol.$gamma.log ]; then
-   rm INC/basderfol.$gamma.log
+   rm basderfol.$gamma.log
  fi  
  ~/DGBO/basderfol.sh 100 | tee basderfol.$gamma.out
  xxx=`tail -n 1 basderfol.$gamma.out`
