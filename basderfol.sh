@@ -80,6 +80,7 @@ fi
     cp basrunsed.dat basrunsed.dat.$cnt	 
 	
     mv  basdergmf.$gamma.log qggg  
+	echo "running ~/DGBO/basdergmf.sh > yyy.$cnt " | tee -a $LOGFILE
     ~/DGBO/basdergmf.sh > yyy.$cnt
     echo               >> $LOGFILE
 	echo "DERGMF START {" >> $LOGFILE
