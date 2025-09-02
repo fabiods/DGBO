@@ -99,6 +99,8 @@ rm basrun.allene.$gamma.dat
 rm notconv.$gamma.dat
 rm basrun.$gamma.log
 rm allene.$gamma.dat
+rm basdergmf.$gamma.log
+rm basderfol.$gamma.log
 fi
 #pwd
 #python -u ~/opt3.py nd
