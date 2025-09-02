@@ -91,17 +91,18 @@ while read -r line; do
                  echo " ----- ONLY DIIS FAILED----"   $diisfail | tee -a $LOGFILE   
                  str="diisfail"
 
-	    elif  [ "$tma" == "1" ] && [ "$chdetotf" == "1" ]; then
-		echo $line , $waserr , $tma , $chdetot , $chdetotv, $chktst , $chklla , $chkdiis, $ene | tee -a $LOGFILE   
-		grep DETOT $line | tail -n 5
+	    elif  [ "$tma" == "1" ] && [ "$chdetotf" == "1" ] &&  [ "$chkllaf" == "1" ]; then
+	 #   too may cycles and the last two detot < 999*tol
+		 echo $line , $waserr , $tma , $chdetot , $chdetotv, $chktst , $chklla , $chkdiis, $ene | tee -a $LOGFILE   
+		 grep DETOT $line | tail -n 5
                 enemay=`grep DETOT $line | tail -n 1  | awk '{print $4}'`
                 incc=$((incc+1))
-		echo " ----- MAYBE INCREAS MAXCYCLE----" $incc | tee -a $LOGFILE   
-		if [ "$move" == "MOVEINCCYC" ] || [ "$move" == "MOVE" ]; then
+		 echo " ----- MAYBE INCREAS MAXCYCLE----" $incc | tee -a $LOGFILE   
+		 if [ "$move" == "MOVEINCCYC" ] || [ "$move" == "MOVE" ]; then
 		    echo "mv $line inccyc" | tee -a $LOGFILE   
                     mv $line inccyc
-		fi
-		str="incmax"
+		 fi
+		 str="incmax"
 #	     elif [ "$chdetotv" == "0" ] && [ "$chklla" == "1" ]; then	
 	    else
 		echo $line , $waserr , $tma , $chdetot , $chdetotv, $chktst , $chklla , $chkdiis, $ene | tee -a $LOGFILE   
