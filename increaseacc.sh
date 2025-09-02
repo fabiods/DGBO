@@ -1,6 +1,9 @@
 #!/bin/bash
 set -u
 set -e
+
+source ~/DGBO/basuty.sh
+
 # input file:
 # basrun.allene.dat
 # sedfile.dat
@@ -14,6 +17,7 @@ if [ -e "gamma.info" ]; then
    gamma=0    
 fi
 echo "gamma" $gamma
+
 cat basrun.allene.$gamma.dat allene.$gamma.dat > tmpx
 sort -k 1 -r -g  tmpx  | uniq > basrun.allene.$gamma.uniq.dat
 rm tmpx
@@ -98,24 +102,22 @@ cat INC/bounds.dat
 cd INC
 
 if [ "$kk" == "1" ]; then
-rm basrun.allene.$gamma.dat
-rm notconv.$gamma.dat
-rm basrun.$gamma.log
-rm allene.$gamma.dat
-rm basdergmf.$gamma.log
-rm basderfol.$gamma.log
+
+ cleanrun $gamma
+
 fi
+
 #pwd
 #python -u ~/opt3.py nd
-
 #pwd
 #python -u ~/opt3.py pow
-
 #pwd
 #python -u ~/opt3.py boby
 
 pwd
+
 python -u ~/DGBO/opt5zoo.py
+
 cp basrunsed.dat basrunsed.min$kk.dat
 
 cd ..
