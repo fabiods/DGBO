@@ -127,7 +127,7 @@
       iselected=0
       do i=1,n    
          ! compare to minimum
-         if (e1(i)-e1(n).lt.1.d-4) then 
+         if (e1(i)-e1(n).lt.1.d-3) then 
    ! max distance between 2 points 
            dd=0.d0
            do k=1,nc
