@@ -50,9 +50,9 @@ for kk in {1..3}; do
    tail -n 1 tmpx  | awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
     rm tmpx
  elif [ "$kk" == "2" ]; then
-   grep SEL xdiff.out > ooosss
-   if [ -s ooosss ]; then
-    cat ooosss
+   oswc=`grep SEL xdiff.out | wc -l || echo 0`
+   if [ "$oswc" -gt "0"  ]; then
+    grep SEL xdiff.out > ooosss
     tail -n 1 ooosss|  awk '{ for (i=3; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
     rm ooosss
    else
