@@ -42,16 +42,26 @@ awk -v gg=$gran '{print $1*gg}' ox.list > ox.listg
 
 for kk in {1..3}; do
 # 1 abs min
-# 2 abs min
+# 2 abs from xdiff
 # 3 min basrun
-
+ skip=0
  if [ "$kk" == "3" ]; then
    sort -k 1 -r -g   basrun.allene.$gamma.dat | uniq > tmpx
    tail -n 1 tmpx  | awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
     rm tmpx
-    else
-tail -n $kk basrun.allene.$gamma.uniq.dat | head -n 1  | awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
-    fi 
+ elif [ "$kk" == "2" ]; then
+   grep SEL | xdiff.out > ooosss
+   if [ -s ooosss ]; then
+    tail -n 1 ooossss|  awk '{ for (i=3; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
+   else
+    echo "no SEL from xdiff
+    skip=1
+   fi
+ else 
+    tail -n $kk basrun.allene.$gamma.uniq.dat | head -n 1  | awk '{ for (i=4; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
+ fi 
+ 
+ if [ "$skip" == "0" ]; then
 echo
 echo
 echo 'selected minima : ' $kk
@@ -122,6 +132,7 @@ cp basrunsed.dat basrunsed.min$kk.dat
 
 cd ..
 
+fi  # skip
 done
 echo "end loop over minima"
 
