@@ -56,7 +56,7 @@
       do i=1,n
          
          do k=1,nc
-         ok(x)=ordg( x1(i,k) )
+         ox(k)=ordg( x1(i,k) )
          if (x1(i,k).gt.vmax(k)) vmax(k)=x1(i,k)
          if (x1(i,k).lt.vmin(k)) vmin(k)=x1(i,k)
          if (ox(k).gt.oxmax(k)) oxmax(k)=ox(k)
