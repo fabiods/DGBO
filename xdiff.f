@@ -85,7 +85,7 @@
       rrr=1.d7
 ! loop over all couple of points 
 ! to find rrr = minimal distance
-      do i=1,n      
+       do i=1,n
          do j=i+1,n
            ! distance between 2 points 
            dd=0.d0
@@ -116,12 +116,10 @@
 !            write(*,*) k,ovv,dd
             endif
             enddo
-            
-          write(*,'(3F20.10,F10.5,"    ",20F8.3)')       
-     &   e1(i)-e1(n),    e2(i)-e2(n), ed(i)-ed(n),    dd,                       
-     &  (x1(i,ii)-x1(n,ii),ii=1,nc), (x1(i,ii),ii=1,nc)
-         endif
+         
       enddo
+
+
   
    
       ! last one
@@ -129,6 +127,25 @@
 !         write(*,*) 'ox',ox(k)
 !      enddo   
       write(*,'(A,F10.4)') 'granularity',rrr
+      if (dabs(rrr-1.d0).lt.1.d-6) then
+         write(*,*) 'FMT %2.0E"
+      else if   (dabs(rrr-0.1.d0).lt.1.d-6) then
+        write(*,*) 'FMT %3.1E"
+      endif
+!------------------------select minima--------------
+     iselected=0
+      do i=1,n    
+       if (dd.gt.1.01d0) then
+           if (e2(i)-e2(n).lt.0.d0) then 
+            selected=i
+            write(*,'("SEL",i,2X,20E10.3)') (x1(i,ii),ii=1,nc)
+            endif
+           endif 
+          write(*,'(3F20.10,F10.5,"    ",20F8.3)')       
+     &   e1(i)-e1(n),    e2(i)-e2(n), ed(i)-ed(n),    dd,                       
+     &  (x1(i,ii)-x1(n,ii),ii=1,nc), (x1(i,ii),ii=1,nc)
+         endif
+      enddo   
 !---------------------compute dist-----------
       ! compute granularity
       mmin=1.d7
