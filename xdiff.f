@@ -4,7 +4,7 @@
       double precision dd,dene,mmin,mmax
       integer , parameter :: mm=10000,ncmax=11
       double precision e1(mm),e2(mm),ed(mm),x1(mm,ncmax),y(ncmax)
-      double precision ox(ncmax),rrr,dmax(ncmax),dmin(ncmax)
+      double precision ox(ncmax),rrr,dmax(ncmax),dmin(ncmax),vmin(ncmax),vmax(ncmax)
       double precision oxmin(ncmax),oxmax(ncmax)
       integer kf,ii
 !     rrr=0.001d0
@@ -31,16 +31,20 @@
        !     compute ox
       oxmax(1:nc)=1e-7
       oxmin(1:nc)=1e+7
+      vmax(1:nc)=1.e-7
+      vmin(1:nc)=1.e+7
       do i=1,n
          
          do k=1,nc
-         if (x1(i,k).gt.1.d0) then
+         if (x1(i,k).ge.1.d0) then
             ox(k)=1
-         else if (x1(i,k).gt.0.1d0) then
+         else if (x1(i,k).ge.0.1d0) then
             ox(k)=0.1d0
-         else if (x1(i,k).gt.0.01d0) then
+         else if (x1(i,k).ge.0.01d0) then
             ox(k)=0.01d0
          end if
+         if (x1(i,k).gt.vmax(k)) vmax(k)=x1(i,k)
+         if (x1(i,k).lt.vmin(k)) vmin(k)=x1(i,k)
          if (ox(k).gt.oxmax(k)) oxmax(k)=ox(k)
          if (ox(k).lt.oxmin(k)) oxmin(k)=ox(k)
          enddo
@@ -48,7 +52,9 @@
       enddo
       
       do k=1,nc
+         write(*,*) k
          write(*,*) 'ox',oxmin(k),oxmax(k)
+         write(*,*) 'v',vmin(k),vmax(k)
       enddo
       
 ! compute granularity: minimal distance
