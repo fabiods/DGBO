@@ -119,7 +119,7 @@
             
           write(*,'(3F20.10,F10.5,"    ",20F8.3)')       
      &   e1(i)-e1(n),    e2(i)-e2(n), ed(i)-ed(n),    dd,                       
-     &  (x1(i,ii)-x1(n,ii),ii=1,nc)
+     &  (x1(i,ii)-x1(n,ii),ii=1,nc), (x1(i,ii),ii=1,nc)
          endif
       enddo
   
