@@ -616,3 +616,27 @@ function cleanrun() {
  fi
 
 }
+
+
+function loop_rem() {
+ lgamma=$1
+
+ gfile=`sort -k 5 -g -r notconv.$gamma.dat   | grep -v NA | uniq | tail -n 1 | awk '{printf "out.%s* ",$7}'`
+
+ if [ ! -d optfinal$lgamma ]; then 
+ mkdir optfinal$gamma
+ fi
+ cp  basrunsed.optfinal$gamma.dat optfinal$gamma/sedfile.dat
+ cp inputhf.d12.par optfinal$gamma
+ if [ -e gamma.info ]; then
+ cp gamma.info    optfinal$gamma  
+ fi
+ if [ -e maxrmax.info ]; then 
+ cp maxrmax.info  optfinal$gamma  
+ fi
+ 
+ cp $gfile        optfinal$gamma
+ cd  optfinal$gamma
+~/DGBO/basrem.sh
+ cd ..
+}
