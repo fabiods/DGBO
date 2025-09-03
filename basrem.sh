@@ -26,11 +26,17 @@ while read -r line; do
     echo $par
     occ=`grep -B 1 $par inputhf.d12.par | head -n 1 | awk '{print $4}'`
     if [ "$occ" == "0." ] || [ "$occ" == "0" ]; then 
-    mkdir $par >& /dev/null
+    if [ ! -d $par ]; then 
+       mkdir $par 
+    fi  
     tac inputhf.d12.par | sed "/$par/I,+1 d" | tac > $par/inputhf.d12.par
     sed -i "s/$sss/$ttt/g" $par/inputhf.d12.par
     cp sedfile.dat $par/basrunsed.dat
-    cp *.info $par >& /dev/null
+    if [ -e gamma.info ]; then 
+    cp gamma.info $par 
+    fi 
+    if [ -e maxrmax.info ]; then
+    cp maxrmax.info $par
     cd $par
     eneherefull=`~/DGBO/basrun.sh | awk '{print $1,$2}'`
     echo $eneherefull
