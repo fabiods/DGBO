@@ -332,4 +332,4 @@ else
  
  mv basrunsed.dat.g basrunsed.dat
 fi
-echo "basdergmf.sh DONE" | tee -a $LOGFILE
+#echo "basdergmf.sh DONE" | tee -a $LOGFILE
