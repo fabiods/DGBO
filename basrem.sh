@@ -48,3 +48,4 @@ while read -r line; do
      echo "occupied"						    
     fi						    
 done < sedfile.dat
+echo "basrem.sh DONE"
