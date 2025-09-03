@@ -77,6 +77,10 @@
 !               if (dene.lt.mmin) mmin=dene
 !            endif
          enddo
+         ! compare to minimum
+          write(*,'(3F20.10,"    ",20E10.3)')       
+     &   e1(i)-e1(n),    e2(i)-e2(n), ed(i),ed(n)                           
+     &  (x1(i,ii)-x1(n,ii),ii=1,nc)
       enddo
   
    
@@ -146,6 +150,7 @@
                if (dene.lt.mmin) mmin=dene
             endif
          enddo
+         
       enddo
       write(*,'("dmax",20F20.10)') dmax(1:nc)
       write(*,'("dmin",20F20.10)') dmin(1:nc)
