@@ -79,7 +79,7 @@
          enddo
          ! compare to minimum
           write(*,'(3F20.10,"    ",20E10.3)')       
-     &   e1(i)-e1(n),    e2(i)-e2(n), ed(i),ed(n)                           
+     &   e1(i)-e1(n),    e2(i)-e2(n), ed(i)-ed(n),                           
      &  (x1(i,ii)-x1(n,ii),ii=1,nc)
       enddo
   
