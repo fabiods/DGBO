@@ -72,9 +72,9 @@
       enddo
       
 ! compute oxmin of minmum
- do k=1,nc
+      do k=1,nc
          oxatmin(k)=orgd(x1(n,k))
- enddo        
+      enddo        
  
 ! compute granularity: minimal distance
       mmin=1.d7
