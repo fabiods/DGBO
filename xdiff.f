@@ -1,3 +1,21 @@
+      double precision function ordg(x)
+      implicit none
+      double precision x,ox
+         if (x.ge.10.d0) then
+            ox=10
+         else if (x.ge.1.d0) then
+            ox=1
+         else if (x.ge.0.1d0) then
+            ox=0.1d0
+         else if (x.ge.0.01d0) then
+            ox=0.01d0
+         end if
+         return ox
+      end function ordg   
+      
+
+
+
       program xdiff
       implicit none
       integer i,j,n,nc,k
@@ -6,7 +24,8 @@
       double precision e1(mm),e2(mm),ed(mm),x1(mm,ncmax),y(ncmax)
       double precision ox(ncmax),rrr,dmax(ncmax),dmin(ncmax)
       double precision vmin(ncmax),vmax(ncmax)
-      double precision oxmin(ncmax),oxmax(ncmax)
+      double precision oxmin(ncmax),oxmax(ncmax),oxatmin(ncmax)
+      double precision , external :: ordg
       integer kf,ii
 !     rrr=0.001d0
       
@@ -29,7 +48,7 @@
       n=i-1
 
 
-       !     compute ox
+!   compute ox  
       oxmax(1:nc)=1e-7
       oxmin(1:nc)=1e+7
       vmax(1:nc)=1.e-7
@@ -37,15 +56,7 @@
       do i=1,n
          
          do k=1,nc
-         if (x1(i,k).ge.10.d0) then
-            ox(k)=10
-         else if (x1(i,k).ge.1.d0) then
-            ox(k)=1
-         else if (x1(i,k).ge.0.1d0) then
-            ox(k)=0.1d0
-         else if (x1(i,k).ge.0.01d0) then
-            ox(k)=0.01d0
-         end if
+         ok(x)=ordg( x1(i,k) )
          if (x1(i,k).gt.vmax(k)) vmax(k)=x1(i,k)
          if (x1(i,k).lt.vmin(k)) vmin(k)=x1(i,k)
          if (ox(k).gt.oxmax(k)) oxmax(k)=ox(k)
@@ -60,6 +71,11 @@
          write(*,*) 'v',vmin(k),vmax(k)
       enddo
       
+! compute oxmin of minmum
+do k=1,nc
+         oxatmin(k)=orgd(x1(n,k))
+ enddo        
+ 
 ! compute granularity: minimal distance
       mmin=1.d7
       mmax=1.d-7
@@ -92,7 +108,7 @@
           ! distance between 2 points 
            dd=0.d0
             do k=1,nc
-            dd=   dd+abs(x1(i,k)-x1(n,k))/oxmin(k)
+            dd=   dd+abs(x1(i,k)-x1(n,k))/oxatmin(k)
             enddo
             
           write(*,'(3F20.10,F10.5,"    ",20F8.3)')       
