@@ -10,7 +10,7 @@
          else if (x.ge.0.01d0) then
             ox=0.01d0
          end if
-         return ox
+         ordg=ox
       end function ordg   
       
 
@@ -72,7 +72,7 @@
       enddo
       
 ! compute oxmin of minmum
-do k=1,nc
+ do k=1,nc
          oxatmin(k)=orgd(x1(n,k))
  enddo        
  
