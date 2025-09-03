@@ -164,7 +164,6 @@ sort -k 2 -g -r basrun.allene.$gamma.dat | uniq | tail -n 5
 
 #sort -k 4 -g -r /homex/atom/li_basopt/LioptX/1545/rest/rest3/res4/res5/pscan/file.dat | tail -n 10
 
-fi # file orig
 
     echo "--- final basis set---"
     echo "from:"
@@ -173,6 +172,7 @@ fi # file orig
     cat basrunsed.dat
     ~/DGBO/basrun.sh
     cp basrunsed.dat basrunsed.optorig$count.dat
+fi # file orig
 done
 echo "END LOOP orig*"
 # statistics
