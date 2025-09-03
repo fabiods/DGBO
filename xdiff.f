@@ -26,7 +26,7 @@
       double precision vmin(ncmax),vmax(ncmax)
       double precision oxmin(ncmax),oxmax(ncmax),oxatmin(ncmax),ovv
       double precision , external :: ordg
-      integer kf,ii
+      integer kf,ii,iselected
 !     rrr=0.001d0
       
       open(UNIT=88,FILE='nc.dat',STATUS='OLD')
@@ -104,18 +104,9 @@
 !               if (dene.lt.mmin) mmin=dene
 !            endif
          enddo
-         ! compare to minimum
-         if (e1(i)-e1(n).lt.1.d-3) then 
+      
          
-          ! max distance between 2 points 
-           dd=0.d0
-            do k=1,nc
-            if (abs(x1(i,k)-x1(n,k)).gt.1.d-6) then
-             ovv=min(oxatmin(k),ordg(x1(i,k)))
-             dd=max(dd,abs(x1(i,k)-x1(n,k))/ovv)
-!            write(*,*) k,ovv,dd
-            endif
-            enddo
+         
          
       enddo
 
@@ -135,17 +126,29 @@
 !------------------------select minima--------------
      iselected=0
       do i=1,n    
+         ! compare to minimum
+         if (e1(i)-e1(n).lt.1.d-3) then 
+   ! max distance between 2 points 
+           dd=0.d0
+           do k=1,nc
+             if (abs(x1(i,k)-x1(n,k)).gt.1.d-6) then
+              ovv=min(oxatmin(k),ordg(x1(i,k)))
+              dd=max(dd,abs(x1(i,k)-x1(n,k))/ovv)
+!             write(*,*) k,ovv,dd
+             endif
+           end do
+            
        if (dd.gt.1.01d0) then
            if (e2(i)-e2(n).lt.0.d0) then 
             selected=i
             write(*,'("SEL",i,2X,20E10.3)') (x1(i,ii),ii=1,nc)
             endif
-           endif 
+        endif 
           write(*,'(3F20.10,F10.5,"    ",20F8.3)')       
      &   e1(i)-e1(n),    e2(i)-e2(n), ed(i)-ed(n),    dd,                       
      &  (x1(i,ii)-x1(n,ii),ii=1,nc), (x1(i,ii),ii=1,nc)
          endif
-      enddo   
+      end do   
 !---------------------compute dist-----------
       ! compute granularity
       mmin=1.d7
