@@ -139,7 +139,7 @@
            end do
             
        if (dd.gt.1.01d0) then
-           if (e2(i)-e2(n).lt.0.d0) then 
+           if (e2(i)-e2(n).lt.1.d-5) then 
             iselected=i
             write(*,'("SEL",i,2X,20E10.3)') iselected,(x1(i,ii),ii=1,nc)
             endif
