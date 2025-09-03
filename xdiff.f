@@ -124,7 +124,7 @@
         write(*,*) "FMT %3.1E"
       end if
 !------------------------select minima--------------
-     iselected=0
+      iselected=0
       do i=1,n    
          ! compare to minimum
          if (e1(i)-e1(n).lt.1.d-3) then 
