@@ -38,7 +38,7 @@
          
          do k=1,nc
          if (x1(i,k).ge.10.d0) then
-            ok(k)=10
+            ox(k)=10
          else if (x1(i,k).ge.1.d0) then
             ox(k)=1
          else if (x1(i,k).ge.0.1d0) then
