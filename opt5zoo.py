@@ -354,6 +354,7 @@ while bondsok == False or fbondsok == False:
   print("-----bounds iter---",counti) 
   myfmin=1e9
   cntp=0
+  cntprec=0
   lob =  np.loadtxt('bounds.dat', dtype='float', usecols=(0))
   upb =  np.loadtxt('bounds.dat', dtype='float', usecols=(1))
   print(counti,"lob:",lob)
