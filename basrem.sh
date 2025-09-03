@@ -37,11 +37,12 @@ while read -r line; do
     fi 
     if [ -e maxrmax.info ]; then
     cp maxrmax.info $par
+    fi
     cd $par
-    eneherefull=`~/DGBO/basrun.sh | awk '{print $1,$2}'`
-    echo $eneherefull
-    enehere=`echo $eneherefull | awk '{print $1}'`
-    echo $enehere $enezero | awk '{print $1-$2'}
+     eneherefull=`~/DGBO/basrun.sh | awk '{print $1,$2}'`
+     echo $eneherefull
+     enehere=`echo $eneherefull | awk '{print $1}'`
+     echo $enehere $enezero | awk '{print $1-$2'}
     cd ..
     else
      echo "occupied"						    
