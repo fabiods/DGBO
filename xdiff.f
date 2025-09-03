@@ -140,8 +140,8 @@
             
        if (dd.gt.1.01d0) then
            if (e2(i)-e2(n).lt.0.d0) then 
-            selected=i
-            write(*,'("SEL",i,2X,20E10.3)') (x1(i,ii),ii=1,nc)
+            iselected=i
+            write(*,'("SEL",i,2X,20E10.3)') iselected,(x1(i,ii),ii=1,nc)
             endif
         endif 
           write(*,'(3F20.10,F10.5,"    ",20F8.3)')       
