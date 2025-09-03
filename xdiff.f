@@ -78,7 +78,7 @@
 !            endif
          enddo
          ! compare to minimum
-         if (e1(i)-e1(n).lt.1.d-4) then 
+         if (e1(i)-e1(n).lt.1.d-3) then 
           write(*,'(3F20.10,"    ",20F8.3)')       
      &   e1(i)-e1(n),    e2(i)-e2(n), ed(i)-ed(n),                           
      &  (x1(i,ii)-x1(n,ii),ii=1,nc)
