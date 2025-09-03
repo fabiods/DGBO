@@ -119,9 +119,9 @@
 !      enddo   
       write(*,'(A,F10.4)') 'granularity',rrr
       if (dabs(rrr-1.d0).lt.1.d-6) then
-         write(*,*) 'FMT %2.0E"
-      else if   (dabs(rrr-0.1.d0).lt.1.d-6) then
-        write(*,*) 'FMT %3.1E"
+         write(*,*) "FMT %2.0E"
+      else if   (dabs(rrr-0.1d0).lt.1.d-6) then
+        write(*,*) "FMT %3.1E"
       endif
 !------------------------select minima--------------
      iselected=0
