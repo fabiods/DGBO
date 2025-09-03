@@ -122,7 +122,7 @@
          write(*,*) "FMT %2.0E"
       else if   (dabs(rrr-0.1d0).lt.1.d-6) then
         write(*,*) "FMT %3.1E"
-      endif
+      end if
 !------------------------select minima--------------
      iselected=0
       do i=1,n    
