@@ -73,7 +73,7 @@
       
 ! compute oxmin of minmum
       do k=1,nc
-         oxatmin(k)=orgd(x1(n,k))
+         oxatmin(k)=ordg(x1(n,k))
       enddo        
  
 ! compute granularity: minimal distance
