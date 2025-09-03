@@ -127,8 +127,8 @@ def ackley(solution):
     """
     Ackley function for continuous optimization
     """
-    global cnt
-    global cntp
+    global cnt   # for all the simulations 
+    global cntp  # for just one simulations (i.e. bound-iter)
     global scal
     global dig
     global myfmin
@@ -171,7 +171,13 @@ def ackley(solution):
 #    if (a < 0 ):
     if (a < myfmin):     
             myfmin=a
-            print(cnt,"NEW MIN ",x,myfmin)
+            if cntp != 1:
+               cntdiff=cnt-cntprec
+               cntprec=cnt
+            else:  
+               cntdiff=0
+               cntprec=cnt
+            print(cnt,"NEW MIN ",x,myfmin,"countdiff",cntdiff)
             if (cntp == 1) :
                  print ("fun ",myfmin," res: ",x)
     else:
