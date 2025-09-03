@@ -129,7 +129,7 @@ def ackley(solution):
     """
     global cnt   # for all the simulations 
     global cntp  # for just one simulations (i.e. bound-iter)
-    global cnrprec # previous new min 
+    global cntprec # previous new min 
     global scal
     global dig
     global myfmin
