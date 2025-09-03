@@ -72,8 +72,10 @@
       enddo
       
 ! compute oxmin of minmum
+      write(*,*) 'orgd at min'
       do k=1,nc
          oxatmin(k)=ordg(x1(n,k))
+         write(*,*) k,oxatmin(k)
       enddo        
  
 ! compute granularity: minimal distance
@@ -108,8 +110,11 @@
           ! distance between 2 points 
            dd=0.d0
             do k=1,nc
+            if (abs(x1(i,k)-x1(n,k)).gt.1.d-6) then
             ovv=min(oxatmin(k),ordg(x1(i,k)))
             dd=   dd+abs(x1(i,k)-x1(n,k))/ovv
+            write(*,*) k,ovv,dd
+            endif
             enddo
             
           write(*,'(3F20.10,F10.5,"    ",20F8.3)')       
