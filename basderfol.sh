@@ -144,3 +144,4 @@ fi
     nm=`grep minimum $LOGFILE  | tail -n 1| awk '{print $2}'`
 
     echo " energy:" $rrr "dstr:" $str  "min:" $nm "conv:" $nc | tee -a $LOGFILE
+	echo "basderfol.sh DONE" | tee -a $LOGFILE
