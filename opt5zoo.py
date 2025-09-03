@@ -252,7 +252,8 @@ class StoppingCriterion:
         self.__best_result = 0
         self.__count = 0
         self.__total_count = 0
-        self.__count_limit = max(500,200*(dim_size))
+         # reduced to 100, sep 3 2025
+        self.__count_limit = max(500,100*(dim_size))
 
     def check(self, optcontent):
         """
