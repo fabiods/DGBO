@@ -4,7 +4,8 @@
       double precision dd,dene,mmin,mmax
       integer , parameter :: mm=10000,ncmax=11
       double precision e1(mm),e2(mm),ed(mm),x1(mm,ncmax),y(ncmax)
-      double precision ox(ncmax),rrr,dmax(ncmax),dmin(ncmax),vmin(ncmax),vmax(ncmax)
+      double precision ox(ncmax),rrr,dmax(ncmax),dmin(ncmax)
+      double precision vmin(ncmax),vmax(ncmax)
       double precision oxmin(ncmax),oxmax(ncmax)
       integer kf,ii
 !     rrr=0.001d0
