@@ -79,8 +79,15 @@
          enddo
          ! compare to minimum
          if (e1(i)-e1(n).lt.1.d-3) then 
-          write(*,'(3F20.10,"    ",20F8.3)')       
-     &   e1(i)-e1(n),    e2(i)-e2(n), ed(i)-ed(n),                           
+         
+          ! distance between 2 points 
+           dd=0.d0
+            do k=1,nc
+            dd=   dd+abs(x1(i,k)-x1(n,k))/oxmin(k)
+            enddo
+            
+          write(*,'(3F20.10,F10.5,"    ",20F8.3)')       
+     &   e1(i)-e1(n),    e2(i)-e2(n), ed(i)-ed(n),    dd,                       
      &  (x1(i,ii)-x1(n,ii),ii=1,nc)
          endif
       enddo
