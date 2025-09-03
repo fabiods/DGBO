@@ -107,13 +107,13 @@
          ! compare to minimum
          if (e1(i)-e1(n).lt.1.d-3) then 
          
-          ! distance between 2 points 
+          ! max distance between 2 points 
            dd=0.d0
             do k=1,nc
             if (abs(x1(i,k)-x1(n,k)).gt.1.d-6) then
-            ovv=min(oxatmin(k),ordg(x1(i,k)))
-            dd=   dd+abs(x1(i,k)-x1(n,k))/ovv
-            write(*,*) k,ovv,dd
+             ovv=min(oxatmin(k),ordg(x1(i,k)))
+             dd=max(dd,abs(x1(i,k)-x1(n,k))/ovv)
+!            write(*,*) k,ovv,dd
             endif
             enddo
             
