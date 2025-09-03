@@ -127,7 +127,7 @@
       iselected=0
       do i=1,n    
          ! compare to minimum
-         if (e1(i)-e1(n).lt.1.d-3) then 
+         if (e1(i)-e1(n).lt.1.d-4) then 
    ! max distance between 2 points 
            dd=0.d0
            do k=1,nc
@@ -139,7 +139,7 @@
            end do
             
        if (dd.gt.1.01d0) then
-           if (e2(i)-e2(n).lt.1.d-3) then 
+           if (e2(i)-e2(n).lt.1.d-4) then 
             iselected=i
             write(*,'("SEL",i,2X,20E10.3)') iselected,(x1(i,ii),ii=1,nc)
             endif
