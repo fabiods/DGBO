@@ -26,9 +26,10 @@ LOGFILE="basderfol.$gamma.log"
 # dont delete
 #rm $LOGFILE
 
-echo "gamma" $gamma | tee -a $LOGFILE
+
 
 echo "---- bas der fol ---"  | tee -a $LOGFILE
+echo "gamma" $gamma | tee -a $LOGFILE
 numpar=$#
 if [ "$numpar" == "1" ]; then
    convmult=$1
