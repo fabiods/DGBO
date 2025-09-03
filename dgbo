@@ -174,7 +174,7 @@ fi # file orig
     ~/DGBO/basrun.sh
     cp basrunsed.dat basrunsed.optorig$count.dat
 done
-
+echo "END LOOP orig*"
 # statistics
 
 ~/DGBO/dodgbostat $gamma
