@@ -108,7 +108,7 @@
           ! distance between 2 points 
            dd=0.d0
             do k=1,nc
-            ovv=min(oxatmin(k),ordg(x1(i,k))
+            ovv=min(oxatmin(k),ordg(x1(i,k)))
             dd=   dd+abs(x1(i,k)-x1(n,k))/ovv
             enddo
             
