@@ -24,7 +24,7 @@
       double precision e1(mm),e2(mm),ed(mm),x1(mm,ncmax),y(ncmax)
       double precision ox(ncmax),rrr,dmax(ncmax),dmin(ncmax)
       double precision vmin(ncmax),vmax(ncmax)
-      double precision oxmin(ncmax),oxmax(ncmax),oxatmin(ncmax)
+      double precision oxmin(ncmax),oxmax(ncmax),oxatmin(ncmax),ovv
       double precision , external :: ordg
       integer kf,ii
 !     rrr=0.001d0
@@ -108,7 +108,8 @@
           ! distance between 2 points 
            dd=0.d0
             do k=1,nc
-            dd=   dd+abs(x1(i,k)-x1(n,k))/oxatmin(k)
+            ovv=min(oxatmin(k),ordg(x1(i,k))
+            dd=   dd+abs(x1(i,k)-x1(n,k))/ovv
             enddo
             
           write(*,'(3F20.10,F10.5,"    ",20F8.3)')       
