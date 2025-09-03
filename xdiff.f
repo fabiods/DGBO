@@ -54,7 +54,10 @@
 ! compute granularity: minimal distance
       mmin=1.d7
       mmax=1.d-7
+      
       rrr=1.d7
+! loop over all couple of points 
+! to find rrr = minimal distance
       do i=1,n      
          do j=i+1,n
            ! distance between 2 points 
@@ -98,6 +101,10 @@
 !            ox(k)=0.01d0
 !         end if
 !      enddo
+
+! loop over all couple of points
+! dd is the distance
+! y(k) is the vector  distance
       do i=n,1,-1 
       do j=n,i+1,-1
             dd=0.d0
