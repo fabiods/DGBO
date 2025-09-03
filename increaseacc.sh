@@ -52,9 +52,11 @@ for kk in {1..3}; do
  elif [ "$kk" == "2" ]; then
    grep SEL | xdiff.out > ooosss
    if [ -s ooosss ]; then
+    cat ooosss
     tail -n 1 ooossss|  awk '{ for (i=3; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
+    rm ooosss
    else
-    echo "no SEL from xdiff
+    echo "no SEL from xdiff"
     skip=1
    fi
  else 
