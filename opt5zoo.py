@@ -197,7 +197,8 @@ def checkboundold(checkandupdate,xarr,lob,lobi,upb,upbi,scal):
      shift=10**(dig-1)
      for i in range(len(xarr)):
        print(" ",lob[i],"<",xarr[i],"<",upb[i])  
-       print(" ",lobi[i],"<","<",upbi[i])  
+       ixx=v2i(xarr[i],scal[i],dig)
+       print(" ",lobi[i],"<",ixx,"<",upbi[i])  
        if xarr[i] <= abs(lob[i]):
            print(" bound low violted",i)
            if lob[i] <0 :
@@ -205,7 +206,12 @@ def checkboundold(checkandupdate,xarr,lob,lobi,upb,upbi,scal):
            else:
                if checkandupdate == True :
                  if lobi[i] >1:
-                    lobi[i]=lobi[i]-1
+                    ldiff=abs(lob[i])-ixx
+                    if ldiff <= 1:
+                     lobi[i]=lobi[i]-1
+                    else
+                     print("large deviation, decreasing by half of",ldiff)
+                     lobi[i]=max(1,lobi[i]-int(ldiff/2)) 
                  else :
                     print(" scal /10 ",i)
                     # minimum values is 9 ,99 ,999 
