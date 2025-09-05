@@ -206,12 +206,12 @@ def checkboundold(checkandupdate,xarr,lob,lobi,upb,upbi,scal):
            else:
                if checkandupdate == True :
                  if lobi[i] >1:
-                    ldiff=abs(lob[i])-ixx
+                    ldiff=abs(lobi[i])-ixx
                     if ldiff <= 1:
                      lobi[i]=lobi[i]-1
                     else
                      print("large deviation, decreasing by half of",ldiff)
-                     lobi[i]=max(1,lobi[i]-int(ldiff/2)) 
+                     lobi[i]=max(1,lobi[i]-int(ldiff/1)) 
                  else :
                     print(" scal /10 ",i)
                     # minimum values is 9 ,99 ,999 
@@ -232,9 +232,14 @@ def checkboundold(checkandupdate,xarr,lob,lobi,upb,upbi,scal):
                print(" bound up fixed",i)
            else :
               if checkandupdate == True :
-                if upbi[i] < 19*shift-1 :
+                if abs(upbi[i]) < 19*shift-1 :
                     # just increase of 1, even if the real bounds can be larger
-                    upbi[i]=upbi[i]+1
+                    ldiff=ixx-abs(upbi[i])
+                    if ldiff<=1 : 
+                      upbi[i]=upbi[i]+1
+                     else
+                      print("large deviation: using half of ldiff")
+                      upbi[i]=upbi[i]+int(ldiff/1)    
                 else :
                     print(" scal *10 ",i)
                     scal[i]=scal[i]*10
