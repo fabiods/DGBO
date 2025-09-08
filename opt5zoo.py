@@ -209,7 +209,7 @@ def checkboundold(checkandupdate,xarr,lob,lobi,upb,upbi,scal):
                     ldiff=abs(lobi[i])-ixx
                     if ldiff <= 1:
                      lobi[i]=lobi[i]-1
-                    else
+                    else:
                      print("large deviation, decreasing by half of",ldiff)
                      lobi[i]=max(1,lobi[i]-int(ldiff/1)) 
                  else :
@@ -237,7 +237,7 @@ def checkboundold(checkandupdate,xarr,lob,lobi,upb,upbi,scal):
                     ldiff=ixx-abs(upbi[i])
                     if ldiff<=1 : 
                       upbi[i]=upbi[i]+1
-                     else
+                    else:
                       print("large deviation: using half of ldiff")
                       upbi[i]=upbi[i]+int(ldiff/1)    
                 else :
