@@ -554,7 +554,7 @@ while bondsok == False or fbondsok == False:
        scal.print("scal")
        gscal.print("gscal")
       else :
-        printf("checkbounds=True")
+        print("checkbounds=True")
            
       if debug == False:    
         print(" call derviatives:")
