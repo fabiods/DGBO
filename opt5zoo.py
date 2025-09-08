@@ -46,7 +46,7 @@ class Scaling:
       shift=10**(dig-1)
       for i in range(len(xarr)):
        print(" ",lob[i],"<",xarr[i],"<",upb[i])  
-       ixx=v2i(xarr[i],scal[i],dig)
+       ixx=v2i(xarr[i],self.get(i),dig)
        print(" ",lobi[i],"<",ixx,"<",upbi[i])  
        if xarr[i] <= abs(lob[i]):
            print(" bound low violted",i)
