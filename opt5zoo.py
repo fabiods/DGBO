@@ -651,7 +651,7 @@ while bondsok == False or fbondsok == False:
     print("new upboundsi:",upbi)
     scal.print("scal")
     gscal.print("gscal")
-   else
+   else:
     print("fcheckbounds=True")    
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
   
