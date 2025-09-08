@@ -88,8 +88,9 @@ function gradient() {
    
  nbas=`wc -l $fname |awk '{print $1}'`
  store=gradient.$fname
-# if [ ! -e $store ]; then 
+ if [ -e $store ]; then 
  rm $store
+ fi 
  echo >>$LOGFILE    
  echo "GRADIENT{" >>$LOGFILE
  echo "gradient" $fname $nbas  | tee -a $LOGFILE
