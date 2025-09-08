@@ -62,7 +62,7 @@ class Scaling:
                     ldiff=abs(lobi[i])-ixx
                     if ldiff <= 1:
                      lobi[i]=lobi[i]-1
-                      print("bounds lobi", i, " from ",  lobi[i], " to ",lobi[i]-1)
+                     print("bounds lobi", i, " from ",  lobi[i], " to ",lobi[i]-1)
                     else:
                      print("bounds large deviation ",i," :decreasing by half of",ldiff)
                      lobi[i]=max(1,lobi[i]-int(ldiff/1)) 
