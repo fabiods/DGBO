@@ -418,7 +418,7 @@ while bondsok == False or fbondsok == False:
 #         quit()
       # bounds.dat need to be saved  
      else:
-         print("Initialbounds=True)
+         print("Initialbounds=True")
          
      with open('bounds0.dat','w') as ft:       
           for j in range(len(lob)):
