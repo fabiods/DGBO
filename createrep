@@ -1,0 +1,6 @@
+#!/bin/bash
+gamma=$1
+tail -n 1 basrun.allene.$gamma.uniq.dat
+tail -n 1 INC/basrun.allene.$gamma.uniq.dat
+tail -n 1 INC/INC3/tail -n 1 basrun.allene.$gamma.dat
+
