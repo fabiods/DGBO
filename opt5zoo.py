@@ -73,9 +73,9 @@ class Scaling:
                     # if scale change, then upb change to the maximum
                     print(" min: ", self.get(i)*10.0*(10.0-1.0/shift))  
                     upbi[i]=v2i( self.get(i)*10.0*(10.0-1.0/shift) ,self.get(i) ,dig)
-                    print(" upbi",upbi[i])                      
+                    print(" upboundsi",upbi[i])                      
                     upb[i]=i2v(upbi[i], self.get(i) ,dig)
-                    print(" upb",upb[i])
+                    print(" upbounds",upb[i])
                  # recompute lob   
                  lob[i]=i2v(lobi[i], self.get(i) ,dig)          
        if xarr[i] >= abs(upb[i]):
@@ -104,9 +104,9 @@ class Scaling:
                     # if scale change lob change to the minimun
 #                    print(" min: ", scal[i]/shift)
                     lobi[i]=v2i( self.get(i)/shift ,self.get(i) ,dig)
-#                    print("lobi",lobi[i])
+#                    print("loboundsi",lobi[i])
                     lob[i]=i2v(lobi[i],self.get(i) ,dig)
-#                    print("lob",lob[i])
+#                    print("lobounds",lob[i])
                 # recompute upb    
                 upb[i]=i2v(upbi[i], self.get(i)  ,dig)
 #                print("upbi",upbi[i],"upb",upb[
@@ -383,8 +383,8 @@ while bondsok == False or fbondsok == False:
   cntprec=0
   lob =  np.loadtxt('bounds.dat', dtype='float', usecols=(0))
   upb =  np.loadtxt('bounds.dat', dtype='float', usecols=(1))
-  print(counti,"lob:",lob)
-  print(counti,"upb:",upb)
+  print(counti,"lobounds:",lob)
+  print(counti,"upbounds:",upb)
 
 #  ggg=subprocess.run("~/DGBO/boundsinc.sh bounds.dat > boundsX.dat", shell=True, capture_output=False) 
 #  lobX =  np.loadtxt('boundsX.dat', dtype='float', usecols=(0))
