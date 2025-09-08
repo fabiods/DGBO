@@ -543,14 +543,16 @@ while bondsok == False or fbondsok == False:
 #     scal must be the older one, because you will call basder
 
       bondsok=gscal.checkbound(True,xarr,False)
-       
-      print("new lobounds:",lob)
-      print("new upbounds:",upb)
-      print("new loboundsi:",lobi) 
-      print("new upboundsi:",upbi)
-      scal.print("scal")
-      gscal.print("gscal")
-  
+      if bondsok == False :       
+       print("new lobounds:",lob)
+       print("new upbounds:",upb)
+       print("new loboundsi:",lobi) 
+       print("new upboundsi:",upbi)
+       scal.print("scal")
+       gscal.print("gscal")
+      else :
+        printf("checkbounds=True")
+           
       if debug == False:    
         print(" call derviatives:")
         ggg=subprocess.run("~/DGBO/basdergmf.sh", shell=True,stdout=subprocess.PIPE )
@@ -642,12 +644,15 @@ while bondsok == False or fbondsok == False:
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
   else:
    fbondsok=gscal.checkbound(True,mxarr,False)
-   print("new lobounds:",lob)
-   print("new upbounds:",upb)
-   print("new loboundsi:",lobi) 
-   print("new upboundsi:",upbi)
-   scal.print("scal")
-   gscal.print("gscal")
+   if fbondok == False:     
+    print("new lobounds:",lob)
+    print("new upbounds:",upb)
+    print("new loboundsi:",lobi) 
+    print("new upboundsi:",upbi)
+    scal.print("scal")
+    gscal.print("gscal")
+   else
+    print("fcheckbounds=True")    
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
   
 #  quit()
