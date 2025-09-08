@@ -65,7 +65,7 @@ class Scaling:
                      lobi[i]=lobi[i]-1
                     else:
                      print("bounds large deviation ",i," :decreasing by half of",ldiff)
-                     lobi[i]=max(1,lobi[i]-int(ldiff/1)) 
+                     lobi[i]=max(1,lobi[i]-int(ldiff/1)-1) 
                  else :
                     print(" scal /10 ",i)
                     # minimum values is 9 ,99 ,999 
@@ -97,7 +97,7 @@ class Scaling:
                       upbi[i]=upbi[i]+1
                     else:
                       print("bounds large deviation of ",i," : using half of ldiff")
-                      upbi[i]=upbi[i]+int(ldiff/1)    
+                      upbi[i]=upbi[i]+int(ldiff/1)+1    
                 else :
                     print(" scal *10 ",i)
                     self.mul(i)
