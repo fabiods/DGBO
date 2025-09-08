@@ -62,8 +62,9 @@ class Scaling:
                     ldiff=abs(lobi[i])-ixx
                     if ldiff <= 1:
                      lobi[i]=lobi[i]-1
+                      print("bounds lobi", i, " from ",  lobi[i], " to ",lobi[i]-1)
                     else:
-                     print("large deviation, decreasing by half of",ldiff)
+                     print("bounds large deviation ",i," :decreasing by half of",ldiff)
                      lobi[i]=max(1,lobi[i]-int(ldiff/1)) 
                  else :
                     print(" scal /10 ",i)
@@ -93,8 +94,9 @@ class Scaling:
                     ldiff=ixx-abs(upbi[i])
                     if ldiff<=1 : 
                       upbi[i]=upbi[i]+1
+                      print("bounds upb", i, " from ",  upbi[i], " to ",upbi[i]+1)
                     else:
-                      print("large deviation: using half of ldiff")
+                      print("bounds large deviation of ",i," : using half of ldiff")
                       upbi[i]=upbi[i]+int(ldiff/1)    
                 else :
                     print(" scal *10 ",i)
@@ -430,6 +432,7 @@ while bondsok == False or fbondsok == False:
   bndsi = []
   for i, _ in enumerate(datax0):
     bndsi.append( [abs(lobi[i]) , abs(upbi[i]) ])    
+  #internal one : must be positive     
   print("bounds_int:",bndsi)
 
   print("Check debug:")
