@@ -416,7 +416,10 @@ while bondsok == False or fbondsok == False:
          print("Error: sedfile.dat is NOT within bounds")
          print("maybe rerun cry2basrun")
 #         quit()
-      # bounds.dat need to be saved                                                                              
+      # bounds.dat need to be saved  
+     else:
+         print("Initialbounds=True)
+         
      with open('bounds0.dat','w') as ft:       
           for j in range(len(lob)):
                 print(lob[j],upb[j],file=ft)
