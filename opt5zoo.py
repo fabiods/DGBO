@@ -647,7 +647,7 @@ while bondsok == False or fbondsok == False:
    print(" ffun", menergylast," res:",mxarr, " opt: zoo, x0:",x0," gamma:",gamma,"cnt:",cnt,"min:",fminggx,fminggt,"conv:",fminncx,"boundok:",fbondsok)
   else:
    fbondsok=gscal.checkbound(True,mxarr,False)
-   if fbondok == False:     
+   if fbondsok == False:     
     print("new lobounds:",lob)
     print("new upbounds:",upb)
     print("new loboundsi:",lobi) 
