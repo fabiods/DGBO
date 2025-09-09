@@ -2,5 +2,5 @@
 gamma=$1
 tail -n 1 basrun.allene.$gamma.uniq.dat
 tail -n 1 INC/basrun.allene.$gamma.uniq.dat
-tail -n 1 INC/INC3/basrun.allene.$gamma.dat
+sort -k 1 -g -r  INC/INC3/basrun.allene.$gamma.dat | tail -n 1
 
