@@ -60,11 +60,11 @@ class Scaling:
                  if lobi[i] >1:
 #old                    lobi[i]=lobi[i]-1
                     ldiff=abs(lobi[i])-ixx
-                    if ldiff <= 1:
-                     print("bounds lobi", i, " from ",  lobi[i], " to ",lobi[i]-1)
-                     lobi[i]=lobi[i]-1
+                    if ldiff == 0;
+                      print("bounds lobi", i, " from ",  lobi[i], " to ",lobi[i]-1)
+                      lobi[i]=lobi[i]-1
                     else:
-                     print("bounds large deviation ",i," :decreasing by half of",ldiff)
+                     print("bounds large deviation ",i," :decreasing by ",ldiff+1)
                      lobi[i]=max(1,lobi[i]-int(ldiff/1)-1) 
                  else :
                     print(" scal /10 ",i)
@@ -92,11 +92,11 @@ class Scaling:
                     # just increase of 1, even if the real bounds can be larger
 #old                    upbi[i]=upbi[i]+1
                     ldiff=ixx-abs(upbi[i])
-                    if ldiff<=1 : 
+                    if ldiff==0 : 
                       print("bounds upb", i, " from ",  upbi[i], " to ",upbi[i]+1)
                       upbi[i]=upbi[i]+1
                     else:
-                      print("bounds large deviation of ",i," : using half of ldiff")
+                      print("bounds large deviation of ",i," : increasing by ",ldiff+1)
                       upbi[i]=upbi[i]+int(ldiff/1)+1    
                 else :
                     print(" scal *10 ",i)
@@ -104,7 +104,7 @@ class Scaling:
                     # maxmimum values is 10 (d=1), 100 (d=2) ,1000(d=3)
                     upbi[i]=shift*10 
                     # if scale change lob change to the minimun
-#                    print(" min: ", scal[i]/shift)
+#                   print(" min: ", scal[i]/shift)
                     lobi[i]=v2i( self.get(i)/shift ,self.get(i) ,dig)
 #                    print("loboundsi",lobi[i])
                     lob[i]=i2v(lobi[i],self.get(i) ,dig)
