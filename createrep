@@ -2,17 +2,17 @@
 gamma=$1
 
 sss=`tail -n 1 basrun.allene.$gamma.uniq.dat  | awk '{ for (i=4;i<=NF; i++) printf("%-10s",$i) }'`
-eee=`tail -n 1 basrun.allene.$gamma.uniq.dat | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.3f",$1,$2,exp($3/gg)}'`
+eee=`tail -n 1 basrun.allene.$gamma.uniq.dat | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
 
 echo $eee "$sss"
 
 sss=`tail -n 1 INC/basrun.allene.$gamma.uniq.dat   | awk '{ for (i=4;i<=NF; i++) printf("%-10s",$i) }'`
-eee=`tail -n 1 INC/basrun.allene.$gamma.uniq.dat | awk '{ printf "%15.8f %15.8f ",$1,$2}'`
+eee=`tail -n 1 INC/basrun.allene.$gamma.uniq.dat | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
 
 echo $eee "$sss"
 
 sss=`sort -k 1 -g -r  INC/INC3/basrun.allene.$gamma.dat | tail -n 1 | awk '{ for (i=4;i<=NF; i++) printf("%-10s",$i) }'`
-eee=`sort -k 1 -g -r  INC/INC3/basrun.allene.$gamma.dat | tail -n 1 | awk '{ printf "%15.8f %15.8f ",$1,$2}'`
+eee=`sort -k 1 -g -r  INC/INC3/basrun.allene.$gamma.dat | tail -n 1 | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
 
 echo $eee "$sss"
 
