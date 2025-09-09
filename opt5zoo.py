@@ -60,7 +60,7 @@ class Scaling:
                  if lobi[i] >1:
 #old                    lobi[i]=lobi[i]-1
                     ldiff=abs(lobi[i])-ixx
-                    if ldiff == 0;
+                    if ldiff == 0:
                       print("bounds lobi", i, " from ",  lobi[i], " to ",lobi[i]-1)
                       lobi[i]=lobi[i]-1
                     else:
