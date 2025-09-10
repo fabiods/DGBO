@@ -20,7 +20,7 @@ sss=`tail -n 1 INC/basrun.allene.$gamma.uniq.dat   | awk '{ for (i=4;i<=NF; i++)
 
 cd INC
 awk '{print $1}' basrunsed.dat > tmpsed1
-tail -n 1 basrun.allene.$gamma.uniq.dat   | awk '{ for (i=4;i<=NF; i++) { print $1} }' > tmpsed2
+tail -n 1 basrun.allene.$gamma.uniq.dat   | awk '{ for (i=4;i<=NF; i++) { print $i} }' > tmpsed2
 paste tmpsed1 tmpsed2 > basrunsed.dat
 rm tmpsed1 tmpsed2
 export GMF="%3.1E"
