@@ -56,7 +56,7 @@ for kk in {1..3}; do
     tail -n 1 ooosss|  awk '{ for (i=3; i<=NF; i++) printf("%s\n",$i); }' > INC/sedfile.dat.tmp.$kk
     rm ooosss
    else
-    echo "no SEL from xdiff"
+    echo "minima not SEL from xdiff"
     skip=1
    fi
  else 
