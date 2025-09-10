@@ -210,6 +210,13 @@ done
 
 
 #-------------------MAIN-------------
+# INPUT:  [gamma.info]
+#         [maxrmax.info]  
+#         GMF
+#         inputhf.d12.par
+#         basrunsed.dat | parameters
+# OUTPUT : append to basdergmf.$gamma.log
+#          append to LISTENE=allene.$gamma.dat
 
 if [ -e "gamma.info" ]; then
    gamma=`cat gamma.info`
