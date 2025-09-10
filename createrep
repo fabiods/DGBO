@@ -5,7 +5,7 @@ sss=`tail -n 1 basrun.allene.$gamma.uniq.dat  | awk '{ for (i=4;i<=NF; i++) prin
 awk '{print $1}' basrunsed.dat > tmpsed1
 tail -n 1 basrun.allene.$gamma.uniq.dat  | awk '{ for (i=4;i<=NF; i++) {print $i} }' > tmpsed2
 paste tmpsed1 tmpsed2 > basrunsed.dat
-~/DGBO/basrungmf.sh
+~/DGBO/basdergmf.sh
 
 eee=`tail -n 1 basrun.allene.$gamma.uniq.dat | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
 
