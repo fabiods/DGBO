@@ -1,0 +1,16 @@
+#!/bin/bash
+gamma=0.002
+
+if [ ! -d INC3 ]; then
+mkdir INC3
+fi
+awk '{print $1}' basrunsed.dat > tmpsed1
+tail -n 1 basrun.allene.$gamma.uniq.dat  | awk '{ for (i=4;i<=NF; i++) {print $i} }' > tmpsed2
+paste tmpsed1 tmpsed2 > INC3/basrunsed.dat
+rm tmpsed1 tmpsed2
+
+rm basrun.$gamma.log
+rm basderfol.$gamma.log
+rm basdergmf.$gamma.log
+export GMF="%4.2E"
+~/DGBO/basderfol.sh 1
