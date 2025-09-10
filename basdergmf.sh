@@ -335,6 +335,7 @@ else
  
  cp basrunsed.dat   basrunsed.dat.g
 
+LISTENE="alleneder.$gamma.dat"
 # this can be parallelized:
  gradientpara basrunsed.dat $enezero $myinputhf   1
 # exit
