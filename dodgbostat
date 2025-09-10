@@ -7,6 +7,7 @@ fbasrunlog="basrun."$gamma".log"
 notconvfile="notconv."$gamma".dat"
 brunallene="basrun.allene."$gamma".dat"
 allene="allene."$gamma".dat"
+alleneder="alleneder."$gamma".dat"
 basgmf="basdergmf."$gamma".log"
 basfol="basderfol."$gamma".log"
 cat $basgmf $basfol > "basrunGF."$gamma".log"
@@ -29,8 +30,11 @@ echo "  total call ok     :" $totalcallok
 brunok=` wc -l $brunallene | awk '{print $1}'`
 echo "     basrun pyt ok " $brunok
 
-bderok=` wc -l $allene | awk '{print $1}'`  
+bderok=` wc -l $allene | awk '{print $1}'`
 echo "     basrun der ok " $bderok
+
+bderokd=` wc -l $alleneder | awk '{print $1}'`  
+echo "     basrun der der ok " $bderokd
 
 echo $totalcallnaprog $totalcallnarmax $totalcallna $totalcallok | awk '{print "CHECKTOT:",$1+$2+$3+$4}'
 
