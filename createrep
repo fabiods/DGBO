@@ -33,11 +33,13 @@ eee=`tail -n 1 INC/basrun.allene.$gamma.uniq.dat | awk -v gg=$gamma '{ printf "%
 
 echo $eee "$sss" $notc $mini
 
-sss=`sort -k 1 -g -r  INC/INC3/basrun.allene.$gamma.dat | tail -n 1 | awk '{ for (i=4;i<=NF; i++) printf("%-10s",$i) }'`
+#basrun.allene is only created at the first run (gradientpara runs)
+
+sss=`sort -k 1 -g -r  INC/INC3/allene.$gamma.dat | tail -n 1 | awk '{ for (i=4;i<=NF; i++) printf("%-10s",$i) }'`
 
 cd INC/INC3
 awk '{print $1}' basrunsed.dat > tmpsed1
-tail -n 1 basrun.allene.$gamma.dat   | awk '{ for (i=4;i<=NF; i++) { print $i} }' > tmpsed2
+tail -n 1 allene.$gamma.dat   | awk '{ for (i=4;i<=NF; i++) { print $i} }' > tmpsed2
 paste tmpsed1 tmpsed2 > basrunsed.dat
 rm tmpsed1 tmpsed2
 export GMF="%4.2E"
@@ -46,7 +48,7 @@ notc=`tail -n 2 basdergmf.out | head -n 1`
 mini=`tail -n 1 basdergmf.out` 
 cd ../..
 
-eee=`sort -k 1 -g -r  INC/INC3/basrun.allene.$gamma.dat | tail -n 1 | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
+eee=`sort -k 1 -g -r  INC/INC3/allene.$gamma.dat | tail -n 1 | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
 
 echo $eee "$sss" $notc $mini
 
