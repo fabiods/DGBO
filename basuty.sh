@@ -614,6 +614,10 @@ function cleanrun() {
  if [ -e allene.$lgamma.dat ]; then
      rm allene.$lgamma.dat
  fi
+ if [ -e alleneder.$lgamma.dat ]; then
+     rm alleneder.$lgamma.dat
+ fi
+ 
 
 }
 
