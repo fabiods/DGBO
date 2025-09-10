@@ -7,6 +7,8 @@ source ~/DGBO/basuty.sh
 # test at ~/optpy/li6/f1/INC/lowoptquesto
 
 function gradientpara() {
+# this is using basrun.sh and not runcrycond
+#
 #    set -x
 # input: sedfile, ezero, inputhf, nprocs    
     fname=$1
@@ -216,7 +218,7 @@ done
 #         inputhf.d12.par
 #         basrunsed.dat | parameters
 # OUTPUT : append to basdergmf.$gamma.log
-#          append to LISTENE=allene.$gamma.dat
+#          append to LISTENE=allene.$gamma.dat (in runcrycond)
 
 if [ -e "gamma.info" ]; then
    gamma=`cat gamma.info`
