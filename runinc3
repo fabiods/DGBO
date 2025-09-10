@@ -9,8 +9,11 @@ tail -n 1 basrun.allene.$gamma.uniq.dat  | awk '{ for (i=4;i<=NF; i++) {print $i
 paste tmpsed1 tmpsed2 > INC3/basrunsed.dat
 rm tmpsed1 tmpsed2
 
+cd INC3
+pwd
 rm basrun.$gamma.log
 rm basderfol.$gamma.log
 rm basdergmf.$gamma.log
 export GMF="%4.2E"
 ~/DGBO/basderfol.sh 1
+cd ..
