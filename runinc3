@@ -16,6 +16,7 @@ rm basderfol.$gamma.log
 rm basdergmf.$gamma.log
 rm notconv.$gamma.dat
 rm allene.$gamma.dat
+rm alleneder.$gamma.dat
 rm basrun.allene.$gamma.dat
 
 export GMF="%4.2E"
