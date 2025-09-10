@@ -2,21 +2,36 @@
 gamma=$1
 
 sss=`tail -n 1 basrun.allene.$gamma.uniq.dat  | awk '{ for (i=4;i<=NF; i++) printf("%-10s",$i) }'`
+
 awk '{print $1}' basrunsed.dat > tmpsed1
 tail -n 1 basrun.allene.$gamma.uniq.dat  | awk '{ for (i=4;i<=NF; i++) {print $i} }' > tmpsed2
 paste tmpsed1 tmpsed2 > basrunsed.dat
+rm tmpsed1 tmpsed2
 export GMF="%2.0E"
 ~/DGBO/basdergmf.sh >basdergmf.out
 notc=`tail -n 2 basdergmf.out | head -n 1`
 mini=`tail -n 1 basdergmf.out` 
+
 eee=`tail -n 1 basrun.allene.$gamma.uniq.dat | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
 
 echo $eee "$sss" $notc $mini
 
 sss=`tail -n 1 INC/basrun.allene.$gamma.uniq.dat   | awk '{ for (i=4;i<=NF; i++) printf("%-10s",$i) }'`
+
+cd INC
+awk '{print $1}' basrunsed.dat > tmpsed1
+tail -n 1 basrun.allene.$gamma.uniq.dat   | awk '{ for (i=4;i<=NF; i++) { print $1} }' > tmpsed2
+paste tmpsed1 tmpsed2 > basrunsed.dat
+rm tmpsed1 tmpsed2
+export GMF="%3.1E"
+~/DGBO/basdergmf.sh >basdergmf.out
+notc=`tail -n 2 basdergmf.out | head -n 1`
+mini=`tail -n 1 basdergmf.out` 
+cd ..
+
 eee=`tail -n 1 INC/basrun.allene.$gamma.uniq.dat | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
 
-echo $eee "$sss"
+echo $eee "$sss" $notc $mini
 
 sss=`sort -k 1 -g -r  INC/INC3/basrun.allene.$gamma.dat | tail -n 1 | awk '{ for (i=4;i<=NF; i++) printf("%-10s",$i) }'`
 eee=`sort -k 1 -g -r  INC/INC3/basrun.allene.$gamma.dat | tail -n 1 | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
