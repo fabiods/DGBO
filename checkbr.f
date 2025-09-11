@@ -88,6 +88,8 @@
        if (vv(ilx).gt.val(ilx)) then
         write(*,*) ilx,'too high'
         ierr=ierr+1
+        else
+        write(*,*) val(ilx),'<',vv(ilx)
        endif
        endif
       enddo
