@@ -1,6 +1,7 @@
 #!/bin/bash
 gamma=$1
-
+set -e
+set -u
 sss=`tail -n 1 basrun.allene.$gamma.uniq.dat  | awk '{ for (i=4;i<=NF; i++) printf("%-10s",$i) }'`
 
 awk '{print $1}' basrunsed.dat > tmpsed1
