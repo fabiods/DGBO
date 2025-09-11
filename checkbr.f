@@ -2,7 +2,10 @@
       implicit none
       character(len=30)       :: arg,str,ss(20),filename
       integer                 :: i, x,j,c(3),numpar,ierr,numj,k
+      integer il,ilx
+      logical isb
       double precision        :: vv(20),vvk(20,3),par(20),ratio,geop
+      double precision        :: val(20)
       character(len=2)            ::type(3)
       type(1)='S'
       type(2)='P'
@@ -10,17 +13,26 @@
 ! input:
 ! checkbr.x filename maxratio par1 par2 ....parN
 !           filename is used only to read the string PAR*
+! bmax.dat is eventually read the check contractions
+
       numpar=command_argument_count()-2
-      write(*,*) 'numpar',numpar
+      write(*,*) 'numpar ',numpar
       
       call GET_COMMAND_ARGUMENT(1,arg)
       read(arg,*) filename
-      write(*,*) 'filename', filename
+      write(*,*) 'filename ', filename
       
       call GET_COMMAND_ARGUMENT(2, arg)
       read(arg,*) geop
       write(*,*) 'geo prog',geop
-      
+
+      inquire('bmax.dat', exist=isb)  
+      if (isb) the
+       open(UNIT=33,FILE='bmax.dat',STATUS='OLD')
+       do il=1,numpar
+        read(33,*) ilx,val(il)
+       end do
+      endif
       do i = 1, numpar
       call GET_COMMAND_ARGUMENT(i+2, arg)
 !      write(*,*) arg
@@ -67,6 +79,13 @@
                endif   
             enddo    
          endif   
+      enddo
+      do ilx=1,numpar
+      if (val(ilx).gt.1.d-6) then
+       if (vv(ilx).gt.val(ilx)) then
+        write(*,*) ilx,'too high'
+        ierr=ierr+1
+       endif
       enddo
       write(*,*) 'ierr',ierr
       end  program  
