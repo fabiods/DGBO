@@ -26,12 +26,14 @@
       read(arg,*) geop
       write(*,*) 'geo prog',geop
 
-      inquire('bmax.dat', exist=isb)  
-      if (isb) the
+      inquire(FILE='bmax.dat', exist=isb)  
+      if (isb) then
        open(UNIT=33,FILE='bmax.dat',STATUS='OLD')
        do il=1,numpar
         read(33,*) ilx,val(il)
        end do
+      else
+       write(*,*) 'bmax not found'
       endif
       do i = 1, numpar
       call GET_COMMAND_ARGUMENT(i+2, arg)
@@ -80,6 +82,7 @@
             enddo    
          endif   
       enddo
+      if (isb) then 
       do ilx=1,numpar
       if (val(ilx).gt.1.d-6) then
        if (vv(ilx).gt.val(ilx)) then
@@ -87,5 +90,6 @@
         ierr=ierr+1
        endif
       enddo
+      endif
       write(*,*) 'ierr',ierr
       end  program  
