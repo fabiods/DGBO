@@ -28,6 +28,7 @@
 
       inquire(FILE='bmax.dat', exist=isb)  
       if (isb) then
+       write(*,*) 'bmax.dat found'
        open(UNIT=33,FILE='bmax.dat',STATUS='OLD')
        do il=1,numpar
         read(33,*) ilx,val(il)
