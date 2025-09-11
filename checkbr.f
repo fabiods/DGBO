@@ -89,6 +89,7 @@
         write(*,*) ilx,'too high'
         ierr=ierr+1
        endif
+       endif
       enddo
       endif
       write(*,*) 'ierr',ierr
