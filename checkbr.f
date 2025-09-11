@@ -84,10 +84,11 @@
          endif   
       enddo
       if (isb) then 
+      write(*,*)
       do ilx=1,numpar
       if (val(ilx).gt.1.d-6) then
        if (vv(ilx).gt.val(ilx)) then
-        write(*,*) ilx,'too high'
+        write(*,*) ilx,'too high', vv(ilx),'>',val(ilx)
         ierr=ierr+1
         else
         write(*,*) vv(ilx),'<',val(ilx)
