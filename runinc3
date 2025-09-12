@@ -9,9 +9,15 @@ if [ ! -d INC3 ]; then
  cp bmax.dat INC3
 fi
 awk '{print $1}' basrunsed.dat > tmpsed1
-tail -n 1 basrun.allene.$gamma.uniq.dat  | awk '{ for (i=4;i<=NF; i++) {print $i} }' > tmpsed2
-paste tmpsed1 tmpsed2 > INC3/basrunsed.dat
-rm tmpsed1 tmpsed2
+
+if [ -e basrun.allene.$gamma.uniq.dat ]; then
+ tail -n 1 basrun.allene.$gamma.uniq.dat  | awk '{ for (i=4;i<=NF; i++) {print $i} }' > tmpsed2
+else
+ echo "basrun.allene.$gamma.uniq.dat not found" 
+ exit 1
+fi
+ paste tmpsed1 tmpsed2 > INC3/basrunsed.dat
+ rm tmpsed1 tmpsed2
 
 cd INC3
  pwd
