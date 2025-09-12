@@ -87,7 +87,7 @@ cd INC
  if [ -e basderfol.$gamma.log ]; then
    rm basderfol.$gamma.log
  fi  
- ~/DGBO/basderfol.sh 100 | tee basderfol.$gamma.out
+ ~/DGBO/basderfol.sh 10 | tee basderfol.$gamma.out
  xxx=`tail -n 1 basderfol.$gamma.out`
  echo "res:" $xxx
 cd ..
