@@ -10,6 +10,7 @@ if [ ! -d INC3 ]; then
 fi
 awk '{print $1}' basrunsed.dat > tmpsed1
 
+
 if [ -e basrun.allene.$gamma.uniq.dat ]; then
  tail -n 1 basrun.allene.$gamma.uniq.dat  | awk '{ for (i=4;i<=NF; i++) {print $i} }' > tmpsed2
 else
@@ -27,8 +28,9 @@ cd INC3
  rm notconv.$gamma.dat
  rm allene.$gamma.dat
  rm alleneder.$gamma.dat
- rm basrun.allene.$gamma.dat 
+ rm basrun.allene.$gamma.dat
 
+ echo $gamma > INC3/gamma.info
  export GMF="%4.2E"
  ~/DGBO/basderfol.sh 1
 cd ..
