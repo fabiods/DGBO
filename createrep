@@ -14,7 +14,11 @@ echo $gamma > gamma.info
 notc=`tail -n 2 basdergmf.out | head -n 1`
 mini=`tail -n 1 basdergmf.out` 
 
+if [ "$gamma" != "0" ]; then
 eee=`tail -n 1 basrun.allene.$gamma.uniq.dat | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
+else
+eee=`tail -n 1 basrun.allene.$gamma.uniq.dat | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,0}'`
+fi
 
 echo "$eee" "$sss" $notc $mini
 
