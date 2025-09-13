@@ -45,6 +45,7 @@ echo "$eee" "$sss" $notc $mini
 
 #basrun.allene is only created at the first run (gradientpara runs)
 
+if [ -e INC/INC3/allene.$gamma.dat ]; then 
 sss=`sort -k 1 -g -r  INC/INC3/allene.$gamma.dat | tail -n 1 | awk '{ for (i=4;i<=NF; i++) printf("%-10s",$i) }'`
 
 cd INC/INC3
@@ -65,4 +66,7 @@ else
 eee=`sort -k 1 -g -r  INC/INC3/allene.$gamma.dat | tail -n 1 | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,0}'`
 fi
 echo "$eee" "$sss" $notc $mini
+else
+echo  "INC/INC3/allene.$gamma.dat not found"
+fi
 
