@@ -173,7 +173,7 @@ def ackley(solution):
         res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) + " " + str(yy[7]) , shell=True, stdout=subprocess.PIPE) 
     if nn==9:
         res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) + " " + str(yy[7])  + " " + str(yy[8]) , shell=True, stdout=subprocess.PIPE)         
-    if nn=10:
+    if nn==10:
         res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) + " " + str(yy[7])  + " " + str(yy[8])  + " " + str(yy[9]) , shell=True, stdout=subprocess.PIPE)
          
 #      print(res.stdout)
