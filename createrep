@@ -46,6 +46,7 @@ tail -n 1 allene.$gamma.dat   | awk '{ for (i=4;i<=NF; i++) { print $i} }' > tmp
 paste tmpsed1 tmpsed2 > basrunsed.dat
 rm tmpsed1 tmpsed2
 export GMF="%4.2E"
+echo $gamma > gamma.info
 ~/DGBO/basdergmf.sh >basdergmf.out
 notc=`tail -n 2 basdergmf.out | head -n 1`
 mini=`tail -n 1 basdergmf.out` 
