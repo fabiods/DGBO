@@ -6,7 +6,7 @@
       logical isb
       double precision        :: vv(20),vvk(20,3),par(20),ratio,geop
       double precision        :: val(20)
-      character(len=2)            ::type(3)
+      character(len=2)            ::type(3),cht
       type(1)='S'
       type(2)='P'
       type(3)='D'
@@ -64,7 +64,9 @@
          do j=1,numj
             str=ss(j)
 !            write(*,*) str(5:5)
-            if (str(5:5).eq.type(k)) then
+            if (j.le.9) cht=str(5:5)
+            if (j.ge.10) cht=str(6:6)
+            if (cht.eq.type(k)) then
                write(*,*) str
                c(k)=c(k)+1
                vvk(c(k),k)=par(j)!vv(j)
