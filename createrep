@@ -36,8 +36,11 @@ notc=`tail -n 2 basdergmf.out | head -n 1`
 mini=`tail -n 1 basdergmf.out` 
 cd ..
 
+if [ "$gamma" != "0" ]; then
 eee=`tail -n 1 INC/basrun.allene.$gamma.uniq.dat | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
-
+else
+eee=`tail -n 1 INC/basrun.allene.$gamma.uniq.dat | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,0}'`
+fi
 echo "$eee" "$sss" $notc $mini
 
 #basrun.allene is only created at the first run (gradientpara runs)
@@ -56,7 +59,10 @@ notc=`tail -n 2 basdergmf.out | head -n 1`
 mini=`tail -n 1 basdergmf.out` 
 cd ../..
 
+if [ "$gamma" != "0" ]; then
 eee=`sort -k 1 -g -r  INC/INC3/allene.$gamma.dat | tail -n 1 | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,exp($3/gg)}'`
-
+else
+eee=`sort -k 1 -g -r  INC/INC3/allene.$gamma.dat | tail -n 1 | awk -v gg=$gamma '{ printf "%15.8f %15.8f %10.2f",$1,$2,0}'`
+fi
 echo "$eee" "$sss" $notc $mini
 
