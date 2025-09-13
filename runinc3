@@ -30,7 +30,7 @@ cd INC3
  rm alleneder.$gamma.dat
  rm basrun.allene.$gamma.dat
 
- echo $gamma > INC3/gamma.info
+ echo $gamma > gamma.info
  export GMF="%4.2E"
  ~/DGBO/basderfol.sh 1
 cd ..
