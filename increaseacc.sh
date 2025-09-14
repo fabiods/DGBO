@@ -162,7 +162,10 @@ paste tmpxx1 tmpxx2 > basrunsed.optfinal$gamma.dat
 rm tmpxx1 tmpxx2
 gfile=`sort -k 5 -g -r notconv.$gamma.dat   | grep -v NA | uniq | tail -n 1 | awk '{printf "out.%s* ",$7}'`
 
+if [ ! -d optfinal$gamma ]; 
 mkdir optfinal$gamma
+fi 
+
 cp  basrunsed.optfinal$gamma.dat optfinal$gamma/sedfile.dat
 cp inputhf.d12.par optfinal$gamma
 cp gamma.info    optfinal$gamma  >& /dev/null
