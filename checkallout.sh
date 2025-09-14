@@ -64,11 +64,13 @@ while read -r line; do
 #    echo $line
     isopenerr=0    
     enemay=0
-    err=`grep INPBAS $line | wc -l | awk '{print $1}'`
-    ett=`grep INPUTT $line | wc -l | awk '{print $1}'`
-    ela=`grep "INCREASE ILASIZE" $line | wc -l | awk '{print $1}'`  
+    err=`grep INPBAS $line | wc -l | awk '{print $1}' || echo 0`
+    ett=`grep INPUTT $line | wc -l | awk '{print $1}' || echo 0`
+    ela=`grep "INCREASE ILASIZE" $line | wc -l | awk '{print $1}' || echo 0`  
     if [ "$err" -ne "0" ] || [ "$ett" -ne "0" ] ||  [ "$ela" -ne "0" ]; then
-	 grep -H INPBAS $line
+	 grep -H INPBAS $line || echo ""
+	 grep -H INPUTT $line || echo ""
+	 grep -H "INCREASE ILASIZE" $line || echo ""
 	 echo $err $ett $ela | tee -a $LOGFILE   
 	 ls -al $line
 	 rm $line
