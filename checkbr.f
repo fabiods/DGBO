@@ -93,7 +93,7 @@
          write(*,*) ilx,'too high', vv(ilx),'>',val(ilx)
          ierr=ierr+1
         else
-         write(*,*) vv(ilx),'<',val(ilx)
+         write(*,*) vv(ilx),'<',val(ilx),'*1.15'
        endif
        endif
       enddo
