@@ -223,6 +223,6 @@ while read -r line; do
     c=$((c+1))
     qqq=MYARRAY[$c]
     #    sed -i s/"$line"/"PAR"$c"X +1.0"/g $name.par
-    sed -i '0,/"$line"/s/"$line"/${MYARRAY[c]}" 1.0"/g' $name.par 
+    sed -i 0,/"$line"/s/"$line"/${MYARRAY[c]}" 1.0"/g $name.par 
 done < tmp
 echo "}END cry2basrun"
