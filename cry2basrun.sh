@@ -1,6 +1,6 @@
 #!/bin/bash
 #set -x
-#set -u
+set -u
 # take in input a crystal file       with "*" for basis set optimization
 # make in output a crytstal file.par with parameter string for optimization 
 
@@ -190,7 +190,7 @@ while read -r line; do
  ttn=`echo "$fmin < $fval" | bc -l`
  ttx=`echo "$fmax > $fval" | bc -l`
  echo $fmin $fval $fmax $ttn $ttx
- if [ "$ttb" == "0" ]; then
+ if [ "$ttn" == "0" ]; then
   fval=$fmin
   echo "FORCED to MIN"
  elif   [ "$ttx" == "0" ]; then
