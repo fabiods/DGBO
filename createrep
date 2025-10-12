@@ -76,7 +76,7 @@ if [ ! -d comp ]; then
 fi
 cd comp
 cp ../basrunsed.dat .
-cp ../input.d12.par .
+cp ../inputhf.d12.par .
 oldcell=`grep -A 2 "CRYSTALLOGRAPHIC CELL " ../inputhf.out  | tail -n 1 | awk '{print $1}'`
 newcell=echo $oldcell | awk '{print $1-0.1}' 
 echo $newcell
