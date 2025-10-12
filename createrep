@@ -81,4 +81,5 @@ oldcell=`grep -A 2 "CRYSTALLOGRAPHIC CELL " ../inputhf.out  | tail -n 1 | awk '{
 newcell=`echo $oldcell | awk '{print $1-0.1}'` 
 echo $newcell
 sed -i s/$oldcell/$newcell/g inputhf.d12.par
+
 cd ../../../
