@@ -85,3 +85,4 @@ export BPROG=1.5
 export GMF="%5.3E"
 ~/DGBO/basrun.sh 
 cd ../../../
+pwd
