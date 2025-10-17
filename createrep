@@ -71,10 +71,10 @@ echo  "INC/INC3/allene.$gamma.dat not found"
 fi
 
 cd INC/INC3
-if [ ! -d comp ]; then
- mkdir comp
+if [ ! -d comp$gamma ]; then
+ mkdir comp$gamma
 fi
-cd comp
+cd comp$gamma
 cp ../basrunsed.dat .
 cp ../inputhf.d12.par .
 oldcell=`grep -A 2 "CRYSTALLOGRAPHIC CELL " ../inputhf.out  | tail -n 1 | awk '{print $1}'`
