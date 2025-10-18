@@ -155,7 +155,7 @@ for ((k = 1 ; k <= $num ; k++ )); do
      else
 	     if [ "$last" == "yes" ]; then
 		 echo "single orbital"
-		 echo ${myexpdt[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$2}' >> bounds.dat
+		 echo ${myexpdt[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$2*3/4}' >> bounds.dat
 		 else
           echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$2}' >> bounds.dat
 		  fi
