@@ -157,12 +157,12 @@ for ((k = 1 ; k <= $num ; k++ )); do
      else
 	     if [ "$last" == "yes" ]; then
 		 echo "single orbital"
-		 kl1=`echo "${myexpa[k]} < 0.4" | bc -l`
+#		 kl1=`echo "${myexpa[k]} < 0.4" | bc -l`
 		 kl2=`echo "${myexpa[k]} >= 0.25" | bc -l`
-		 klt=`echo $kl1 $kl2 | awk '{print $1+$2'}`
-		 echo $kl1 $kl2 $klt
-		 if [ "$klt" == 2 ]; then
-		  echo ${myexpdt[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$1*10}' >> bounds.dat
+#		 klt=`echo $kl1 $kl2 | awk '{print $1+$2'}`
+#		 echo $kl1 $kl2 $klt
+		 if [ "$kl2" == 1 ]; then
+		  echo ${myexpdt[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$2/10,$2}' >> bounds.dat
 		 else
 		   echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$2}' >> bounds.dat
 		 fi  
