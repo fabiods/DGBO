@@ -107,6 +107,8 @@ echo "mytyp full:"
 myexp[0]=100000
 # was 0
 myexp[$numl]=0.06
+myexp[$numl]=0
+
 mytyp[0]=""
 mytyp[$numl]=""
 
