@@ -158,7 +158,7 @@ for ((k = 1 ; k <= $num ; k++ )); do
 	     if [ "$last" == "yes" ]; then
 		 echo "single orbital"
 #		 kl1=`echo "${myexpa[k]} < 0.4" | bc -l`
-		 kl2=`echo "${myexpa[k]} >= 0.25" | bc -l`
+		 kl2=`echo "${myexp[k]} >= 0.25" | bc -l`
 #		 klt=`echo $kl1 $kl2 | awk '{print $1+$2'}`
 #		 echo $kl1 $kl2 $klt
 		 if [ "$kl2" == 1 ]; then
