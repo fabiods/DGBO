@@ -153,7 +153,12 @@ for ((k = 1 ; k <= $num ; k++ )); do
           echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,-$2}' >> bounds.dat
 		  echo $k  ${myexppt[k]} >> bmax.dat
      else
+	     if [ "$last" == "yes" ]; then
+		 echo "single orbital"
+		 echo ${myexpdt[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$2}' >> bounds.dat
+		 else
           echo ${myexpa[k]} ${myexppt[k]} | awk -v gm="$fmto" '{printf gm,$1,$2}' >> bounds.dat
+		  fi
 		  echo $k 0 >> bmax.dat
      fi
 
