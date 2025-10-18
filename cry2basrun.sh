@@ -143,7 +143,7 @@ for ((k = 1 ; k <= $num ; k++ )); do
     else
 	last="no"
     fi
-#    echo $k,$first,$last
+    echo $k,$first,$last
     if [ "$first" == "yes" ]; then
 	 echo $k,":",${myexpa[k]},"<",${myexp[k]},"<",${myexppt[k]}
 	 echo "${myexpa[k]} < ${myexp[k]}" | bc -l
