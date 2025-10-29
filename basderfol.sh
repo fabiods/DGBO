@@ -130,6 +130,7 @@ fi
 	    else
 	     echo "too small variation" $newdif |tee -a $LOGFILE
 	     conv="yes"
+		 ddd=""
 	    fi    
 	     echo $newpos $newxxx $newdif $conv $ddd |tee -a $LOGFILE
     fi 	
