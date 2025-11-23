@@ -10,7 +10,6 @@ echo "================"
 nr=`cat maxrmax.info`
 echo $nr
 
-#~/DGBO/rundgbo
 if [ ! -e "checkallout.out" ]; then
     ~/DGBO/checkallout.sh  >  checkallout.out
 fi
@@ -54,13 +53,20 @@ echo $nc $nr "|" $ntot $nok $nn "|" $ninc $nnor
 gamma=$1
 
 pwd
+# ~/DGBO/rundgbo
 subset
 
+
+# ~/DGBO/runincacc
 cd INC
 pwd
 subset
 cd ..
 
+
+#cd INC
+#~/DGBO/runinc3 $gamma
+#cd ..
 cd INC/INC3
 pwd
 subset
