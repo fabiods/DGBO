@@ -53,12 +53,15 @@ echo $nc $nr "|" $ntot $nok $nn "|" $ninc $nnor
 
 gamma=$1
 
+pwd
 subset
 
 cd INC
+pwd
 subset
 cd ..
 
 cd INC/INC3
+pwd
 subset
 cd ../../
