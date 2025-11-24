@@ -14,6 +14,9 @@ if [ ! -e "checkallout.out" ]; then
     ~/DGBO/checkallout.sh  >  checkallout.out
 fi
 
+dir dgbo5g*
+dir checkallout.out
+
 echo "==incmax====="  
 ninc=`grep inccyc checkallout.out | awk '{print $2}'`
 echo $ninc
