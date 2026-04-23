@@ -20,7 +20,7 @@
       implicit none
       integer i,j,n,nc,k
       double precision dd,dene,mmin,mmax
-      integer , parameter :: mm=10000,ncmax=11
+      integer , parameter :: mm=10000,ncmax=18 
       double precision e1(mm),e2(mm),ed(mm),x1(mm,ncmax),y(ncmax)
       double precision ox(ncmax),rrr,dmax(ncmax),dmin(ncmax)
       double precision vmin(ncmax),vmax(ncmax)
