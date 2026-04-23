@@ -79,6 +79,11 @@ function eigratio() {
    ball=`grep "ALL G-VECTORS USED" $input.eigs | wc -l`
    if [ "$ball" -ne "1" ]; then 
     nk=`grep "NUMBER OF K POINTS IN THE IBZ" $input.eigs | awk '{print $13}'`
+	nkgamma=nk
+    if [ -z $nk ]; then
+       nkgamma=1
+    fi         
+
     echo 'nk' $nk >> $LOGFILE
     rmax=0.0
     nk=1
@@ -87,7 +92,12 @@ function eigratio() {
      sr=`echo $k | awk  '{printf "%d(",$1+1}'`
 #    echo $sr >> $LOGFILE
 #     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 | awk '{print $1,"\n",$NF}'    > tmpee
-     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 > tmpee.$$
+#     grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 > tmpee.$$
+     if [ "$nkgamma" == "1" ]; then
+        grep -A 10 $sr  $input.eigs  |  awk -v RS="TTT" 'NR==1' | tail -n +2 > tmpee.$$ 
+     else      
+         grep -A 10 $sr  $input.eigs  |  awk -v RS= 'NR==1' | tail -n +2 > tmpee.$$ 
+     fi         
      awk '{ for (i=1;i<=NF; i++) printf("%s\n",$i); }' tmpee.$$ | sort -g  > tmpb.$$
      amin=`head -n 1 tmpb.$$ | awk '{printf "%30.20f", $1}'`
      amax=`tail -n 1 tmpb.$$`
