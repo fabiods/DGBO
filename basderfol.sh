@@ -101,6 +101,9 @@ fi
     mv   qggg basdergmf.$gamma.log 
 	fi 
     rrr=`grep enezero yyy.$cnt | awk '{print $2}'`
+	if [ -z "$rrr" ]; then
+    rrr=`grep "initial point" yyy.$cnt | awk '{print $5}'`
+    fi 
 	echo >> $LOGFILE
     echo "cycle= " $cnt "energy= " $rrr | tee -a $LOGFILE
     echo >> $LOGFILE
