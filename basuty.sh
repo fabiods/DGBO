@@ -420,8 +420,8 @@ function runcrycond(){
 #    gamma=0.000000
     else
 	 ene="NAPROG"
-	 rmax=10000
-	 rmax0=10000
+	 rmax=10000000
+	 rmax0=10000000
     fi
 
     enevera=$ene
