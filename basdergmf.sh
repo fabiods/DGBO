@@ -307,7 +307,13 @@ tolb=`echo $tol | awk '{printf "%15.10f",$1}'`
 echo 'tol', $told $tol $tolb >> $LOGFILE
 #cat basrunsed.dat >>$LOGFILE
 
-export BPROG="1.4"
+if [  ${BPROG:-"undef"} == "undef" ]; then
+  BPROG=1.4
+fi
+
+export BPROG
+echo "BPROG" $BPROG
+
 #-------------------run the starting point -----------------------------------
 myinputhf="inputhf"
 
