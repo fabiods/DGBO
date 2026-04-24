@@ -2,7 +2,7 @@
       implicit none
       character*2 ch
       integer k,ks,kp,kd,kf,kg,z,num,izero,ich,iocc
-      double precision ess(50),epp(50),edd(50),eff(5),edd(50)  ,iuno
+      double precision ess(50),epp(50),edd(50),eff(5),egg(50)  ,iuno
 # read directly input.d12
       read(*,*)
 #      read(*,*)
