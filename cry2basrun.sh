@@ -29,10 +29,16 @@ paste type.dat sedfile.dat.tmp | awk '{printf "%s%s %f\n",$2,$1,$4}' > sedfile.d
 maxxs=`grep " S " crylc.out | awk '{print $2/1.5}'`
 maxxp=`grep " P " crylc.out | awk '{print $2/1.5}'`
 maxxd=`grep " D " crylc.out | awk '{print $2/1.5}'` 
+maxxf=`grep " F " crylc.out | awk '{print $2/1.5}'`
+maxxg=`grep " G " crylc.out | awk '{print $2/1.5}'`
+
 echo "from deep contractions:"
 echo "maxxs" $maxxs
 echo "maxxp" $maxxp
 echo "maxxd" $maxxd
+echo "maxxf" $maxxf
+echo "maxxg" $maxxg
+
 
 declare -a myexp
 declare -a myexppt
@@ -52,14 +58,20 @@ while read -r line; do
     #    ee=`echo $line | awk '{printf "%5.3E",$2}'`
     ee=`echo $line | awk '{printf "%f",$2}'`             
     if [ "$tt" == "S" ] && [ ! -z "$maxxs" ]; then
-	eept=$maxxs
+	    eept=$maxxs
         myexpdef[$index]=1
     elif [ "$tt" == "P" ] && [ ! -z "$maxxp" ]; then
-	eept=$maxxp
+	    eept=$maxxp
         myexpdef[$index]=1
     elif [ "$tt" == "D" ] && [ ! -z "$maxxd" ]; then
-	eept=$maxxd
+	    eept=$maxxd
         myexpdef[$index]=1
+    elif [ "$tt" == "F" ] && [ ! -z "$maxxf" ]; then
+        eept=$maxxf
+        myexpdef[$index]=1   
+    elif [ "$tt" == "G" ] && [ ! -z "$maxxg" ]; then
+        eept=$maxxg
+        myexpdef[$index]=1   
     else	
         myexpdef[$index]=0 
 #	eept=`echo $line | awk '{printf "%5.3E",$2*3}'`
