@@ -67,10 +67,10 @@
       if (kd.gt.0) then
          write(*,*) 'D',edd(kd)
       endif   
-     if (kf.gt.0) then
+      if (kf.gt.0) then
          write(*,*) 'F',eff(kd)
       endif
-     if (kg.gt.0) then
+      if (kg.gt.0) then
          write(*,*) 'G',egg(kd)
       endif
       end program
