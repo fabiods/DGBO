@@ -1,15 +1,18 @@
       program checkbr 
       implicit none
+      integer, parameter :: lmax=5
       character(len=30)       :: arg,str,ss(20),filename
-      integer                 :: i, x,j,c(3),numpar,ierr,numj,k
+      integer                 :: i, x,j,c(lmax),numpar,ierr,numj,k
       integer il,ilx
       logical isb
-      double precision        :: vv(20),vvk(20,3),par(20),ratio,geop
+      double precision        :: vv(20),vvk(20,lmax),par(20),ratio,geop
       double precision        :: val(20)
-      character(len=2)            ::type(3),cht
+      character(len=2)            ::type(lmax),cht
       type(1)='S'
       type(2)='P'
       type(3)='D'
+      type(4)='F'
+      type(5)='G'
 ! input:
 ! checkbr.x filename maxratio par1 par2 ....parN
 !           filename is used only to read the string PAR*
@@ -59,7 +62,7 @@
       end if
       c(:)=0
       ierr=0
-      do k=1,3
+      do k=1,lmax
          write(*,*) '-----------',type(k),'----------'
          do j=1,numj
             str=ss(j)
