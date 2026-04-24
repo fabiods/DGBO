@@ -179,6 +179,8 @@ def ackley(solution):
         res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) + " " + str(yy[7])  + " " + str(yy[8])  + " " + str(yy[9]) , shell=True, stdout=subprocess.PIPE)
     if nn==11:
         res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) + " " + str(yy[7])  + " " + str(yy[8])  + " " + str(yy[9]) + " " + str(yy[10]), shell=True, stdout=subprocess.PIPE)  
+    if nn==12:
+        res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) + " " + str(yy[7])  + " " + str(yy[8])  + " " + str(yy[9]) + " " + str(yy[10]) + " " + str(yy[11]) , shell=True, stdout=subprocess.PIPE)  
     if nn==15:
         res=subprocess.run(  "~/DGBO/basrun.sh " + str(yy[0]) + " " + str(yy[1]) + " " + str(yy[2])+ " " + str(yy[3]) + " " + str(yy[4]) + " " + str(yy[5])+ " " + str(yy[6]) + " " + str(yy[7])  + " " + str(yy[8])  + " " + str(yy[9]) + " " + str(yy[10]) + " " + str(yy[11]) + " " + str(yy[12])+ " " + str(yy[13]) + " " + str(yy[14]), shell=True, stdout=subprocess.PIPE)
     if nn==18:
