@@ -335,7 +335,8 @@ enezero=$ene
 
 if [[ $enevera == NA* ]]; then
        echo "ERROR: initial point is $enezero"
-else       
+fi
+
  echo "enezero" $ene | tee -a $LOGFILE 
  #set -x
  
@@ -348,5 +349,5 @@ LISTENE="alleneder.$gamma.dat"
  gradient basrunsed.dat $enezero $myinputhf
  
  mv basrunsed.dat.g basrunsed.dat
-fi
+#fi
 #echo "basdergmf.sh DONE" | tee -a $LOGFILE
