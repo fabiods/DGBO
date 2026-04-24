@@ -21,7 +21,7 @@
       if (ich.eq.3) ch='D'
       if (ich.eq.4) ch='F'
       if (ich.eq.5) ch='G'
-      write(*,*) num,ch
+      write(*,*) num!,ch
       if (ch.eq.'S') then
        do k=1,num
         ks=ks+1
