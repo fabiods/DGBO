@@ -105,7 +105,19 @@ where 0 is the gamma parameter
 
 The gamma paramter is used to defined a constrained energy
 
-energy=energy+gamma*LOG(eigmax/eigmin)
+energy=energy_SCF+gamma*LOG(rmax)
+where rmax=eigmax/eigmin
+
+When rmax>maxrmax the crystal calculation is not done.
+
+In this case the energy is only
+
+energy=gamma*LOG(rmax)
+
+and optimization can still be done, so that DGBO will minimize only rmax
+
+
+
 
 ---------------------------------------------------
 GMF is a REQUIRED (!!!) enviroment variable
