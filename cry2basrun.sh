@@ -15,7 +15,26 @@ fi
 grep -A 1 "*" $name |  grep -v "\-\-" | grep -v "*" > tmp
 
 # type.dat is: momentoangolare
-grep  "*" $name | awk '{if  ( $2 == "0" ) { print "S" } else { if ( $2 == "2" ) { print "P"} else {print "D"} } }' >type.dat
+grep  "*" $name | awk '{if  ( $2 == "0" )
+                         { print "S" }
+                        else
+                         { if ( $2 == "2" )
+                            { print "P"}
+                           else
+                            {  if ( $2 == "3" )
+                                { print "D" }
+                               else
+                                { if ( $2 == "4" )
+                                   { print "F" }
+                                  else
+                                   { if ( $2 == "5" )
+                                      { print "G" }
+                                   }
+				}
+			    }
+                         }
+		       }' >type.dat
+
 
 # sedfile.dat.tmp is : PAR1 X exponenente
 grep -A 1 "*" $name |   grep -v "\-\-" | grep -v "*" | awk '{printf "%s%1d%s %f\n","PAR",NR," X",$1}' > sedfile.dat.tmp
