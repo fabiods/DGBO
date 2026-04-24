@@ -1,9 +1,10 @@
-      program readlc
+     program readlc
       implicit none
       character*2 ch
       integer k,ks,kp,kd,kf,kg,z,num,izero,ich,iocc
-      double precision ess(50),epp(50),edd(50),eff(5),egg(50)  ,iuno
+      double precision ess(50),epp(50),edd(50),eff(50),egg(50)  ,iuno
 # read directly input.d12
+# in general contains the basis functions NOT TO BE OPTIMIZED
       read(*,*)
 #      read(*,*)
       ks=0
@@ -15,12 +16,12 @@
 # 0 0  6  2. 1.
 # 0 2  1  0. 1. *
       read(*,*,ERR=89,END=89) izero,ich,num,iocc,iuno
-      write(*,*) num
       if (ich.eq.0) ch='S'
       if (ich.eq.2) ch='P'
       if (ich.eq.3) ch='D'
       if (ich.eq.4) ch='F'
       if (ich.eq.5) ch='G'
+      write(*,*) num,ch
       if (ch.eq.'S') then
        do k=1,num
         ks=ks+1
@@ -51,13 +52,15 @@
       end if 
       if (ch.eq.'G') then
        do k=1,num
-        kd=kd+1
+        kg=kg+1
         read(*,*) egg(kg)
         write(*,*) egg(kg)
        end do
       end if
       goto 88
 89    write(*,*) 'done'
+      write(*,*) ks,kp,kd,kf,kg
+! print the last expoenent of each ang mom      
       if (ks.gt.0) then
          write(*,*) 'S', ess(ks)
       endif
@@ -68,9 +71,9 @@
          write(*,*) 'D',edd(kd)
       endif   
       if (kf.gt.0) then
-         write(*,*) 'F',eff(kd)
+         write(*,*) 'F',eff(kf)
       endif
       if (kg.gt.0) then
-         write(*,*) 'G',egg(kd)
+         write(*,*) 'G',egg(kg)
       endif
-      end program
+      end program    
