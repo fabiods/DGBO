@@ -49,8 +49,13 @@ if [ ! -e inputhf.d12.par ];  then
     exit
 fi
 
-echo "bmax.dat"
-cat bmax.dat
+if [ -e "bmax.dat" ]; then 
+ echo "bmax.dat"
+ cat bmax.dat
+else
+ echo "bmax not found"
+ exit
+fi
 
 told=`grep -A 1 "TOLDEE" inputhf.d12.par | tail -n 1 `
 tol=`echo $told | awk '{print 10**(-$1)}'`
