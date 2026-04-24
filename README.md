@@ -103,6 +103,10 @@ dgbo also create many log files
 
 where 0 is the gamma parameter
 
+The gamma paramter is used to defined a constrained energy
+
+energy=energy+gamma*LOG(eigmax/eigmin)
+
 ---------------------------------------------------
 GMF is a REQUIRED (!!!) enviroment variable
 
