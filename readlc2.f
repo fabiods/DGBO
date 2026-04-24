@@ -1,4 +1,4 @@
-     program readlc
+      program readlc
       implicit none
       character*2 ch
       integer k,ks,kp,kd,kf,kg,z,num,izero,ich,iocc
