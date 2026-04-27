@@ -79,7 +79,7 @@ class Scaling:
                     print(" upbounds",upb[i])
                  # recompute lob   
                  lob[i]=i2v(lobi[i], self.get(i) ,dig)          
-       if xarr[i] >= abs(upb[i]):
+       if xarr[i] >= abs(upb[i]-0.000001):
            print(" bound up violated",i)
            if upb[i] <0 :
                print(" bound up fixed",i)
