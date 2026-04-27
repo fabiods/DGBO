@@ -112,7 +112,7 @@ function eigratio() {
        amin=`echo $amin | awk '{printf "%30.20f", -$1}'`
      fi
 #    echo "amin" $amin >> $LOGFILE
-     ratio=`echo $amin $amax | awk '{printf "%40.10f",$2/$1}'`
+     ratio=`echo $amin $amax | awk '{printf "%40.10f",$2/($1+0.000000000000001)}'`
      echo "amin ratio rmax " $amin $ratio $rmax  >> $LOGFILE
         
      rmaxis=`echo "$ratio > $rmax" | bc -l`
